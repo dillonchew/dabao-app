@@ -1,6 +1,9 @@
 <template>
   <div>
-    <b-button v-b-modal.modal-clem variant="outline-primary">{{ msg }}</b-button>
+    <b-button v-b-modal.modal-clem pill variant="outline-secondary">
+      {{ msg }}
+      <b-icon icon="cart-plus"></b-icon>
+    </b-button>
 
     <b-modal
       id="modal-clem"
@@ -18,9 +21,19 @@
           invalid-feedback="Shop and Items are required"
         >
           <label>Which Shop:</label>
-          <b-form-input id="shop-input" v-model="order.shop" :state="orderState" required></b-form-input>
+          <b-form-input
+            id="shop-input"
+            v-model="order.shop"
+            :state="orderState"
+            required
+          ></b-form-input>
           <label>What Items:</label>
-          <b-form-input id="items-input" v-model="order.items" :state="orderState" required></b-form-input>
+          <b-form-input
+            id="items-input"
+            v-model="order.items"
+            :state="orderState"
+            required
+          ></b-form-input>
         </b-form-group>
       </form>
     </b-modal>
@@ -38,17 +51,14 @@ export default {
         place: "Clementi Mall",
         shop: "",
         items: "",
-        id: ""
+        id: "",
       },
     };
   },
 
   methods: {
     addOrder() {
-      
-      database
-        .collection("orders")
-        .add(this.order)
+      database.collection("orders").add(this.order);
       alert("saved");
       this.order.shop = "";
       this.order.items = "";
@@ -85,3 +95,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+button {
+  background-color: #4682b4;
+  color: white;
+}
+</style>

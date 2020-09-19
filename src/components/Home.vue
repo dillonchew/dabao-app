@@ -1,16 +1,16 @@
 <template>
   <div class="places">
     <ul>
-      <li>
-        Supper Stretch
+      <li class="odd">
+        <h3>Supper Stretch</h3>
         <SSRequestForm></SSRequestForm>
       </li>
-      <li>
-        Deck
+      <li class="even">
+        <h3>Deck</h3>
         <DeckRequestForm></DeckRequestForm>
       </li>
-      <li>
-        Clementi Mall
+      <li class="odd">
+        <h3>Clementi Mall</h3>
         <ClemRequestForm></ClemRequestForm>
       </li>
     </ul>
@@ -50,20 +50,19 @@ export default {
 </script>
 
 <style scoped>
-#places {
-  margin: 30px auto;
-  padding: 0 5px;
-  box-sizing: border-box;
-}
 ul {
-  display: block;
-  list-style-type: none;
+  display: flexbox;
   padding: 0;
+  overflow: auto;
 }
 li {
   text-align: center;
   padding: 10px;
-  border: 1px solid #222;
   margin: 10px;
+  font-family: Slack-Circular-Pro, "Helvetica Neue", Helvetica, "Segoe UI",
+    Tahoma, Arial, sans-serif;
+}
+.odd {
+  background-color: #e6e6fa;
 }
 </style>

@@ -1,15 +1,17 @@
 <template>
   <div class="offers">
     <h1>Offers</h1>
-    <b-button v-b-modal.modal-offer variant="outline-primary">{{ msg }}</b-button>
+    <b-button v-b-modal.modal-offer pill variant="outline-secondary"
+      >{{ msg }} <b-icon icon="gift" aria-hidden="true"> </b-icon
+    ></b-button>
     <div>
-    <ul>
-        <li v-for="(offer,index) in offerList" v-bind:key="index">
+      <ul>
+        <li v-for="(offer, index) in offerList" v-bind:key="index">
           <button @click="remove(index)">x</button>
-          <h3>{{offer.place}}</h3>
-          <h3>{{offer.time}}</h3>
+          <h3>{{ offer.place }}</h3>
+          <h3>{{ offer.time }}</h3>
         </li>
-    </ul>
+      </ul>
     </div>
 
     <b-modal
@@ -28,13 +30,22 @@
           invalid-feedback="Place and Time are required"
         >
           <label>Where are you going:</label>
-          <b-form-input id="place-input" v-model="offer.place" :state="offerstate" required></b-form-input>
+          <b-form-input
+            id="place-input"
+            v-model="offer.place"
+            :state="offerstate"
+            required
+          ></b-form-input>
           <label>What Time:</label>
-          <b-form-input id="time-input" v-model="offer.time" :state="offerstate" required></b-form-input>
+          <b-form-input
+            id="time-input"
+            v-model="offer.time"
+            :state="offerstate"
+            required
+          ></b-form-input>
         </b-form-group>
       </form>
     </b-modal>
-    
   </div>
 </template>
 
@@ -49,31 +60,36 @@ export default {
       offer: {
         place: "",
         time: "",
-        id: ""
+        id: "",
       },
     };
   },
   methods: {
     fetchOffers() {
-      database.collection("offers").orderBy('place').get().then((querySnapShot) => {
+      database
+        .collection("offers")
+        .orderBy("place")
+        .get()
+        .then((querySnapShot) => {
           let offer = {};
           querySnapShot.forEach((doc) => {
             offer = doc.data();
             offer.id = doc.id;
-            console.log(offer.id)
+            console.log(offer.id);
             this.offerList.push(offer);
           });
         });
     },
     remove(index) {
       let id = this.offerList[index].id;
-      database.collection('offers').doc(id).delete();
+      database
+        .collection("offers")
+        .doc(id)
+        .delete();
       this.offerList.splice(index, 1);
     },
     addOffer() {
-      database
-        .collection("offers")
-        .add(this.offer)
+      database.collection("offers").add(this.offer);
       alert("saved");
       this.offer.place = "";
       this.offer.time = "";
@@ -109,31 +125,30 @@ export default {
     },
   },
   created() {
-      this.fetchOffers();
-    },
+    this.fetchOffers();
+  },
 
-    beforeCreate: function () {
-      console.log("beforeCreate()");
-    },
+  beforeCreate: function() {
+    console.log("beforeCreate()");
+  },
 
-    beforeMount: function () {
-      console.log("beforeMount()");
-    },
-    mounted: function () {
-      setTimeout(function () {
-        console.log("mounted()");
-      }, 3000);
-    },
-    beforeUpdate: function () {
-      console.log("beforeUpdate()");
-    },
-    updated: function () {
-      console.log("updated()");
-    },
-    beforeDestroy: function () {
-      console.log("beforeDestroy()");
-    },
-
+  beforeMount: function() {
+    console.log("beforeMount()");
+  },
+  mounted: function() {
+    setTimeout(function() {
+      console.log("mounted()");
+    }, 3000);
+  },
+  beforeUpdate: function() {
+    console.log("beforeUpdate()");
+  },
+  updated: function() {
+    console.log("updated()");
+  },
+  beforeDestroy: function() {
+    console.log("beforeDestroy()");
+  },
 };
 </script>
 
@@ -152,5 +167,9 @@ li {
   padding: 10px;
   border: 1px solid #222;
   margin: 10px;
+}
+button {
+  background-color: #4682b4;
+  color: white;
 }
 </style>
