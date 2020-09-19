@@ -1,18 +1,33 @@
 <template>
   <div class="places">
     <ul>
-      <li v-for="place in placesList" :key="place.id">
-        {{ place.name }}
-        <RequestForm></RequestForm>
+      <li>
+        Supper Stretch
+        <SSRequestForm></SSRequestForm>
+      </li>
+      <li>
+        Deck
+        <DeckRequestForm></DeckRequestForm>
+      </li>
+      <li>
+        Clementi Mall
+        <ClemRequestForm></ClemRequestForm>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import RequestForm from "./RequestForm.vue";
+import SSRequestForm from "./SSRequestForm.vue";
+import DeckRequestForm from "./DeckRequestForm.vue";
+import ClemRequestForm from "./ClemRequestForm.vue";
 export default {
   name: "Home",
+  components: {
+    SSRequestForm,
+    DeckRequestForm,
+    ClemRequestForm,
+  },
   data() {
     return {
       placesList: [

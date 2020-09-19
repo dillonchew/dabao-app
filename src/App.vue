@@ -10,11 +10,13 @@
 //Registering component Locally
 
 import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
   //Registering component Locally
   components: {
     "app-header": Header,
+    "app-footer": Footer,
   },
   data() {
     return {
