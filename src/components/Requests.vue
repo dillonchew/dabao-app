@@ -4,7 +4,7 @@
     
       <ul>
         <li v-for="(order,index) in orderList" v-bind:key="index">
-          <button @click="remove(index)">x</button>
+          <button class="round" @click="remove(index)">x</button>
           <h3>{{order.place}}</h3>
           <h3>{{order.shop}}</h3>
           <h3>{{order.items}}</h3>
@@ -89,5 +89,8 @@ li {
   padding: 10px;
   border: 1px solid #222;
   margin: 10px;
+}
+.round {
+  border-radius:8px;
 }
 </style>

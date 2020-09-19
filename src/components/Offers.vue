@@ -7,7 +7,7 @@
     <div>
       <ul>
         <li v-for="(offer, index) in offerList" v-bind:key="index">
-          <button @click="remove(index)">x</button>
+          <button class="round" @click="remove(index)">x</button>
           <h3>{{ offer.place }}</h3>
           <h3>{{ offer.time }}</h3>
         </li>
@@ -171,5 +171,8 @@ li {
 button {
   background-color: #4682b4;
   color: white;
+}
+.round {
+  border-radius:8px;
 }
 </style>
