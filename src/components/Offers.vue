@@ -8,8 +8,10 @@
       <ul>
         <li v-for="(offer, index) in offerList" v-bind:key="index">
           <button class="round" @click="remove(index)">x</button>
-          <h3>{{ offer.place }}</h3>
-          <h3>{{ offer.time }}</h3>
+          <h3>Name: {{userProfile.name}}</h3>
+          <h3>Zone: {{userProfile.zone}}</h3>
+          <h3>Place: {{ offer.place }}</h3>
+          <h3>Time: {{ offer.time }}</h3>
         </li>
       </ul>
     </div>
@@ -51,7 +53,11 @@
 
 <script>
 import database from "../firebase.js";
+import { mapState } from 'vuex';
 export default {
+  computed: {
+    ...mapState(['userProfile'])
+  },
   data() {
     return {
       offerstate: true,
@@ -164,6 +170,7 @@ ul {
 }
 li {
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
   padding: 10px;
   border: 1px solid #222;
   margin: 10px;

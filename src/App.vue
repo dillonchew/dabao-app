@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <app-header v-bind:msg="title"></app-header>
+    <app-header v-if="showNav"></app-header>
     <router-view></router-view>
     <app-footer></app-footer>
   </div>
@@ -11,6 +11,7 @@
 
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
+import { mapState } from 'vuex'
 
 export default {
   //Registering component Locally
@@ -18,17 +19,18 @@ export default {
     "app-header": Header,
     "app-footer": Footer,
   },
-  data() {
-    return {
-      title: "Hello",
-    };
-  },
+  computed: {
+    ...mapState(['userProfile']),
+    showNav() {
+      return Object.keys(this.userProfile).length > 1
+    }
+  }
 };
 </script>
 
 <style scoped>
 #app {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

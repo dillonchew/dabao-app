@@ -59,10 +59,14 @@ li {
   text-align: center;
   padding: 10px;
   margin: 10px;
+  border: 1px solid #222;
   font-family: Slack-Circular-Pro, "Helvetica Neue", Helvetica, "Segoe UI",
     Tahoma, Arial, sans-serif;
 }
 .odd {
-  background-color: #e6e6fa;
+  background-color: #e485d4;
+}
+.even {
+  background-color: #7171c4;
 }
 </style>

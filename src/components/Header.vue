@@ -5,6 +5,8 @@
         <router-link to="/" exact>Home</router-link>
         <router-link to="/requests" exact>Requests</router-link>
         <router-link to="/offers" exact>Offers</router-link>
+        <router-link to="/settings" exact>Settings</router-link>
+        <button @click="logout()">Logout</button>
       </nav>
     </header>
   </div>
@@ -20,6 +22,12 @@ export default {
       type: String,
     },
   },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
+      alert("Logging out of your account now.")
+    }
+  }
 };
 </script>
 
