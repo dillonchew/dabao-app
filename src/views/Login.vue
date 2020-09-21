@@ -3,48 +3,91 @@
     <section>
       <div class="col1">
         <h1>Dabao-app</h1>
-        <strong>In light of covid-19, this app aims to promote safe-distancing among hall residents by reducing overcrowding at popular eateries around NUS.</strong>
+        <strong
+          >In light of covid-19, this app aims to promote safe-distancing among
+          hall residents by reducing overcrowding at popular eateries around
+          NUS.</strong
+        >
       </div>
       <div :class="{ 'signup-form': !showLoginForm }" class="col2">
-        <form v-if="showLoginForm" @submit.prevent>
+        <form id="signup" v-if="showLoginForm" @submit.prevent>
+          <br />
           <h1>Welcome Back</h1>
+          <br /><br />
           <div>
             <label for="email1" id="labels">Email: </label>
             <input v-model.trim="loginForm.email" type="text" id="email1" />
           </div>
           <div>
             <label for="password1" id="labels">Password: </label>
-            <input v-model.trim="loginForm.password" type="password" id="password1" />
+            <input
+              v-model.trim="loginForm.password"
+              type="password"
+              id="password1"
+            />
           </div>
           <div v-if="clickedFlag">
-          <p v-if="errorMsg !== ''" class="error">{{ errorMsg }}</p>
-          <p v-else>Success! Check your email (may be in the junk folder) for a reset link!</p>
+            <p v-if="errorMsg !== ''" class="error">{{ errorMsg }}</p>
+            <p v-else>
+              Success! Check your email (may be in the junk folder) for a reset
+              link!
+            </p>
           </div>
           <button @click="login()" id="cool">Log In</button>
+          <br /><br /><br /><br />
           <div class="extras">
-            <b-button v-b-modal.modal-pass id="cool">Forgot Password</b-button>
-            <button @click="toggleForm()" class="normal">Create an Account</button>
+            <button v-b-modal.modal-pass id="cool">Forgot Password</button>
+            <button @click="toggleForm()" class="normal">
+              Create an Account
+            </button>
           </div>
         </form>
         <form v-else @submit.prevent>
           <h1>Get Started</h1>
           <div>
             <label for="name" id="labels">Name: </label>
-            <input v-model.trim="signupForm.name" type="text" placeholder="<Your Name>" id="name" required/>
+            <input
+              v-model.trim="signupForm.name"
+              type="text"
+              placeholder="<Your Name>"
+              id="name"
+              required
+            />
           </div>
           <div>
             <label for="zone" id="labels">Zone: </label>
-            <input v-model.trim="signupForm.zone" type="text" placeholder="<A,B,C,D>" id="zone" required/>
+            <input
+              v-model.trim="signupForm.zone"
+              type="text"
+              placeholder="<A,B,C,D>"
+              id="zone"
+              required
+            />
           </div>
           <div>
             <label for="email2" id="labels">Email: </label>
-            <input v-model.trim="signupForm.email" type="text" placeholder="<you@email.com>" id="email2" required/>
+            <input
+              v-model.trim="signupForm.email"
+              type="text"
+              placeholder="<you@email.com>"
+              id="email2"
+              required
+            />
           </div>
           <div>
             <label for="password2" id="labels">Password: </label>
-            <input v-model.trim="signupForm.password" type="password" placeholder="min 6 characters" id="password2" required/>
+            <input
+              v-model.trim="signupForm.password"
+              type="password"
+              placeholder="min 6 characters"
+              id="password2"
+              required
+            />
           </div>
-          <button @click="signup()" id="cool" >Sign Up</button>
+          <b-button pill variant="outline-secondary" @click="signup()" id="cool"
+            >Sign Up</b-button
+          >
+          <br /><br />
           <div class="extras">
             <button @click="toggleForm()" id="cool">Back to Log In</button>
           </div>
@@ -69,7 +112,7 @@
           <label>Email: </label>
           <b-form-input
             id="shop-input"
-            type = "email"
+            type="email"
             v-model.trim="resetEmail"
             :state="showSuccess"
             required
@@ -81,60 +124,60 @@
 </template>
 
 <script>
-import { auth } from '@/firebase'
+import { auth } from "@/firebase";
 
 export default {
   data() {
     return {
       clickedFlag: false,
-      resetEmail: '',
+      resetEmail: "",
       showSuccess: true,
-      errorMsg: '',
+      errorMsg: "",
 
       loginForm: {
-        email: '',
-        password: ''
+        email: "",
+        password: "",
       },
       signupForm: {
-        name: '',
-        zone: '',
-        email: '',
-        password: ''
+        name: "",
+        zone: "",
+        email: "",
+        password: "",
       },
       showLoginForm: true,
-      showPasswordReset: false
-    }
+      showPasswordReset: false,
+    };
   },
   methods: {
-  async resetPassword() {
-      this.errorMsg = ''
+    async resetPassword() {
+      this.errorMsg = "";
 
       try {
-        await auth.sendPasswordResetEmail(this.resetEmail)
-        this.showSuccess = true
+        await auth.sendPasswordResetEmail(this.resetEmail);
+        this.showSuccess = true;
       } catch (err) {
-        this.errorMsg = err.message
+        this.errorMsg = err.message;
       }
     },
     toggleForm() {
-      this.showLoginForm = !this.showLoginForm
+      this.showLoginForm = !this.showLoginForm;
     },
     clicked() {
-      this.clickedFlag = !this.clickedFlag
+      this.clickedFlag = !this.clickedFlag;
     },
     login() {
-      this.$store.dispatch('login', {
+      this.$store.dispatch("login", {
         email: this.loginForm.email,
-        password: this.loginForm.password
-      })
+        password: this.loginForm.password,
+      });
     },
     signup() {
-      this.$store.dispatch('signup', {
+      this.$store.dispatch("signup", {
         email: this.signupForm.email,
         password: this.signupForm.password,
         name: this.signupForm.name,
-        zone: this.signupForm.zone
-      })
+        zone: this.signupForm.zone,
+      });
     },
     checkFormValidity() {
       const valid = this.$refs.form.checkValidity();
@@ -162,59 +205,91 @@ export default {
         this.$bvModal.hide("modal-pass");
       });
       this.clicked();
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
 #cool {
   display: inline-block;
-  padding: 10px 15px;
-  font-size: 20px;
+  padding: 5px 10px;
+  font-size: 14px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  outline:black;
+  outline: black;
   color: #fff;
-  background-color: #5c6fdd;
+  background-color: #660066;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 5px #999;
+  box-shadow: 0 2px #602040;
   margin: 4px 2px;
 }
 
-#cool:hover {background-color: #457e99}
+#cool:hover {
+  background-color: #696969;
+  box-shadow: 0 2px #2f4f4f;
+}
 
 #cool:active {
-  background-color: #3e7b8e;
-  box-shadow: 0 5px #666;
+  background-color: #696969;
+  box-shadow: 0 2px #2f4f4f;
   transform: translateY(4px);
 }
 .normal {
-  font-size:20px;
+  font-size: 14px;
   display: inline-block;
-  padding: 11px 15px;
-  cursor: pointer;  
+  padding: 5px 10px;
+  cursor: pointer;
   text-align: center;
   text-decoration: none;
-  outline:black;
+  outline: black;
   color: #fff;
-  background-color: #5c6fdd;
+  background-color: #660066;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 6px #999;
+  box-shadow: 0 2px #602040;
   margin: 4px 2px;
 }
-.normal:hover {background-color: #457e99}
+.normal:hover {
+  background-color: #696969;
+  box-shadow: 0 2px #2f4f4f;
+}
 
 .normal:active {
-  background-color: #3e7b8e;
-  box-shadow: 0 5px #666;
+  background-color: #696969;
+  box-shadow: 0 2px #2f4f4f;
   transform: translateY(4px);
 }
 
 #labels {
   margin: 10px 5px;
+}
+
+.col2 {
+  background-color: rgba(153, 51, 102, 0.1);
+  display: flexbox;
+  max-width: 600px;
+  height: 400px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 32%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.col1 {
+  display: flexbox;
+  justify-content: center;
+  align-items: center;
+  margin-left: 6%;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
 }
 </style>

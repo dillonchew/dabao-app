@@ -11,7 +11,7 @@
 
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
 export default {
   //Registering component Locally
@@ -20,20 +20,22 @@ export default {
     "app-footer": Footer,
   },
   computed: {
-    ...mapState(['userProfile']),
+    ...mapState(["userProfile"]),
     showNav() {
-      return Object.keys(this.userProfile).length > 1
-    }
-  }
+      return Object.keys(this.userProfile).length > 1;
+    },
+  },
 };
 </script>
 
 <style scoped>
 #app {
-  font-family: "Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: flexbox;
 }
 </style>

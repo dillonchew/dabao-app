@@ -6,7 +6,10 @@
         <router-link to="/requests" exact>Requests</router-link>
         <router-link to="/offers" exact>Offers</router-link>
         <router-link to="/settings" exact>Settings</router-link>
-        <button @click="logout()">Logout</button>
+        <b-button pill variant="outline-secondary" @click="logout()">
+          Logout
+          <b-icon icon="door-open"></b-icon>
+        </b-button>
       </nav>
     </header>
   </div>
@@ -24,27 +27,31 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch('logout')
-      alert("Logging out of your account now.")
-    }
-  }
+      this.$store.dispatch("logout");
+      alert("Logging out of your account now.");
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+button {
+  background-color: #660066;
+  color: white;
+  float: right;
+}
 header {
-  padding: 10px;
-  /* font-size: 16px; */
   color: #696969;
   font-family: Slack-Circular-Pro, "Helvetica Neue", Helvetica, "Segoe UI",
     Tahoma, Arial, sans-serif;
   padding: 10px;
   margin: 0;
+  display: flexbox;
   justify-content: flex-start;
-  display: flex;
-  align-items: center;
-  flex: 1;
+  align-items: flex-start;
+  text-align: left;
+  /* flex: 1; */
 }
 a {
   padding: 10px;
@@ -52,7 +59,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #add8e6;
+  color: #00e6ac;
+  text-decoration: none;
 }
 </style>
-
