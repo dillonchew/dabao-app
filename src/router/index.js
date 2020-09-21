@@ -11,7 +11,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "home" */ "../components/Home.vue"),
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {
@@ -26,7 +26,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "settings" */ "../views/Settings.vue"),
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {
@@ -35,7 +35,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "requests" */ "../components/Requests.vue"),
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {
@@ -44,7 +44,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "offers" */ "../components/Offers.vue"),
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
 ];
