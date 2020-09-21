@@ -4,12 +4,12 @@
 
     <ul>
       <li v-for="(order,index) in orderList" v-bind:key="index">
-        <button class="round" @click="remove(index)">x</button>
-        <h3>Name: {{userProfile.name}}</h3>
-        <h3>Zone: {{userProfile.zone}}</h3>
-        <h3>Place: {{order.place}}</h3>
-        <h3>Shop: {{order.shop}}</h3>
-        <h3>Items: {{order.items}}</h3>
+        <b-button pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
+        <h5>Name: {{userProfile.name}}</h5>
+        <h5>Zone: {{userProfile.zone}}</h5>
+        <h5>Place: {{order.place}}</h5>
+        <h5>Shop: {{order.shop}}</h5>
+        <h5>Items: {{order.items}}</h5>
       </li>
     </ul>
   </div>
@@ -89,18 +89,22 @@ h1 {
   margin-left: 6%;
 }
 ul {
-  display: block;
+  display: flex;
   list-style-type: none;
   padding: 0;
+  overflow: auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 li {
-  text-align: center;
+  text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   padding: 10px;
-  border: 1px solid #222;
+  width: 400px;
   margin: 10px;
-}
-.round {
-  border-radius: 8px;
+  border: 1px solid #222;
+  border-radius: 25px;
+  box-shadow: 3px 7px #660066;
 }
 </style>

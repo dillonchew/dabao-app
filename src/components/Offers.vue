@@ -1,18 +1,18 @@
 <template>
   <div class="offers">
     <h1>Offers</h1>
-    <b-button v-b-modal.modal-offer pill variant="outline-secondary">
+    <b-button id="offerbutton" v-b-modal.modal-offer pill variant="outline-secondary">
       {{ msg }}
       <b-icon icon="gift" aria-hidden="true"></b-icon>
     </b-button>
     <div>
       <ul>
         <li v-for="(offer, index) in offerList" v-bind:key="index">
-          <button class="round" @click="remove(index)">x</button>
-          <h3>Name: {{userProfile.name}}</h3>
-          <h3>Zone: {{userProfile.zone}}</h3>
-          <h3>Place: {{ offer.place }}</h3>
-          <h3>Time: {{ offer.time }}</h3>
+          <b-button pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
+          <h5>Name: {{userProfile.name}}</h5>
+          <h5>Zone: {{userProfile.zone}}</h5>
+          <h5>Place: {{ offer.place }}</h5>
+          <h5>Time: {{ offer.time }}</h5>
         </li>
       </ul>
     </div>
@@ -153,18 +153,25 @@ h1 {
   margin-left: 6%;
 }
 ul {
-  display: inline-block;
+  display: flex;
   list-style-type: none;
   padding: 0;
+  overflow: auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 li {
-  text-align: center;
+  text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   padding: 10px;
-  border: 1px solid #222;
+  width: 400px;
   margin: 10px;
+  border: 1px solid #222;
+  border-radius: 25px;
+  box-shadow: 3px 7px #660066;
 }
-button {
+#offerbutton {
   background-color: #4682b4;
   color: white;
 }
