@@ -1,9 +1,10 @@
 <template>
   <div class="offers">
     <h1>Offers</h1>
-    <b-button v-b-modal.modal-offer pill variant="outline-secondary"
-      >{{ msg }} <b-icon icon="gift" aria-hidden="true"> </b-icon
-    ></b-button>
+    <b-button v-b-modal.modal-offer pill variant="outline-secondary">
+      {{ msg }}
+      <b-icon icon="gift" aria-hidden="true"></b-icon>
+    </b-button>
     <div>
       <ul>
         <li v-for="(offer, index) in offerList" v-bind:key="index">
@@ -32,19 +33,9 @@
           invalid-feedback="Place and Time are required"
         >
           <label>Where are you going:</label>
-          <b-form-input
-            id="place-input"
-            v-model="offer.place"
-            :state="offerstate"
-            required
-          ></b-form-input>
+          <b-form-input id="place-input" v-model="offer.place" :state="offerstate" required></b-form-input>
           <label>What Time:</label>
-          <b-form-input
-            id="time-input"
-            v-model="offer.time"
-            :state="offerstate"
-            required
-          ></b-form-input>
+          <b-form-input id="time-input" v-model="offer.time" :state="offerstate" required></b-form-input>
         </b-form-group>
       </form>
     </b-modal>
@@ -53,10 +44,10 @@
 
 <script>
 import database from "../firebase.js";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 export default {
   computed: {
-    ...mapState(['userProfile'])
+    ...mapState(["userProfile"]),
   },
   data() {
     return {
@@ -88,10 +79,7 @@ export default {
     },
     remove(index) {
       let id = this.offerList[index].id;
-      database
-        .collection("offers")
-        .doc(id)
-        .delete();
+      database.collection("offers").doc(id).delete();
       this.offerList.splice(index, 1);
     },
     addOffer() {
@@ -134,25 +122,25 @@ export default {
     this.fetchOffers();
   },
 
-  beforeCreate: function() {
+  beforeCreate: function () {
     console.log("beforeCreate()");
   },
 
-  beforeMount: function() {
+  beforeMount: function () {
     console.log("beforeMount()");
   },
-  mounted: function() {
-    setTimeout(function() {
+  mounted: function () {
+    setTimeout(function () {
       console.log("mounted()");
     }, 3000);
   },
-  beforeUpdate: function() {
+  beforeUpdate: function () {
     console.log("beforeUpdate()");
   },
-  updated: function() {
+  updated: function () {
     console.log("updated()");
   },
-  beforeDestroy: function() {
+  beforeDestroy: function () {
     console.log("beforeDestroy()");
   },
 };
@@ -162,9 +150,10 @@ export default {
 h1 {
   font-family: Slack-Circular-Pro, "Helvetica Neue", Helvetica, "Segoe UI",
     Tahoma, Arial, sans-serif;
+  margin-left: 6%;
 }
 ul {
-  display: block;
+  display: inline-block;
   list-style-type: none;
   padding: 0;
 }
@@ -180,6 +169,11 @@ button {
   color: white;
 }
 .round {
-  border-radius:8px;
+  border-radius: 8px;
+}
+.offers {
+  display: flexbox;
+  justify-content: center;
+  text-align: center;
 }
 </style>

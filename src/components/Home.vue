@@ -3,12 +3,16 @@
     <ul>
       <li class="odd">
         <h3>Supper Stretch</h3>
+        <SSimages></SSimages>
+        <br />
         <SSRequestForm></SSRequestForm>
       </li>
+      <hr />
       <li class="even">
         <h3>Deck</h3>
         <DeckRequestForm></DeckRequestForm>
       </li>
+      <hr />
       <li class="odd">
         <h3>Clementi Mall</h3>
         <ClemRequestForm></ClemRequestForm>
@@ -21,12 +25,15 @@
 import SSRequestForm from "./SSRequestForm.vue";
 import DeckRequestForm from "./DeckRequestForm.vue";
 import ClemRequestForm from "./ClemRequestForm.vue";
+import SSimages from "./SSimages";
+
 export default {
   name: "Home",
   components: {
     SSRequestForm,
     DeckRequestForm,
     ClemRequestForm,
+    SSimages,
   },
   data() {
     return {
@@ -52,21 +59,31 @@ export default {
 <style scoped>
 ul {
   display: flexbox;
+  align-content: center;
+  justify-content: center;
   padding: 0;
-  overflow: auto;
+}
+
+hr {
+  align-self: center;
+  align-content: center;
+  justify-content: center;
+  max-width: 400px;
+  background-color: #cc0066;
+  border: 0.2px solid #cc0066;
 }
 li {
   text-align: center;
   padding: 10px;
   margin: 10px;
-  border: 1px solid #222;
+  /* border-top: 1px solid #222; */
   font-family: Slack-Circular-Pro, "Helvetica Neue", Helvetica, "Segoe UI",
     Tahoma, Arial, sans-serif;
 }
-.odd {
+/* .odd {
   background-color: #e485d4;
 }
 .even {
   background-color: #7171c4;
-}
+} */
 </style>
