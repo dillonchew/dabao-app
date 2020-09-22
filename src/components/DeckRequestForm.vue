@@ -42,6 +42,8 @@
 
 <script>
 import database from "../firebase.js";
+import * as fb from "../firebase";
+
 export default {
   data() {
     return {
@@ -52,17 +54,35 @@ export default {
         shop: "",
         items: "",
         id: "",
+        name: "",
+        zone: ""
       },
     };
   },
 
   methods: {
     addOrder() {
-      database.collection("orders").add(this.order);
-      alert("saved");
-      this.order.shop = "";
-      this.order.items = "";
-      this.order.id = "";
+      fb.auth.onAuthStateChanged(async (user) => {
+        if (user) {
+          // User is signed in.
+          var email = user.email;
+          var uid = user.uid;
+          let order1 = {};
+          const userRef = database.collection("users").doc(uid);
+          const doc = await userRef.get();
+          order1 = doc.data();
+          this.order.name = order1.name;
+          this.order.zone = order1.zone;
+          console.log(this.order);
+        }
+        database.collection("orders").add(this.order);
+        alert("saved");
+        this.order.shop = "";
+        this.order.items = "";
+        this.order.id = "";
+        this.order.name = "";
+        this.order.zone = "";
+      });
     },
     checkFormValidity() {
       const valid = this.$refs.form.checkValidity();
@@ -92,7 +112,7 @@ export default {
         this.$bvModal.hide("modal-deck");
       });
     },
-  },
+  }
 };
 </script>
 

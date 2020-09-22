@@ -275,7 +275,8 @@ export default {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-left: 32%;
+  margin-left: 36%;
+  margin-right: 36%;
   margin-top: 30px;
   margin-bottom: 30px;
 }
@@ -284,7 +285,7 @@ export default {
   display: flexbox;
   justify-content: center;
   align-items: center;
-  margin-left: 6%;
+  /* margin-left: 6%; */
 }
 
 label {

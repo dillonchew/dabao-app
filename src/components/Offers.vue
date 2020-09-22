@@ -9,8 +9,8 @@
       <ul>
         <li v-for="(offer, index) in offerList" v-bind:key="index">
           <b-button pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
-          <h5>Name: {{userProfile.name}}</h5>
-          <h5>Zone: {{userProfile.zone}}</h5>
+          <h5>Name: {{ offer.name }}</h5>
+          <h5>Zone: {{ offer.zone }}</h5>
           <h5>Place: {{ offer.place }}</h5>
           <h5>Time: {{ offer.time }}</h5>
         </li>
@@ -44,11 +44,11 @@
 
 <script>
 import database from "../firebase.js";
-import { mapState } from "vuex";
+import * as fb from "../firebase";
+import { auth } from "../firebase";
+
+
 export default {
-  computed: {
-    ...mapState(["userProfile"]),
-  },
   data() {
     return {
       offerstate: true,
@@ -83,11 +83,27 @@ export default {
       this.offerList.splice(index, 1);
     },
     addOffer() {
-      database.collection("offers").add(this.offer);
-      alert("saved");
-      this.offer.place = "";
-      this.offer.time = "";
-      this.offer.id = "";
+      fb.auth.onAuthStateChanged(async (user) => {
+        if (user) {
+          // User is signed in.
+          var email = user.email;
+          var uid = user.uid;
+          let offer1 = {};
+          const userRef = database.collection("users").doc(uid);
+          const doc = await userRef.get();
+          offer1 = doc.data();
+          this.offer.name = offer1.name;
+          this.offer.zone = offer1.zone;
+          console.log(this.offer);
+        }
+        database.collection("offers").add(this.offer);
+        alert("saved");
+        this.offer.place = "";
+        this.offer.time = "";
+        this.offer.id = "";
+        this.offer.name = "";
+        this.offer.zone = "";
+      });
     },
     checkFormValidity() {
       const valid = this.$refs.form.checkValidity();
