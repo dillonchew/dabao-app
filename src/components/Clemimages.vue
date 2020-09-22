@@ -12,23 +12,17 @@
       @sliding-end="onSlideEnd"
     >
       <!-- Text slides with image -->
-      <b-carousel-slide img-src="@/assets/befrank.jpg"></b-carousel-slide>
+      <b-carousel-slide img-src="@/assets/yakun.jpg"></b-carousel-slide>
 
       <!-- Slides with custom text -->
-      <b-carousel-slide img-src="@/assets/hk.jpg"></b-carousel-slide>
+      <b-carousel-slide img-src="@/assets/oldchangkee.jpg"></b-carousel-slide>
 
       <!-- Slides with image only -->
-      <b-carousel-slide img-src="@/assets/fongseng.jpg"></b-carousel-slide>
+      <b-carousel-slide img-src="@/assets/stuffd.jpeg"></b-carousel-slide>
 
-      <b-carousel-slide img-src="@/assets/formosa.jpg"></b-carousel-slide>
+      <b-carousel-slide img-src="@/assets/crave-the-clementi-mall.jpg"></b-carousel-slide>
 
-      <b-carousel-slide img-src="@/assets/nanathai.jpg"></b-carousel-slide>
-
-      <b-carousel-slide img-src="@/assets/cheeseprata.jpg"></b-carousel-slide>
-
-      <b-carousel-slide img-src="@/assets/makan1.png"></b-carousel-slide>
-
-      <b-carousel-slide img-src="@/assets/amaans.jpg"></b-carousel-slide>
+      <b-carousel-slide img-src="@/assets/mr coconut.jpeg"></b-carousel-slide>
     </b-carousel>
   </div>
 </template>

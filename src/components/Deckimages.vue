@@ -12,23 +12,25 @@
       @sliding-end="onSlideEnd"
     >
       <!-- Text slides with image -->
-      <b-carousel-slide img-src="@/assets/befrank.jpg"></b-carousel-slide>
+      <b-carousel-slide img-src="@/assets/drinks copy.jpg"></b-carousel-slide>
 
       <!-- Slides with custom text -->
-      <b-carousel-slide img-src="@/assets/hk.jpg"></b-carousel-slide>
+      <b-carousel-slide img-src="@/assets/indian.jpg"></b-carousel-slide>
 
       <!-- Slides with image only -->
-      <b-carousel-slide img-src="@/assets/fongseng.jpg"></b-carousel-slide>
+      <b-carousel-slide img-src="@/assets/jap.jpg"></b-carousel-slide>
 
-      <b-carousel-slide img-src="@/assets/formosa.jpg"></b-carousel-slide>
+      <b-carousel-slide img-src="@/assets/mala.jpg"></b-carousel-slide>
 
-      <b-carousel-slide img-src="@/assets/nanathai.jpg"></b-carousel-slide>
+      <b-carousel-slide img-src="@/assets/pasta.jpg"></b-carousel-slide>
 
-      <b-carousel-slide img-src="@/assets/cheeseprata.jpg"></b-carousel-slide>
+      <b-carousel-slide img-src="@/assets/muslim.jpg"></b-carousel-slide>
 
-      <b-carousel-slide img-src="@/assets/makan1.png"></b-carousel-slide>
+      <b-carousel-slide img-src="@/assets/uncle penyet.jpg"></b-carousel-slide>
 
-      <b-carousel-slide img-src="@/assets/amaans.jpg"></b-carousel-slide>
+      <b-carousel-slide img-src="@/assets/western copy.jpg"></b-carousel-slide>
+
+      <b-carousel-slide img-src="@/assets/ytf laksa.jpg"></b-carousel-slide>
     </b-carousel>
   </div>
 </template>

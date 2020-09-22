@@ -10,11 +10,13 @@
       <hr />
       <li class="even">
         <h3>Deck</h3>
+        <Deckimages></Deckimages>
         <DeckRequestForm></DeckRequestForm>
       </li>
       <hr />
       <li class="odd">
         <h3>Clementi Mall</h3>
+        <Clemimages></Clemimages>
         <ClemRequestForm></ClemRequestForm>
       </li>
     </ul>
@@ -25,7 +27,9 @@
 import SSRequestForm from "./SSRequestForm.vue";
 import DeckRequestForm from "./DeckRequestForm.vue";
 import ClemRequestForm from "./ClemRequestForm.vue";
-import SSimages from "./SSimages";
+import SSimages from "./SSimages.vue";
+import Deckimages from "./Deckimages.vue";
+import Clemimages from "./Clemimages.vue";
 
 export default {
   name: "Home",
@@ -34,6 +38,8 @@ export default {
     DeckRequestForm,
     ClemRequestForm,
     SSimages,
+    Deckimages,
+    Clemimages,
   },
   data() {
     return {
