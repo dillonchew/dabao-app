@@ -3,28 +3,25 @@
     <section>
       <div class="col1">
         <h1>Dabao-app</h1>
-        <strong
-          >In light of covid-19, this app aims to promote safe-distancing among
+        <strong>
+          In light of covid-19, this app aims to promote safe-distancing among
           hall residents by reducing overcrowding at popular eateries around
-          NUS.</strong
-        >
+          NUS.
+        </strong>
       </div>
       <div :class="{ 'signup-form': !showLoginForm }" class="col2">
         <form id="signup" v-if="showLoginForm" @submit.prevent>
           <br />
           <h1>Welcome Back</h1>
-          <br /><br />
+          <br />
+          <br />
           <div>
-            <label for="email1" id="labels">Email: </label>
+            <label for="email1" id="labels">Email:</label>
             <input v-model.trim="loginForm.email" type="text" id="email1" />
           </div>
           <div>
-            <label for="password1" id="labels">Password: </label>
-            <input
-              v-model.trim="loginForm.password"
-              type="password"
-              id="password1"
-            />
+            <label for="password1" id="labels">Password:</label>
+            <input v-model.trim="loginForm.password" type="password" id="password1" />
           </div>
           <div v-if="clickedFlag">
             <p v-if="errorMsg !== ''" class="error">{{ errorMsg }}</p>
@@ -34,18 +31,19 @@
             </p>
           </div>
           <button @click="login()" id="cool">Log In</button>
-          <br /><br /><br /><br />
+          <br />
+          <br />
+          <br />
+          <br />
           <div class="extras">
             <button v-b-modal.modal-pass id="cool">Forgot Password</button>
-            <button @click="toggleForm()" class="normal">
-              Create an Account
-            </button>
+            <button @click="toggleForm()" class="normal">Create an Account</button>
           </div>
         </form>
         <form v-else @submit.prevent>
           <h1>Get Started</h1>
           <div>
-            <label for="name" id="labels">Name: </label>
+            <label for="name" id="labels">Name:</label>
             <input
               v-model.trim="signupForm.name"
               type="text"
@@ -55,7 +53,7 @@
             />
           </div>
           <div>
-            <label for="zone" id="labels">Zone: </label>
+            <label for="zone" id="labels">Zone:</label>
             <input
               v-model.trim="signupForm.zone"
               type="text"
@@ -65,7 +63,7 @@
             />
           </div>
           <div>
-            <label for="email2" id="labels">Email: </label>
+            <label for="email2" id="labels">Email:</label>
             <input
               v-model.trim="signupForm.email"
               type="text"
@@ -75,7 +73,7 @@
             />
           </div>
           <div>
-            <label for="password2" id="labels">Password: </label>
+            <label for="password2" id="labels">Password:</label>
             <input
               v-model.trim="signupForm.password"
               type="password"
@@ -84,10 +82,9 @@
               required
             />
           </div>
-          <b-button pill variant="outline-secondary" @click="signup()" id="cool"
-            >Sign Up</b-button
-          >
-          <br /><br />
+          <b-button pill variant="outline-secondary" @click="signup()" id="cool">Sign Up</b-button>
+          <br />
+          <br />
           <div class="extras">
             <button @click="toggleForm()" id="cool">Back to Log In</button>
           </div>
@@ -109,7 +106,7 @@
           label-for="email-input"
           invalid-feedback="Email is required"
         >
-          <label>Email: </label>
+          <label>Email:</label>
           <b-form-input
             id="shop-input"
             type="email"
@@ -269,22 +266,22 @@ export default {
 
 .col2 {
   background-color: rgba(153, 51, 102, 0.1);
+  box-shadow: 50px 50px rgba(153, 51, 102, 0.4);
   display: flexbox;
   max-width: 600px;
   height: 400px;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-left: 32%;
+  margin-left: 34%;
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 80px;
 }
 
 .col1 {
-  display: flexbox;
+  display: inline-block;
   justify-content: center;
   align-items: center;
-  margin-left: 6%;
 }
 
 label {

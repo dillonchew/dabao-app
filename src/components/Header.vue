@@ -5,6 +5,7 @@
         <router-link to="/" exact>Home</router-link>
         <router-link to="/requests" exact>Requests</router-link>
         <router-link to="/offers" exact>Offers</router-link>
+        <router-link to="/dashboard" exact>Dashboard</router-link>
         <router-link to="/settings" exact>Settings</router-link>
         <b-button pill variant="outline-secondary" @click="logout()">
           Logout
