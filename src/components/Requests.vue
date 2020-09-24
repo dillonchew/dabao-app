@@ -5,8 +5,8 @@
     <ul>
       <li v-for="(order,index) in orderList" v-bind:key="index">
         <b-button pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
-        <h5>Name: {{userProfile.name}}</h5>
-        <h5>Zone: {{userProfile.zone}}</h5>
+        <h5>Name: {{order.name}}</h5>
+        <h5>Zone: {{order.zone}}</h5>
         <h5>Place: {{order.place}}</h5>
         <h5>Shop: {{order.shop}}</h5>
         <h5>Items: {{order.items}}</h5>

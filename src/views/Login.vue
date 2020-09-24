@@ -21,7 +21,11 @@
           </div>
           <div>
             <label for="password1" id="labels">Password:</label>
-            <input v-model.trim="loginForm.password" type="password" id="password1" />
+            <input
+              v-model.trim="loginForm.password"
+              type="password"
+              id="password1"
+            />
           </div>
           <div v-if="clickedFlag">
             <p v-if="errorMsg !== ''" class="error">{{ errorMsg }}</p>
@@ -37,7 +41,9 @@
           <br />
           <div class="extras">
             <button v-b-modal.modal-pass id="cool">Forgot Password</button>
-            <button @click="toggleForm()" class="normal">Create an Account</button>
+            <button @click="toggleForm()" class="normal">
+              Create an Account
+            </button>
           </div>
         </form>
         <form v-else @submit.prevent>
@@ -82,7 +88,9 @@
               required
             />
           </div>
-          <b-button pill variant="outline-secondary" @click="signup()" id="cool">Sign Up</b-button>
+          <b-button pill variant="outline-secondary" @click="signup()" id="cool"
+            >Sign Up</b-button
+          >
           <br />
           <br />
           <div class="extras">
@@ -273,7 +281,8 @@ export default {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-left: 34%;
+  margin-left: 36%;
+  margin-right: 36%;
   margin-top: 30px;
   margin-bottom: 80px;
 }

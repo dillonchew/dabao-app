@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-button pill variant="outline-secondary" v-b-modal.modal-ss
-      >{{ msg }}
+    <b-button pill variant="outline-secondary" v-b-modal.modal-ss>
+      {{ msg }}
       <b-icon icon="cart-plus"></b-icon>
     </b-button>
     <b-modal
@@ -20,19 +20,9 @@
           invalid-feedback="Shop and Items are required"
         >
           <label>Which Shop:</label>
-          <b-form-input
-            id="shop-input"
-            v-model="order.shop"
-            :state="orderState"
-            required
-          ></b-form-input>
+          <b-form-input id="shop-input" v-model="order.shop" :state="orderState" required></b-form-input>
           <label>What Items:</label>
-          <b-form-input
-            id="items-input"
-            v-model="order.items"
-            :state="orderState"
-            required
-          ></b-form-input>
+          <b-form-input id="items-input" v-model="order.items" :state="orderState" required></b-form-input>
         </b-form-group>
       </form>
     </b-modal>
@@ -41,6 +31,9 @@
 
 <script>
 import database from "../firebase.js";
+import * as fb from "../firebase";
+import { auth } from "../firebase";
+
 export default {
   data() {
     return {
@@ -51,16 +44,34 @@ export default {
         shop: "",
         items: "",
         id: "",
+        name: "",
+        zone: "",
       },
     };
   },
   methods: {
     addOrder() {
-      database.collection("orders").add(this.order);
-      alert("saved");
-      this.order.shop = "";
-      this.order.items = "";
-      this.order.id = "";
+      fb.auth.onAuthStateChanged(async (user) => {
+        if (user) {
+          // User is signed in.
+          var email = user.email;
+          var uid = user.uid;
+          let order1 = {};
+          const userRef = database.collection("users").doc(uid);
+          const doc = await userRef.get();
+          order1 = doc.data();
+          this.order.name = order1.name;
+          this.order.zone = order1.zone;
+          console.log(this.order);
+        }
+        database.collection("orders").add(this.order);
+        alert("saved");
+        this.order.shop = "";
+        this.order.items = "";
+        this.order.id = "";
+        this.order.name = "";
+        this.order.zone = "";
+      });
     },
     checkFormValidity() {
       const valid = this.$refs.form.checkValidity();
@@ -82,6 +93,7 @@ export default {
       if (!this.checkFormValidity()) {
         return;
       }
+
       //Add order to database
       this.addOrder();
 

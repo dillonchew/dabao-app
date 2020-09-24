@@ -22,6 +22,7 @@ const store = new Vuex.Store({
     },
   },
   actions: {
+    
     async login({ dispatch }, form) {
       // sign user in
       const { user } = await fb.auth.signInWithEmailAndPassword(
@@ -42,7 +43,7 @@ const store = new Vuex.Store({
       // create user object in userCollections
       await fb.usersCollection.doc(user.uid).set({
         name: form.name,
-        title: form.title,
+        zone: form.zone,
       });
 
       // fetch user profile and set in state
@@ -76,7 +77,7 @@ const store = new Vuex.Store({
       // update user object
       const userRef = await fb.usersCollection.doc(userId).update({
         name: user.name,
-        title: user.title,
+        zone: user.zone,
       });
 
       dispatch("fetchUserProfile", { uid: userId });
