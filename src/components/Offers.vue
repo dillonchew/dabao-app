@@ -5,9 +5,20 @@
       {{ msg }}
       <b-icon icon="gift" aria-hidden="true"></b-icon>
     </b-button>
+    <div class="filter">
+        Filter by <b>Zone</b>:
+        <b-dropdown :text="selectedZone" @click.native="selectZone($event.target)">
+          <b-dropdown-item value="ALL">All</b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item value="A">A</b-dropdown-item>
+          <b-dropdown-item value="B">B</b-dropdown-item>
+          <b-dropdown-item value="C">C</b-dropdown-item>
+          <b-dropdown-item value="D">D</b-dropdown-item>
+        </b-dropdown>
+    </div>
     <div>
       <ul>
-        <li v-for="(offer, index) in offerList" v-bind:key="index">
+        <li id="offerItems" v-for="(offer, index) in filteredProducts" v-bind:key="index">
           <b-button pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
           <h5>Name: {{ offer.name }}</h5>
           <h5>Zone: {{ offer.zone }}</h5>
@@ -46,6 +57,7 @@
 import database from "../firebase.js";
 import * as fb from "../firebase";
 import { auth } from "../firebase";
+import { mapState } from "vuex";
 
 
 export default {
@@ -59,7 +71,18 @@ export default {
         time: "",
         id: "",
       },
+      selectedZone: ""
     };
+  },
+  computed: {
+    ...mapState(["userProfile"]),
+    filteredProducts() {
+      if (this.selectedZone === 'ALL')
+        return this.offerList;
+      else
+        return this.offerList.filter(p => p.zone === this.selectedZone);
+
+    }
   },
   methods: {
     fetchOffers() {
@@ -74,6 +97,7 @@ export default {
             offer.id = doc.id;
             console.log(offer.id);
             this.offerList.push(offer);
+            this.selectedZone = this.userProfile.zone;
           });
         });
     },
@@ -133,6 +157,9 @@ export default {
         this.$bvModal.hide("modal-offer");
       });
     },
+    selectZone(target) {
+      this.selectedZone = target.getAttribute('value');
+    }
   },
   created() {
     this.fetchOffers();
@@ -177,7 +204,7 @@ ul {
   align-items: center;
   justify-content: center;
 }
-li {
+#offerItems {
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   padding: 10px;
