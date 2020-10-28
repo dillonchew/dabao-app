@@ -1,9 +1,19 @@
 <template>
   <div class="requests">
     <h1>Requests</h1>
-
+    <div class="filter">
+        Filter by <b>Zone</b>:
+        <b-dropdown :text="selectedZone" @click.native="selectZone($event.target)">
+          <b-dropdown-item value="ALL">All</b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item value="A">A</b-dropdown-item>
+          <b-dropdown-item value="B">B</b-dropdown-item>
+          <b-dropdown-item value="C">C</b-dropdown-item>
+          <b-dropdown-item value="D">D</b-dropdown-item>
+        </b-dropdown>
+    </div>
     <ul>
-      <li v-for="(order,index) in orderList" v-bind:key="index">
+      <li id="requestItems" v-for="(order,index) in filteredProducts" v-bind:key="index">
         <b-button pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
         <h5>Name: {{order.name}}</h5>
         <h5>Zone: {{order.zone}}</h5>
@@ -18,14 +28,22 @@
 <script>
 import database from "../firebase.js";
 import { mapState } from "vuex";
+
 export default {
   name: "Requests",
   computed: {
     ...mapState(["userProfile"]),
+    filteredProducts() {
+      if (this.selectedZone === 'ALL')
+        return this.orderList;
+      else
+        return this.orderList.filter(p => p.zone === this.selectedZone);
+    }
   },
   data() {
     return {
       orderList: [],
+      selectedZone: ""
     };
   },
   methods: {
@@ -42,6 +60,7 @@ export default {
             order.id = doc.id;
             console.log(order.id);
             this.orderList.push(order);
+            this.selectedZone = this.userProfile.zone;
           });
         });
     },
@@ -50,6 +69,9 @@ export default {
       database.collection("orders").doc(id).delete();
       this.orderList.splice(index, 1);
     },
+    selectZone(target) {
+      this.selectedZone = target.getAttribute('value');
+    }
   },
 
   created() {
@@ -97,7 +119,7 @@ ul {
   align-items: center;
   justify-content: center;
 }
-li {
+#requestItems {
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   padding: 10px;
