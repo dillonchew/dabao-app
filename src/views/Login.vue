@@ -1,6 +1,6 @@
 <template>
   <div id="login">
-    <section>
+    
       <div class="col1">
         <h1>Dabao-app</h1>
         <strong>
@@ -8,11 +8,25 @@
           hall residents by reducing overcrowding at popular eateries around
           NUS.
         </strong>
+        <br/>
+        <br/>
+      </div>
+      <div class = "info">
+        <h3>How does this app work?</h3 >
+        <ul>
+          <li> Residents can place orders for food for a small delivery fee of 5% of the bill</li>
+          <li> Residents can also offer to take-away food for other residents </li>
+          <li> Residents can see which locations people are planning to go </li>
+          <li> This app will follow NUS guidelines regarding zoning and safe-distancing strictly </li>
+        </ul>
+      </div>
+      <div class = "charts">
+        <BarChart></BarChart>
       </div>
       <div :class="{ 'signup-form': !showLoginForm }" class="col2">
         <form id="signup" v-if="showLoginForm" @submit.prevent>
           <br />
-          <h1>Welcome Back</h1>
+          <h1>Welcome Back!</h1>
           <br />
           <br />
           <div>
@@ -69,6 +83,16 @@
             />
           </div>
           <div>
+            <label for="tele" id="labels">Tele Handle:</label>
+            <input
+              v-model.trim="signupForm.tele"
+              type="text"
+              placeholder="<@telegramUser>"
+              id="tele"
+              required
+            />
+          </div>
+          <div>
             <label for="email2" id="labels">Email:</label>
             <input
               v-model.trim="signupForm.email"
@@ -98,7 +122,8 @@
           </div>
         </form>
       </div>
-    </section>
+   
+    
     <b-modal
       id="modal-pass"
       ref="modal"
@@ -130,8 +155,13 @@
 
 <script>
 import { auth } from "@/firebase";
+import BarChart from "../components/BarChart.vue";
+
 
 export default {
+  components: {
+    BarChart,
+  },
   data() {
     return {
       clickedFlag: false,
@@ -146,6 +176,7 @@ export default {
       signupForm: {
         name: "",
         zone: "",
+        tele: "",
         email: "",
         password: "",
       },
@@ -180,6 +211,7 @@ export default {
       this.$store.dispatch("signup", {
         email: this.signupForm.email,
         password: this.signupForm.password,
+        tele: this.signupForm.tele,
         name: this.signupForm.name,
         zone: this.signupForm.zone,
       });
@@ -216,6 +248,24 @@ export default {
 </script>
 
 <style scoped>
+.info {
+  float: left;
+  width: 20%;
+  text-align: left;
+  display: flexbox;
+  align-items: center;
+  margin-left: 8%;
+  margin-top: 5%;  
+  
+}
+.charts {
+  float: right; 
+  display: flexbox;
+  margin-right: 3%;
+  flex-wrap: wrap;
+  max-height: 20%;
+
+}
 #cool {
   display: inline-block;
   padding: 5px 10px;
@@ -291,6 +341,7 @@ export default {
   display: inline-block;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 label {

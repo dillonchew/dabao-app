@@ -37,6 +37,7 @@ const store = new Vuex.Store({
       // sign user up
       const { user } = await fb.auth.createUserWithEmailAndPassword(
         form.email,
+        form.tele,
         form.password
       );
 
@@ -44,6 +45,7 @@ const store = new Vuex.Store({
       await fb.usersCollection.doc(user.uid).set({
         name: form.name,
         zone: form.zone,
+        tele: form.tele
       });
 
       // fetch user profile and set in state
@@ -78,6 +80,7 @@ const store = new Vuex.Store({
       const userRef = await fb.usersCollection.doc(userId).update({
         name: user.name,
         zone: user.zone,
+        tele: user.tele
       });
 
       dispatch("fetchUserProfile", { uid: userId });

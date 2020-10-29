@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       copyRtSymbol: "&copy; ",
-      title: "dabao-app by dillon and wenqi ✌🏻",
+      title: "dabao-app by team agar agar ✌🏻",
     };
   },
 };
@@ -29,6 +29,10 @@ footer {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   height: 40px;
   vertical-align: middle;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
 }
 p {
   align-content: center;
