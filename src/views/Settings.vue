@@ -14,6 +14,9 @@
         <label for="zone" id="labels">Zone:</label>
         <input v-model.trim="zone" type="text" :placeholder="userProfile.zone" id="zone" />
 
+        <label for="tele" id="labels">Tele Handle:</label>
+        <input v-model.trim="tele" type="text" :placeholder="userProfile.tele" id="tele" />
+
         <button @click="updateProfile()" id="update">Update Profile</button>
       </form>
     </div>
@@ -27,6 +30,7 @@ export default {
   data() {
     return {
       name: "",
+      tele: "",
       zone: "",
       showSuccess: false,
     };
@@ -38,10 +42,12 @@ export default {
     updateProfile() {
       this.$store.dispatch("updateProfile", {
         name: this.name !== "" ? this.name : this.userProfile.name,
+        tele: this.tele !== "" ? this.tele : this.userProfile.tele,
         zone: this.zone !== "" ? this.zone : this.userProfile.zone,
       });
 
       this.name = "";
+      this.tele = "";
       this.zone = "";
 
       this.showSuccess = true;

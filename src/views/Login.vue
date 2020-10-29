@@ -1,6 +1,6 @@
 <template>
   <div id="login">
-    <section>
+    
       <div class="col1">
         <h1>Dabao-app</h1>
         <strong>
@@ -8,9 +8,11 @@
           hall residents by reducing overcrowding at popular eateries around
           NUS.
         </strong>
+        <br/>
+        <br/>
       </div>
       <div class = "info">
-        <h2>How does this app work?</h2>
+        <h3>How does this app work?</h3 >
         <ul>
           <li> Residents can place orders for food for a small delivery fee of 5% of the bill</li>
           <li> Residents can also offer to take-away food for other residents </li>
@@ -18,12 +20,8 @@
           <li> This app will follow NUS guidelines regarding zoning and safe-distancing strictly </li>
         </ul>
       </div>
-      <div class = "img">
-        <img src = "@/assets/review.png"/>
-      </div>
       <div class = "charts">
         <BarChart></BarChart>
-        
       </div>
       <div :class="{ 'signup-form': !showLoginForm }" class="col2">
         <form id="signup" v-if="showLoginForm" @submit.prevent>
@@ -85,6 +83,16 @@
             />
           </div>
           <div>
+            <label for="tele" id="labels">Tele Handle:</label>
+            <input
+              v-model.trim="signupForm.tele"
+              type="text"
+              placeholder="<@telegramUser>"
+              id="tele"
+              required
+            />
+          </div>
+          <div>
             <label for="email2" id="labels">Email:</label>
             <input
               v-model.trim="signupForm.email"
@@ -114,7 +122,7 @@
           </div>
         </form>
       </div>
-    </section>
+   
     
     <b-modal
       id="modal-pass"
@@ -168,6 +176,7 @@ export default {
       signupForm: {
         name: "",
         zone: "",
+        tele: "",
         email: "",
         password: "",
       },
@@ -202,6 +211,7 @@ export default {
       this.$store.dispatch("signup", {
         email: this.signupForm.email,
         password: this.signupForm.password,
+        tele: this.signupForm.tele,
         name: this.signupForm.name,
         zone: this.signupForm.zone,
       });
@@ -239,23 +249,21 @@ export default {
 
 <style scoped>
 .info {
-  position: fixed;
+  float: left;
+  width: 20%;
   text-align: left;
-  top: 150px;
-  left: 10px;
-}
-.img {
-  position: fixed;
-  text-align: left;
-  top: 330px;
-  left: 10px;
+  display: flexbox;
+  align-items: center;
+  margin-left: 8%;
+  margin-top: 5%;  
+  
 }
 .charts {
-  position: fixed;
-  top: 110px;
-  right: 30px;
-  height: 80px;
-  width: 500px;
+  float: right; 
+  display: flexbox;
+  margin-right: 3%;
+  flex-wrap: wrap;
+  max-height: 20%;
 
 }
 #cool {
@@ -333,6 +341,7 @@ export default {
   display: inline-block;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 label {
