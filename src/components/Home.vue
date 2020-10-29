@@ -5,38 +5,49 @@
         <h3>Supper Stretch</h3>
         <SSimages></SSimages>
         <br />
-        <SSRequestForm></SSRequestForm>
+        <!-- <SSRequestForm></SSRequestForm> -->
+         <b-button tag = "router-link"
+                  to = "/SSlocations"
+                  variant="outline-secondary"> View Shops </b-button>
       </li>
       <hr />
       <li class="even">
         <h3>Deck</h3>
         <Deckimages></Deckimages>
-        <DeckRequestForm></DeckRequestForm>
+        <br />
+        <!-- <DeckRequestForm></DeckRequestForm> -->
+         <b-button tag = "router-link"
+                  to = "/Decklocations"
+                  variant="outline-secondary"> View Shops </b-button>
       </li>
       <hr />
       <li class="odd">
         <h3>Clementi Mall</h3>
         <Clemimages></Clemimages>
-        <ClemRequestForm></ClemRequestForm>
-      </li>
+        <br />
+        <!-- <ClemRequestForm></ClemRequestForm> -->
+        <b-button tag = "router-link"
+                  to = "/Clemlocations"
+                  variant="outline-secondary"> View Shops </b-button>
+    </li>
     </ul>
   </div>
 </template>
 
 <script>
-import SSRequestForm from "./SSRequestForm.vue";
-import DeckRequestForm from "./DeckRequestForm.vue";
-import ClemRequestForm from "./ClemRequestForm.vue";
-import SSimages from "./SSimages.vue";
-import Deckimages from "./Deckimages.vue";
-import Clemimages from "./Clemimages.vue";
+//import SSRequestForm from "./SSRequestForm.vue";
+//import DeckRequestForm from "./DeckRequestForm.vue";
+//import ClemRequestForm from "./ClemRequestForm.vue";
+import SSimages from "./imagecarousel/SSimages.vue";
+import Deckimages from "./imagecarousel/Deckimages.vue";
+import Clemimages from "./imagecarousel/Clemimages.vue";
 
 export default {
   name: "Home",
   components: {
-    SSRequestForm,
-    DeckRequestForm,
-    ClemRequestForm,
+    //SSRequestForm,
+    //DeckRequestForm,
+    //ClemRequestForm,
     SSimages,
     Deckimages,
     Clemimages,
