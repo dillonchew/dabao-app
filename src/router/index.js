@@ -53,6 +53,27 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "login" */ "../components/Dashboard.vue"),
   },
+  {
+    path: "/SSlocations",
+    name: 'SSlocations',
+    component: () => import('../components/SSlocations.vue')
+  },
+  {
+    path: "/Decklocations",
+    name: 'Decklocations',
+    component: () => import('../components/Decklocations.vue')
+},
+{
+  path: "/Clemlocations",
+  name: 'Clemlocations',
+  component: () => import('../components/Clemlocations.vue')
+},
+{
+  path: "/BurgerKing",
+  name: 'BurgerKing',
+  component: () => import('../components/BurgerKing.vue')
+}
+
 ];
 
 const router = new VueRouter({
