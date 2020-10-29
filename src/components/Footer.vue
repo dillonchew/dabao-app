@@ -29,7 +29,7 @@ footer {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   height: 40px;
   vertical-align: middle;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   width: 100%;
 
