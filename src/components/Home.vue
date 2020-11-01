@@ -1,7 +1,7 @@
 <template>
-  <div class="places">
-    <ul>
-      <li class="odd">
+  <div>
+    <br/><br/>
+    <div class="places">
         <h3>Supper Stretch</h3>
         <SSimages></SSimages>
         <br />
@@ -9,9 +9,8 @@
          <b-button tag = "router-link"
                   to = "/SSlocations"
                   variant="outline-secondary"> View Shops </b-button>
-      </li>
-      <hr />
-      <li class="even">
+    </div>
+    <div class="places" id= "middle">
         <h3>Deck</h3>
         <Deckimages></Deckimages>
         <br />
@@ -19,9 +18,8 @@
          <b-button tag = "router-link"
                   to = "/Decklocations"
                   variant="outline-secondary"> View Shops </b-button>
-      </li>
-      <hr />
-      <li class="odd">
+    </div>
+    <div id = "right">
         <h3>Clementi Mall</h3>
         <Clemimages></Clemimages>
         <br />
@@ -29,8 +27,17 @@
         <b-button tag = "router-link"
                   to = "/Clemlocations"
                   variant="outline-secondary"> View Shops </b-button>
-    </li>
-    </ul>
+    </div>
+        <!-- <div>
+          <SSRequestForm></SSRequestForm>
+        </div>
+      </li>
+      <li class="two">
+        <h3>Clementi Mall</h3>
+        <Clemimages></Clemimages>
+        <br />
+        <ClemRequestForm></ClemRequestForm>
+      </li> -->
   </div>
 </template>
 
@@ -38,9 +45,9 @@
 //import SSRequestForm from "./SSRequestForm.vue";
 //import DeckRequestForm from "./DeckRequestForm.vue";
 //import ClemRequestForm from "./ClemRequestForm.vue";
-import SSimages from "./imagecarousel/SSimages.vue";
-import Deckimages from "./imagecarousel/Deckimages.vue";
-import Clemimages from "./imagecarousel/Clemimages.vue";
+import SSimages from "./SSimages.vue";
+import Deckimages from "./Deckimages.vue";
+import Clemimages from "./Clemimages.vue";
 
 export default {
   name: "Home",
@@ -49,8 +56,13 @@ export default {
     //DeckRequestForm,
     //ClemRequestForm,
     SSimages,
-    Deckimages,
     Clemimages,
+    Deckimages
+  },
+  methods: {
+    showModal() {
+      this.$root.$emit('bv::show::modal', 'modal', '#btnShow')
+    }
   },
   data() {
     return {
@@ -61,46 +73,28 @@ export default {
         },
         {
           id: "2",
-          name: "Deck",
-        },
-        {
-          id: "3",
           name: "Clementi Mall",
         },
       ],
     };
-  },
-};
+  }
+}
 </script>
 
 <style scoped>
-ul {
+.places {
   display: flexbox;
-  align-content: center;
-  justify-content: center;
-  padding: 0;
+  float: left;
+  width: 30%;
+  margin-left: 2%;
 }
-
-hr {
-  align-self: center;
-  align-content: center;
-  justify-content: center;
-  max-width: 400px;
-  background-color: #cc0066;
-  border: 0.2px solid #cc0066;
+#middle {
+  margin-left: 3%;
 }
-li {
-  text-align: center;
-  padding: 10px;
-  margin: 10px;
-  /* border-top: 1px solid #222; */
-  font-family: Slack-Circular-Pro, "Helvetica Neue", Helvetica, "Segoe UI",
-    Tahoma, Arial, sans-serif;
+#right {
+  display:flexbox;
+  float: right;
+  width: 30%;
+  margin-right: 2%;
 }
-/* .odd {
-  background-color: #e485d4;
-}
-.even {
-  background-color: #7171c4;
-} */
 </style>

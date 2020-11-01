@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- <app-header v-if="showNav"></app-header> -->
     <app-header></app-header>
     <router-view></router-view>
     <app-footer></app-footer>

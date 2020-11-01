@@ -1,13 +1,13 @@
 <template>
   <div>
-    <b-button pill variant="outline-secondary" v-b-modal.modal-ss>
+    <b-button v-b-modal.modal-ss pill variant="outline-secondary">
       {{ msg }}
       <b-icon icon="cart-plus"></b-icon>
     </b-button>
     <b-modal
       id="modal-ss"
       ref="modal"
-      title="Place your order !!"
+      title="What would you like from Supper Stretch?"
       @show="resetModal"
       @hidden="resetModal"
       @ok="handleOk"
@@ -15,12 +15,40 @@
       <form id="add-order-form" ref="form" @submit.stop.prevent="handleSubmit">
         <b-form-group
           :state="orderState"
-          label="What would you like from Supper Stretch?"
           label-for="order-input"
           invalid-feedback="Shop and Items are required"
         >
-          <label>Which Shop:</label>
-          <b-form-input id="shop-input" v-model="order.shop" :state="orderState" required></b-form-input>
+        <label>Which Shop:</label>
+          <b-form-select
+            id="shop-input"
+            v-model="order.shop"
+            :options="shops"
+            :state="orderState"
+            required
+          ></b-form-select>
+          <br /><br />
+          <b-button @click="showMenu = !showMenu" pill variant="outline-secondary">Show menu</b-button>
+          <br /><br />
+          <div v-if="showMenu">
+          <img v-if="order.shop == 'Be Frank'" src="@/assets/menuss/befrank.png" alt=""/>
+          <img v-if="order.shop == 'Hong Kong'" src="@/assets/menuss/hk1.jpg" alt=""/>
+          <img v-if="order.shop == 'Hong Kong'" src="@/assets/menuss/hk2.jpg" alt=""/>
+          <img v-if="order.shop == 'Fong Seng'" src="@/assets/menuss/fongseng.jpg" alt=""/>
+          <img v-if="order.shop == 'Formosa'" src="@/assets/menuss/formosa1.png" alt=""/>
+          <img v-if="order.shop == 'Formosa'" src="@/assets/menuss/formosa2.png" alt=""/>
+          <img v-if="order.shop == 'Formosa'" src="@/assets/menuss/formosa3.png" alt=""/>
+          <img v-if="order.shop == 'NaNa Thai'" src="@/assets/menuss/thai.png" alt=""/>
+          <img v-if="order.shop == 'Makan Ave'" src="@/assets/menuss/makan1.jpg" alt=""/>
+          <img v-if="order.shop == 'Makan Ave'" src="@/assets/menuss/makan2.jpg" alt=""/>
+          <img v-if="order.shop == 'Al Amaan'" src="@/assets/menuss/amaan1.jpg" alt=""/>
+          <img v-if="order.shop == 'Al Amaan'" src="@/assets/menuss/amaan2.jpg" alt=""/>
+          <img v-if="order.shop == 'Al Amaan'" src="@/assets/menuss/amaan3.jpg" alt=""/>
+          <img v-if="order.shop == 'Al Amaan'" src="@/assets/menuss/amaan4.jpg" alt=""/>
+          <img v-if="order.shop == 'Al Amaan'" src="@/assets/menuss/amaan5.jpg" alt=""/>
+          <img v-if="order.shop == 'Al Amaan'" src="@/assets/menuss/amaan6.jpg" alt=""/>
+          <img v-if="order.shop == 'Al Amaan'" src="@/assets/menuss/amaan7.jpg" alt=""/>
+          </div>
+          <br />
           <label>What Items:</label>
           <b-form-input id="items-input" v-model="order.items" :state="orderState" required></b-form-input>
         </b-form-group>
@@ -37,6 +65,8 @@ import { auth } from "../firebase";
 export default {
   data() {
     return {
+      showMenu: false,
+      imgSrc: "./assets/amaans.jpg",
       orderState: true,
       msg: "Add Order",
       order: {
@@ -47,6 +77,7 @@ export default {
         name: "",
         zone: "",
       },
+        shops: ['Be Frank', 'Hong Kong', 'Fong Seng', 'Formosa', 'NaNa Thai', 'Cheese Prata', 'Makan Ave', 'Al Amaan']
     };
   },
   methods: {
@@ -107,8 +138,9 @@ export default {
 </script>
 
 <style scoped>
-button {
-  background-color: #4682b4;
-  color: white;
+img {
+  display:flex;
+  width:100%;
+  height:100%;
 }
 </style>

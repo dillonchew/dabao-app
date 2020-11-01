@@ -8,7 +8,7 @@
     <b-modal
       id="modal-clem"
       ref="modal"
-      title="Place your order !!"
+      title="What would you like from Clementi Mall?"
       @show="resetModal"
       @hidden="resetModal"
       @ok="handleOk"
@@ -16,17 +16,42 @@
       <form id="add-order-form" ref="form" @submit.stop.prevent="handleSubmit">
         <b-form-group
           :state="orderState"
-          label="What would you like from Clementi Mall?"
           label-for="order-input"
           invalid-feedback="Shop and Items are required"
         >
-          <label>Which Shop:</label>
-          <b-form-input
+        <label>Which Shop:</label>
+        <b-form-select
             id="shop-input"
             v-model="order.shop"
+            :options="shops"
             :state="orderState"
             required
-          ></b-form-input>
+          ></b-form-select>
+          <br /><br />
+          <b-button @click="showMenu = !showMenu" pill variant="outline-secondary">Show menu</b-button>
+          <br /><br />
+          <div v-if="showMenu">
+            <img v-if="order.shop == 'Crave'" src="@/assets/menuclem/crave1.webp" alt=""/>
+            <img v-if="order.shop == 'Crave'" src="@/assets/menuclem/crave2.webp" alt=""/>
+            <img v-if="order.shop == 'EAT'" src="@/assets/menuclem/eat.webp" alt=""/>
+            <img v-if="order.shop == 'Jinjja Chicken'" src="@/assets/menuclem/jinjja.webp" alt=""/>
+            <img v-if="order.shop == 'KFC'" src="@/assets/menuclem/kfc1.png" alt=""/>
+            <img v-if="order.shop == 'KFC'" src="@/assets/menuclem/kfc2.png" alt=""/>
+            <img v-if="order.shop == 'KFC'" src="@/assets/menuclem/kfc3.png" alt=""/>
+            <img v-if="order.shop == 'LiHO'" src="@/assets/menuclem/liho.jpg" alt=""/>
+            <img v-if="order.shop == 'Mr. Coconut'" src="@/assets/menuclem/coco1.png" alt=""/>
+            <img v-if="order.shop == 'Mr. Coconut'" src="@/assets/menuclem/coco2.png" alt=""/>
+            <img v-if="order.shop == 'Old Chang Kee'" src="@/assets/menuclem/ock1.png" alt=""/>
+            <img v-if="order.shop == 'Old Chang Kee'" src="@/assets/menuclem/ock2.png" alt=""/>
+            <img v-if="order.shop == 'Old Chang Kee'" src="@/assets/menuclem/ock3.png" alt=""/>
+            <img v-if="order.shop == 'Stuffd'" src="@/assets/menuclem/stuffd.jpg" alt=""/>
+            <img v-if="order.shop == 'Subway'" src="@/assets/menuclem/subway.webp" alt=""/>
+            <img v-if="order.shop == 'TORI-Q'" src="@/assets/menuclem/toriq1.png" alt=""/>
+            <img v-if="order.shop == 'TORI-Q'" src="@/assets/menuclem/toriq2.png" alt=""/>
+            <img v-if="order.shop == 'TORI-Q'" src="@/assets/menuclem/toriq3.png" alt=""/>
+            <img v-if="order.shop == 'Wok Hey'" src="@/assets/menuclem/wokhey.jpg" alt=""/>
+          </div>
+          <br />
           <label>What Items:</label>
           <b-form-input
             id="items-input"
@@ -46,6 +71,7 @@ import * as fb from "../firebase"
 export default {
   data() {
     return {
+      showMenu: false,
       orderState: true,
       msg: "Add Order",
       order: {
@@ -56,6 +82,7 @@ export default {
         name: "",
         zone: ""
       },
+      shops: ['Crave', 'EAT', 'Jinjja Chicken', 'KFC', 'LiHO', 'Mr. Coconut', 'Old Chang Kee', 'Stuffd', 'Subway', 'TORI-Q', 'Wok Hey']
     };
   },
 
@@ -121,8 +148,9 @@ export default {
 </script>
 
 <style scoped>
-button {
-  background-color: #4682b4;
-  color: white;
+img {
+  display:flex;
+  width:100%;
+  height:100%;
 }
 </style>
