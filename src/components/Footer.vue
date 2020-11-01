@@ -32,7 +32,6 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-
 }
 p {
   align-content: center;
