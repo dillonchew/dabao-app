@@ -21,7 +21,7 @@
         </ul>
       </div>
       <div class = "charts">
-        <BarChart></BarChart>
+        <Doughnut></Doughnut>
       </div>
       <div :class="{ 'signup-form': !showLoginForm }" class="col2">
         <form id="signup" v-if="showLoginForm" @submit.prevent>
@@ -155,12 +155,12 @@
 
 <script>
 import { auth } from "@/firebase";
-import BarChart from "../components/BarChart.vue";
+import Doughnut from "../components/DoughnutChart.vue";
 
 
 export default {
   components: {
-    BarChart,
+    Doughnut,
   },
   data() {
     return {
@@ -263,7 +263,9 @@ export default {
   display: flexbox;
   margin-right: 3%;
   flex-wrap: wrap;
-  max-height: 20%;
+  margin-top: 2%;
+  width: 25%;
+  box-sizing: border-box;
 
 }
 #cool {
