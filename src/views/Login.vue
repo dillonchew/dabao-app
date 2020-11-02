@@ -263,7 +263,9 @@ export default {
   display: flexbox;
   margin-right: 3%;
   flex-wrap: wrap;
-  max-height: 20%;
+  margin-top: 2%;
+  width: 25%;
+  box-sizing: border-box;
 
 }
 #cool {
