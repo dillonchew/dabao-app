@@ -222,6 +222,6 @@ ul {
   padding: 10px;
   width: 300px;
   margin: 10px;
-  box-shadow: 3px 5px  #f2f2f3;
+  box-shadow: 3px 5px  #e2e2e7;
 }
 </style>
