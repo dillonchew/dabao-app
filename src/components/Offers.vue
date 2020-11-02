@@ -5,6 +5,7 @@
       {{ msg }}
       <b-icon icon="gift" aria-hidden="true"></b-icon>
     </b-button>
+    <br/><br/>
     <div class="filter">
         Filter by <b>Zone</b>:
         <b-dropdown :text="selectedZone" @click.native="selectZone($event.target)">
@@ -208,11 +209,9 @@ ul {
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   padding: 10px;
-  width: 400px;
+  width: 300px;
   margin: 10px;
-  border: 1px solid #222;
-  border-radius: 25px;
-  box-shadow: 3px 7px #660066;
+  box-shadow: 3px 5px  #e2e2e7;
 }
 #offerbutton {
   background-color: #4682b4;
