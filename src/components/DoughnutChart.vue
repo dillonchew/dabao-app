@@ -1,7 +1,7 @@
 <template>
   <div class="chart">
-    <h2>Check out how many</h2>
-    <h2>orders have been made!</h2>
+    <h3>Check out how many</h3>
+    <h3>orders have been made!</h3>
     <chart></chart>
   </div>
 </template>
