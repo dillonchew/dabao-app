@@ -59,19 +59,20 @@ const routes = [
     component: () => import('../components/SSlocations.vue')
   },
   {
-    path: "/Decklocations",
-    name: 'Decklocations',
-    component: () => import('../components/Decklocations.vue')
+    path: "/WClocations",
+    name: 'WClocations',
+    component: () => import('../components/WClocations.vue')
 },
 {
   path: "/Clemlocations",
   name: 'Clemlocations',
   component: () => import('../components/Clemlocations.vue')
 },
+
 {
-  path: "/BurgerKing",
-  name: 'BurgerKing',
-  component: () => import('../components/BurgerKing.vue')
+  path: "/WCPMacs",
+  name: 'WCPMacs',
+  component: () => import('../components/WC/WCPMacs.vue')
 }
 
 ];

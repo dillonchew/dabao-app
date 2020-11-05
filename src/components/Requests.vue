@@ -59,7 +59,9 @@
         <h5>{{order.place}}</h5>
         <hr/>
         <h6>Shop: {{order.shop}}</h6>
-        <h6>Items: {{order.items}}</h6>
+        <h6>Items: {{order.items.toString()}}</h6>
+        <h6>Commission: {{order.comms}}</h6>
+        <h6>Total : {{order.total}}</h6>
         <div v-if="order.show">
           <h6>Name: {{order.name}}</h6>
           <h6>Zone: {{order.zone}}</h6>
