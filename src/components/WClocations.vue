@@ -4,7 +4,7 @@
       <li class="odd">
         <h3>Burger King</h3>
         <b-container>
-              <b-img src="@/assets/amaans.jpg" rounded style = "width : 50%"></b-img>
+              <b-img src="@/assets/bk1.png" rounded style = "width : 50%"></b-img>
         </b-container>
         <br />
         <!-- <SSRequestForm></SSRequestForm> -->
@@ -16,19 +16,18 @@
       <li class="even">
         <h3>McDonald's</h3>
        <b-container>
-              <b-img src="@/assets/formosa.jpg" rounded style = "width : 50%"></b-img>
+              <b-img src="@/assets/macs_wcp1.jpg" rounded style = "width : 50%"></b-img>
         </b-container>
         <br />
-        <!-- <DeckRequestForm></DeckRequestForm> -->
          <b-button tag = "router-link"
-                  to = "/SSlocations"
+                  to = "/WCPMacs"
                   variant="outline-secondary"> View Menu </b-button>
       </li>
       <hr />
       <li class="odd">
         <h3>Rong Liang Restaurant</h3>
         <b-container>
-              <b-img src="@/assets/fongseng.jpg" rounded style = "width : 50%"></b-img>
+              <b-img src="@/assets/rongliang1.jpg" rounded style = "width : 50%"></b-img>
         </b-container>
         <Clemimages></Clemimages>
         <br />

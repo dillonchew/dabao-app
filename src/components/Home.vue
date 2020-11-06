@@ -11,12 +11,11 @@
                   variant="outline-secondary"> View Shops </b-button>
     </div>
     <div class="places" id= "middle">
-        <h3>Deck</h3>
-        <Deckimages></Deckimages>
+        <h3>West Coast</h3>
+        <WCImages></WCImages>
         <br />
-        <!-- <DeckRequestForm></DeckRequestForm> -->
          <b-button tag = "router-link"
-                  to = "/Decklocations"
+                  to = "/WClocations"
                   variant="outline-secondary"> View Shops </b-button>
     </div>
     <div id = "right">
@@ -42,22 +41,17 @@
 </template>
 
 <script>
-//import SSRequestForm from "./SSRequestForm.vue";
-//import DeckRequestForm from "./DeckRequestForm.vue";
-//import ClemRequestForm from "./ClemRequestForm.vue";
+
 import SSimages from "./SSimages.vue";
-import Deckimages from "./Deckimages.vue";
+import WCImages from "./WCImages.vue";
 import Clemimages from "./Clemimages.vue";
 
 export default {
   name: "Home",
   components: {
-    //SSRequestForm,
-    //DeckRequestForm,
-    //ClemRequestForm,
     SSimages,
     Clemimages,
-    Deckimages
+    WCImages
   },
   methods: {
     showModal() {
