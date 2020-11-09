@@ -10,7 +10,7 @@ export default {
       clemlist: [],
       sslist: [],
       datacollection: {
-        labels: ["Deck", "Supper Stretch", "Clementi Mall"],
+        labels: ["West Coast", "Supper Stretch", "Clementi Mall"],
         datasets: [
           {
             label: "Total Number of Orders by Location",
