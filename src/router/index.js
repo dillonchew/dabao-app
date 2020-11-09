@@ -30,6 +30,15 @@ const routes = [
     },
   },
   {
+    path: "/profile",
+    name: "profile",
+    component: () =>
+      import(/* webpackChunkName: "profile" */ "../views/Profile.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: "/requests",
     name: "Requests",
     component: () =>
