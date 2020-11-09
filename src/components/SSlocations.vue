@@ -19,7 +19,6 @@
               <b-img src="@/assets/formosa.jpg" rounded style = "width : 50%"></b-img>
         </b-container>
         <br />
-        <!-- <DeckRequestForm></DeckRequestForm> -->
          <b-button tag = "router-link"
                   to = "/SSlocations"
                   variant="outline-secondary"> View Menu </b-button>
