@@ -33,7 +33,7 @@
         <br />
         <!-- <ClemRequestForm></ClemRequestForm> -->
         <b-button tag = "router-link"
-                  to = "/SSlocations"
+                  to = "/RongLiang"
                   variant="outline-secondary"> View Menu </b-button>
     </li>
     </ul>

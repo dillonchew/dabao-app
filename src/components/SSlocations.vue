@@ -9,7 +9,7 @@
         <br />
         <!-- <SSRequestForm></SSRequestForm> -->
          <b-button tag = "router-link"
-                  to = "/SSlocations"
+                  to = "/AlAmaan"
                   variant="outline-secondary"> View Menu </b-button>
       </li>
       <hr />
@@ -20,7 +20,7 @@
         </b-container>
         <br />
          <b-button tag = "router-link"
-                  to = "/SSlocations"
+                  to = "/Formosa"
                   variant="outline-secondary"> View Menu </b-button>
       </li>
       <hr />
@@ -29,11 +29,10 @@
         <b-container>
               <b-img src="@/assets/fongseng.jpg" rounded style = "width : 50%"></b-img>
         </b-container>
-        <Clemimages></Clemimages>
         <br />
         <!-- <ClemRequestForm></ClemRequestForm> -->
         <b-button tag = "router-link"
-                  to = "/SSlocations"
+                  to = "/FongSeng"
                   variant="outline-secondary"> View Menu </b-button>
     </li>
     </ul>
