@@ -1,19 +1,21 @@
 <template>
   <div>
-    <BarChart></BarChart>
-    <DoughnutChart></DoughnutChart>
+    <h1>Analysis of your usage! </h1>
+    <DashboardBarChart></DashboardBarChart>
+    <DashboardDonut></DashboardDonut>
   </div>
 </template>
 
 <script>
-import BarChart from "./BarChart.vue";
-import DoughnutChart from "./DoughnutChart.vue";
+import DashboardBarChart from "./DashboardBarChart.vue";
+import DashboardDonut from "./DashboardDonut.vue"
+
 
 export default {
   name: "Dashboard",
   components: {
-    BarChart,
-    DoughnutChart,
+    DashboardBarChart,
+    DashboardDonut,
   },
 };
 </script>
