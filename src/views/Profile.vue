@@ -41,6 +41,9 @@
                 </div>
                 <!-- /.row -->
               </div>
+              <b-button tag = "router-link"
+                  to = "/Settings"
+                  variant="outline-secondary"> Edit Profile </b-button>
             </div>
             </div>
         </div>
