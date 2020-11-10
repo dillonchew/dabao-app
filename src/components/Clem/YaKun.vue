@@ -2,7 +2,7 @@
 <div style="margin-bottom:50px;">
   <!-- banner -->
     <b-container fluid class="p-4 bg-warning">
-      <b-img rounded ='circle' src="@/assets/Macs-Logo.png" alt="Image 1"></b-img>
+      <b-img rounded ='circle' src="@/assets/YaKun-Logo.jpg" alt="Image 1"></b-img>
       <br /><br />
       <h5 style = "color : #660066">{{description}}</h5>
     </b-container>
@@ -18,7 +18,7 @@
       <span v-if = "!isHidden">
         <br /><br />
         <label><input type="radio" v-model="selectedCategory" value="All" /> All</label><br>
-        <label><input type="radio" v-model="selectedCategory" value="Burger" /> Burgers</label><br>
+        <label><input type="radio" v-model="selectedCategory" value="Meals" /> Meals</label><br>
         <label><input type="radio" v-model="selectedCategory" value="Beverages" /> Beverages</label><br>
         <label><input type="radio" v-model="selectedCategory" value="Sides" /> Sides</label><br>
       </span>
@@ -60,78 +60,77 @@ export default {
       cart:[],
       isHidden:true,
       toggle: false,
-      description :"Our story is one of hard work, determination, and humble beginnings – from a neighbourhood restaurant in Des Plaines, Illinois in 1955, to more than 36,000 restaurants in over 100 countries worldwide today.",
+      description :"From its humble beginnings as a modest coffee stall in the 1940s, the name of Ya Kun has become synonymous with unparalleled kaya toast and irresistibly fragrant coffee and tea, enjoyed amidst a cosy atmosphere. Today, Ya Kun continues to delight fans and to attract converts.",
       itemsList: [
         {
           id: "#001",
-          name: "McChicken",
-          picture: 'https://d1nqx6es26drid.cloudfront.net/app/uploads/2016/05/13043514/mcchicken.png',
-          category: "Burger",
-          sizes: ['Ala-carte', '+ Coke + M Fries', '+ Coke + L Fries', '+ Ice Milo + M Fries', '+ Ice Milo + L Fries'],
-          price: {'Ala-carte': 2.00, '+ Coke + M Fries' : 5.00, '+ Coke + L Fries' : 5.50, '+ Ice Milo + M Fries' : 5.80,'+ Ice Milo + L Fries': 6.50 },
-          shop : "McDonalds",
-          place: "West Coast",
+          name: "Set A: Kaya Toast with Butter Set",
+          picture: 'http://yakun.com/images/uploads/menu/VSM_kaya-toast-with-butter.png',
+          category: "Meals",
+          sizes: ['Ala-carte', '+ R Iced Coffee', '+ L Iced Coffee, '+ '+ R Iced Tea', '+ L Tea'],
+          prices: {'Ala-carte':2.00, '+ R Iced Coffee':4.40, '+ L Iced Coffee':4.80,'+ R Iced Tea':4.40, '+ L Tea':4.80},
+          shop : "YaKun",
+          place: "Clementi",
         },
-        {
+       {
           id: "#002",
-          name: "Fillet-O-Fish",
-          picture: "https://d1nqx6es26drid.cloudfront.net/app/uploads/2018/04/27124713/10_FOFCornPremium-Roast-Coffee-350x350.png",
-          category: "Burger",
-          sizes: ['Ala-carte', '+ Coke + M Fries', '+ Coke + L Fries', '+ Ice Milo + M Fries', '+ Ice Milo + L Fries'],
-          price: {'Ala-carte': 2.50, '+ Coke + M Fries' : 5.00, '+ Coke + L Fries' : 5.50, '+ Ice Milo + M Fries' : 5.80,'+ Ice Milo + L Fries': 6.50 },
-          shop : "McDonalds",
-          place: "West Coast",
+          name: "Set B: Steamed Kaya Butter Set",
+          picture: 'http://yakun.com/images/uploads/menu/VSM_kaya-butter-steamed-bread.png',
+          category: "Meals",
+          sizes: ['Ala-carte', '+ R Iced Coffee', '+ L Iced Coffee, '+ '+ R Iced Tea', '+ L Tea'],
+          prices: {'Ala-carte':2.00, '+ R Iced Coffee':4.40, '+ L Iced Coffee':4.80,'+ R Iced Tea':4.40, '+ L Tea':4.80},
+          shop : "YaKun",
+          place: "Clementi",
         },
         {
-            id: "#003",
-            name: "Big Mac",
-            picture: "https://www.mcdelivery.com.sg/sg/static/1604123370397/assets/65/products/110005.png",
-            category: "Burger",
-            sizes: ['Ala-carte', '+ Coke + M Fries', '+ Coke + L Fries', '+ Ice Milo + M Fries', '+ Ice Milo + L Fries'],
-            price: {'Ala-carte': 4.50, '+ Coke + M Fries' : 7.90, '+ Coke + L Fries' : 8.50, '+ Ice Milo + M Fries' : 8.70,'+ Ice Milo + L Fries': 9.00 },
-            shop : "McDonalds",
-            place: "West Coast",
-
+          id: "#003",
+          name: "Set C: French Toast with Kaya Set",
+          picture: 'http://yakun.com/images/uploads/menu/VSM_french-toast.png',
+          category: "Meals",
+          sizes: ['Ala-carte', '+ R Iced Coffee', '+ L Iced Coffee, '+ '+ R Iced Tea', '+ L Tea'],
+          prices: {'Ala-carte':2.00, '+ R Iced Coffee':4.40, '+ L Iced Coffee':4.80,'+ R Iced Tea':4.40, '+ L Tea':4.80},
+          shop : "YaKun",
+          place: "Clementi",
         },
         {
             id: "#004",
-            name: "Coca-Cola",
-            picture: "https://www.mcdelivery.com.sg/sg/static/1604123370397/assets/65/products/506221.png",
+            name: "Iced Coffee",
+            picture: "http://yakun.com/images/uploads/menu/Iced_Kopi_Range_%28Big%29.jpg",
             category: "Beverages",
-            sizes: ['S', 'M', 'L'],
-            price: {'S': 2.45, 'M': 2.95, 'L': 3.45},
-            shop : "McDonalds",
-            place: "West Coast",
+            sizes: ['O', 'C'],
+            price: {'O': 1.20, 'C': 1.60},
+            shop : "YaKun",
+            place: "Clementi",
         },
-        {
-            id: "#099",
-            name: "Milo",
-            picture: "https://d1nqx6es26drid.cloudfront.net/app/uploads/2015/04/04115956/Milo-ver1.png",
-            category: "Beverages",
-            sizes: ['S', 'M', 'L'],
-            price: {'S': 3.00, 'M': 3.40, 'L': 4.00},
-            shop : "McDonalds",
-            place: "West Coast",
-        },
-        {
+       {
             id: "#005",
-            name: "French Fries",
-            picture: "https://d1nqx6es26drid.cloudfront.net/app/uploads/2015/04/04044451/product-french-fries-350x350.png",
-            category: "Sides",
-            sizes: ['S', 'M', 'L'],
-            price: {'S': 1.50, 'M': 2.75, 'L': 3.35},
-            shop : "McDonalds",
-            place: "West Coast",
+            name: "Iced Tea",
+            picture: "http://yakun.com/images/uploads/menu/Iced_Kopi_Range_%28Big%29.jpg",
+            category: "Beverages",
+            sizes: ['O', 'C'],
+            price: {'O': 1.20, 'C': 1.60},
+            shop : "YaKun",
+            place: "Clementi",
         },
         {
             id: "#006",
-            name: "McWings",
-            picture: "https://d1nqx6es26drid.cloudfront.net/app/uploads/2015/04/04044217/product-mcwings.png",
+            name: "Soft Boiled Eggs",
+            picture: "http://yakun.com/images/uploads/menu/all-day-sides_soft-boiled-eggs.png",
             category: "Sides",
-            sizes: ['2pc', '4pc'],
-            price: {'2pc': 2.75, '4pc': 5.50},
-            shop : "McDonalds",
-            place: "West Coast",
+            sizes: ['2', '4'],
+            price: {'2':1.40, '4': 1.80},
+            shop : "YaKun",
+            place: "Clementi",
+        },
+        {
+            id: "#007",
+            name: "Cheese Balls",
+            picture: "http://yakun.com/images/uploads/menu/all-day-sides_cheese-balls.png",
+            category: "Sides",
+            sizes: ['6pc', '12pc'],
+            price: {'6pc': 2.40, '12pc': 4.80},
+            shop : "YaKun",
+            place: "Clementi",
         }
     ]}
 },

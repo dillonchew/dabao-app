@@ -9,18 +9,18 @@
         <br />
         <!-- <SSRequestForm></SSRequestForm> -->
          <b-button tag = "router-link"
-                  to = "/SSlocations"
+                  to = "/YaKun"
                   variant="outline-secondary"> View Menu </b-button>
       </li>
       <hr />
       <li class="even">
         <h3>McDonald's</h3>
        <b-container>
-              <b-img src="@/assets/formosa.jpg" rounded style = "width : 50%"></b-img>
+              <b-img src="@/assets/macs_cm1.jpg" rounded style = "width : 50%"></b-img>
         </b-container>
         <br />
          <b-button tag = "router-link"
-                  to = "/SSlocations"
+                  to = "/Macs"
                   variant="outline-secondary"> View Menu </b-button>
       </li>
       <hr />
@@ -29,11 +29,9 @@
         <b-container>
               <b-img src="@/assets/crave-the-clementi-mall.jpg" rounded style = "width : 50%"></b-img>
         </b-container>
-        <Clemimages></Clemimages>
         <br />
-        <!-- <ClemRequestForm></ClemRequestForm> -->
         <b-button tag = "router-link"
-                  to = "/SSlocations"
+                  to = "/Crave"
                   variant="outline-secondary"> View Menu </b-button>
     </li>
     </ul>
