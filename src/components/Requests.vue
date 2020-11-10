@@ -1,6 +1,7 @@
 <template>
   <div class="requests">
     <h1>Requests</h1>
+    <br />
     <div class = "filters">
        <div id = "filter1">
          <h5> Filter by commission: </h5>
@@ -13,10 +14,11 @@
          <h5> Filter by place: </h5>
          <br/>
           <b-form-group id="optionsPlace">
-            <b-form-checkbox-group
+            <b-form-checkbox-group 
               id="filterPlace"
               v-model="selectedPlaces"
               :options="places"
+              v-bind:value="place"
               stacked
             ></b-form-checkbox-group>
           </b-form-group>
@@ -36,14 +38,6 @@
         <h5> Filter by <b>Zone</b>: </h5>
         <br/>
         <b-dropdown :text="selectedZone" @click.native="selectZone($event.target)">
-          <!-- <b-form-group id="optionsZone">
-            <b-form-checkbox-group
-              id="filterZone"
-              v-model="selectedZones"
-              :options="zones"
-              stacked
-            ></b-form-checkbox-group>
-          </b-form-group> -->
           <b-dropdown-item value="ALL">All</b-dropdown-item>
           <b-dropdown-divider></b-dropdown-divider>
           <b-dropdown-item value="A">A</b-dropdown-item>
@@ -59,14 +53,14 @@
         <h5>{{order.place}}</h5>
         <hr/>
         <h6>Shop: {{order.shop}}</h6>
-        <h6>Items: {{order.items.toString()}}</h6>
         <h6>Commission: {{order.comms}}</h6>
-        <h6>Total : {{order.total}}</h6>
         <div v-if="order.show">
           <h6>Name: {{order.name}}</h6>
           <h6>Zone: {{order.zone}}</h6>
+          <h6>Items: {{order.items.toString()}}</h6>
+          <h6>Total : {{order.total}}</h6>
         </div>
-        <b-button pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
+        <b-button pill variant="outline-secondary" @click="acceptOrder(index)">Accept</b-button>
         <b-button v-if="!order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Show details</b-button>
         <b-button v-if="order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Hide details</b-button>
       </li>
@@ -79,6 +73,7 @@
 <script>
 import database from "../firebase.js";
 import { mapState } from "vuex";
+import * as firebase from 'firebase';
 import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/antd.css'
 
@@ -90,10 +85,21 @@ export default {
   computed: {
     ...mapState(["userProfile"]),
     filteredProducts() {
-      if (this.selectedZone === 'ALL')
-        return this.orderList;
-      else
-        return this.orderList.filter(p => p.zone === this.selectedZone);
+      var temp1;
+      var temp2;
+      var temp3;
+      if (this.selectedZone === 'ALL'){
+        temp1 = this.orderList;
+      } else {
+        temp1 = this.orderList.filter(p => p.zone === this.selectedZone);
+      }  
+      if (!this.selectedPlaces.length){
+        temp2 = temp1;
+      } else {
+        temp2 =  temp1.filter(j => this.selectedPlaces.includes(j.place));
+      }
+      temp3 = temp2.filter(i => i.comms >= this.commission);
+      return temp3;
     }
   },
   data() {
@@ -101,26 +107,50 @@ export default {
       orderList: [],
       selectedZone: [],
       time: "",
-      commission: '$1.00',
+      commission: 0,
       context: null,
       selectedPlaces: [],
       commisionData: [
-          {text: '$1.00', value:'1'}, 
-          {text: '$2.00', value: '2'},
-          {text: '$3.00', value: '3'},
-          {text: '$4.00', value: '4'},
-          {text: '$5.00', value: '5'}
-        ],
-      // commisionData: [1,2,3,4,5],
+        {text: '$0.00', value:'0'},
+        {text: '$1.00', value:'1'}, 
+        {text: '$2.00', value: '2'},
+        {text: '$3.00', value: '3'},
+        {text: '$4.00', value: '4'},
+        {text: '$5.00', value: '5'}
+      ],
       places: [
-          { text: 'Supper Stretch', value: 'ss' },
-          { text: 'Clementi', value: 'clem' },
-          { text: 'West Coast', value: 'wc' }
+          { text: 'Supper Stretch', value: 'Supper Stretch' },
+          { text: 'Clementi', value: 'Clementi' },
+          { text: 'West Coast', value: 'West Coast' }
         ],
       zones: ["All", "A", "B", "C","D"]
     };
   },
   methods: {
+    acceptOrder(index) {
+      let id = this.orderList[index].id;
+      var user =  firebase.auth().currentUser
+      const admin = require('firebase-admin');
+      database.collection("users")
+        .doc(user.uid)
+        .set(
+          {activeOrderAccepted: [{
+            name: this.orderList[index].name,
+            place: this.orderList[index].place,
+            shop: this.orderList[index].shop,
+            items: this.orderList[index].items,
+            zone: this.orderList[index].zone}]},
+            {merge:true}
+        )
+        .then(() => {
+          console.log("Document successfully updated!");
+        })
+        .catch((error) => {
+          console.error("Error updating document: ", error);
+        });
+        database.collection("orders").doc(id).delete();
+        this.orderList.splice(index, 1);
+    },
     fetchOrders() {
       database
         .collection("orders")

@@ -1,13 +1,47 @@
 <template>
   <div class="offers">
+    <div id = "head">
     <h1>Offers</h1>
     <b-button id="offerbutton" v-b-modal.modal-offer pill variant="outline-secondary">
       {{ msg }}
       <b-icon icon="gift" aria-hidden="true"></b-icon>
     </b-button>
-    <br/><br/>
-    <div class="filter">
-        Filter by <b>Zone</b>:
+    </div>
+    <div class = "filters">
+       <div id = "filter1">
+         <h5> Filter by commission: </h5>
+         <br/>
+        <vue-slider v-model="commission" :data="commisionData" :data-value="'value'" :data-label="'text'" :marks="true">
+        </vue-slider>
+       </div>
+       <br/><br/><br/>
+       <div id = "filter2">
+         <h5> Filter by place: </h5>
+         <br/>
+          <b-form-group id="optionsPlace">
+            <b-form-checkbox-group 
+              id="filterPlace"
+              v-model="selectedPlaces"
+              :options="places"
+              v-bind:value="place"
+              stacked
+            ></b-form-checkbox-group>
+          </b-form-group>
+      </div>
+      <br/><br/>
+      <div id = "filter3">
+        <h5> Filter by time: </h5>
+        <br />
+         <b-row>
+          <b-col md="auto">
+            <b-time v-model="time" locale="en" @context="onContext"></b-time>
+          </b-col>
+        </b-row>
+      </div>
+      <br/><br/>
+      <div id="filter4">
+        <h5> Filter by <b>Zone</b>: </h5>
+        <br/>
         <b-dropdown :text="selectedZone" @click.native="selectZone($event.target)">
           <b-dropdown-item value="ALL">All</b-dropdown-item>
           <b-dropdown-divider></b-dropdown-divider>
@@ -17,40 +51,44 @@
           <b-dropdown-item value="D">D</b-dropdown-item>
         </b-dropdown>
     </div>
-    <div>
+    </div>
+    <div class = "list">
       <ul>
         <li id="offerItems" v-for="(offer, index) in filteredProducts" v-bind:key="index">
-          <b-button pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
-          <h5>Name: {{ offer.name }}</h5>
-          <h5>Zone: {{ offer.zone }}</h5>
-          <h5>Place: {{ offer.place }}</h5>
-          <h5>Time: {{ offer.time }}</h5>
+          <h5>{{offer.place}}</h5>
+        <hr/>
+        <h6>Time: {{offer.time}}</h6>
+        <div v-if="offer.show">
+          <h6>Name: {{offer.name}}</h6>
+          <h6>Zone: {{offer.zone}}</h6>
+        </div>
+        <b-button v-if="!offer.show" v-on:click="show(offer.id)" pill variant="outline-secondary">Show details</b-button>
+        <b-button v-if="offer.show" v-on:click="show(offer.id)" pill variant="outline-secondary">Hide details</b-button>
         </li>
       </ul>
     </div>
-
-    <b-modal
-      id="modal-offer"
-      ref="modal"
-      title="Offer your services"
-      @show="resetModal"
-      @hidden="resetModal"
-      @ok="handleOk"
-    >
-      <form id="add-offer-form" ref="form" @submit.stop.prevent="handleSubmit">
-        <b-form-group
-          :state="offerstate"
-          label="Input your details"
-          label-for="info-input"
-          invalid-feedback="Place and Time are required"
-        >
-          <label>Where are you going:</label>
-          <b-form-input id="place-input" v-model="offer.place" :state="offerstate" required></b-form-input>
-          <label>What Time:</label>
-          <b-form-input id="time-input" v-model="offer.time" :state="offerstate" required></b-form-input>
-        </b-form-group>
-      </form>
-    </b-modal>
+      <b-modal
+        id="modal-offer"
+        ref="modal"
+        title="Offer your services"
+        @show="resetModal"
+        @hidden="resetModal"
+        @ok="handleOk"
+      >
+        <form id="add-offer-form" ref="form" @submit.stop.prevent="handleSubmit">
+          <b-form-group
+            :state="offerstate"
+            label="Input your details"
+            label-for="info-input"
+            invalid-feedback="Place and Time are required"
+          >
+            <label>Where are you going:</label>
+            <b-form-input id="place-input" v-model="offer.place" :state="offerstate" required></b-form-input>
+            <label>What Time:</label>
+            <b-form-input id="time-input" v-model="offer.time" :state="offerstate" required></b-form-input>
+          </b-form-group>
+        </form>
+      </b-modal>
   </div>
 </template>
 
@@ -59,9 +97,14 @@ import database from "../firebase.js";
 import * as fb from "../firebase";
 import { auth } from "../firebase";
 import { mapState } from "vuex";
+import VueSlider from 'vue-slider-component';
+import 'vue-slider-component/theme/antd.css';
 
 
 export default {
+  components: {
+    VueSlider
+  },
   data() {
     return {
       offerstate: true,
@@ -72,20 +115,50 @@ export default {
         time: "",
         id: "",
       },
-      selectedZone: ""
+      selectedZone: "",
+      time: "",
+      commission: '$1.00',
+      context: null,
+      selectedPlaces: [],
+      commisionData: [
+          {text: '$1.00', value:'1'}, 
+          {text: '$2.00', value: '2'},
+          {text: '$3.00', value: '3'},
+          {text: '$4.00', value: '4'},
+          {text: '$5.00', value: '5'}
+        ],
+      // commisionData: [1,2,3,4,5],
+      places: [
+          { text: 'Supper Stretch', value: 'Supper Stretch' },
+          { text: 'Clementi', value: 'Clementi' },
+          { text: 'West Coast', value: 'West Coast' }
+        ]
     };
   },
   computed: {
     ...mapState(["userProfile"]),
     filteredProducts() {
-      if (this.selectedZone === 'ALL')
-        return this.offerList;
-      else
-        return this.offerList.filter(p => p.zone === this.selectedZone);
-
+      if (this.selectedZone === 'ALL'){
+        if (!this.selectedPlaces.length){
+          return this.offerList;
+        } else {
+          return this.offerList.filter(j => this.selectedPlaces.includes(j.place));
+        }
+      } else {
+        if (!this.selectedPlaces.length){
+          return this.offerList.filter(p => p.zone === this.selectedZone);
+        } else {
+          var temp = this.offerList.filter(p => p.zone === this.selectedZone);
+          return temp.filter(j => this.selectedPlaces.includes(j.place));
+        }
+      }  
     }
   },
   methods: {
+    show(itemID) {
+      let offer = this.offerList.find((element) => element.id == itemID);
+      offer.show = !offer.show;
+    },
     fetchOffers() {
       database
         .collection("offers")
@@ -96,6 +169,7 @@ export default {
           querySnapShot.forEach((doc) => {
             offer = doc.data();
             offer.id = doc.id;
+            offer.show = false;
             console.log(offer.id);
             this.offerList.push(offer);
             this.selectedZone = this.userProfile.zone;
@@ -194,7 +268,31 @@ export default {
 h1 {
   font-family: Slack-Circular-Pro, "Helvetica Neue", Helvetica, "Segoe UI",
     Tahoma, Arial, sans-serif;
-  margin-left: 6%;
+  margin-left: 13%;
+  display: inline;
+}
+#offerbutton {
+  margin-left: 2%;
+  margin-bottom: 1%;
+}
+#head {
+  display: block;
+}
+#options{
+  text-align: left;
+}
+.filters {
+  float: left;
+  display: block;
+  justify-content: center;
+  margin-left: 3%;
+  margin-right: 3%;
+  width: 14%;
+}
+.list {
+  width: 80%;
+  float: right;
+  display: flex;
 }
 ul {
   display: flex;
@@ -202,8 +300,8 @@ ul {
   padding: 0;
   overflow: auto;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
 }
 #offerItems {
   text-align: left;
@@ -211,18 +309,6 @@ ul {
   padding: 10px;
   width: 300px;
   margin: 10px;
-  box-shadow: 3px 5px  #e2e2e7;
-}
-#offerbutton {
-  background-color: #4682b4;
-  color: white;
-}
-.round {
-  border-radius: 8px;
-}
-.offers {
-  display: flexbox;
-  justify-content: center;
-  text-align: center;
+  box-shadow: 3px 5px  #f2f2f3;
 }
 </style>
