@@ -1,5 +1,5 @@
 <template>
-     <div class = "card bg-warning mb-3" style= "width : 80%;color:#660066;">
+    <div class = "card mb-3" style= "width : 80%;">
     <h5 class="card-title">What you have </h5>
     
     <p class = 'card-text'>
@@ -9,9 +9,10 @@
         <li class = "lifit" v-for="i in cart" :key="i.id">
             {{ i.name }} ({{ i.size }}) - ${{ i.price }}
             <b-icon icon='trash-fill' @click="remove(i.id)"></b-icon>
-
         </li>
         </ul>
+        <br/>
+        <b-form-timepicker v-model="time" minutes-step="30" locale="en" style="width:50%; margin-left:25%;"></b-form-timepicker>
         <div class = 'card-body'> 
         <RF v-bind:cart="cart"></RF>
         </div>

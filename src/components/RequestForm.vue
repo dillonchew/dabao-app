@@ -27,7 +27,8 @@ export default {
         shop : "",
         items: [],
         total : "",
-        comms : ""
+        comms : "",
+        time: ""
       },
     }
   },

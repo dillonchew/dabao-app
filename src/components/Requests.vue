@@ -29,7 +29,7 @@
         <br />
          <b-row>
           <b-col md="auto">
-            <b-time v-model="time" locale="en" @context="onContext"></b-time>
+            <b-time v-model="time" locale="en" minutes-step=30 @context="onContext"></b-time>
           </b-col>
         </b-row>
       </div>
