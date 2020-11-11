@@ -2,30 +2,45 @@
   <section id="settings">
     <div class="col1">
       <h3>Update your profile</h3>
-
+      <br/>
       <transition name="fade">
         <p v-if="showSuccess" class="success">profile updated</p>
       </transition>
 
-      <form @submit.prevent>
-        <label for="name" id="labels">Name:</label>
-        <input v-model.trim="name" type="text" :placeholder="userProfile.name" id="name" />
+      <form class="col2" @submit.prevent>
 
-        <label for="zone" id="labels">Zone:</label>
-        <input v-model.trim="zone" type="text" :placeholder="userProfile.zone" id="zone" />
+        <div>
+          <h5> Name </h5>
+        </div>
+        <div>
+          <input v-model.trim="name" type="text" :placeholder="userProfile.name" id="name" />
+        </div><br/>
 
-        <label for="tele" id="labels">Tele Handle:</label>
-        <input v-model.trim="tele" type="text" :placeholder="userProfile.tele" id="tele" />
+        <div>
+          <h5> Zone </h5>
+        </div>
+        <div>
+          <input v-model.trim="zone" type="text" :placeholder="userProfile.zone" id="zone" />
+        </div>
+        <br/>
 
-        <label for="pic" id="labels">Profile Pic:</label>
-        <button class = "small" @click ="click1">Upload Picture</button>
-        <input type = "file" ref = "input1" style = "display:none" @change = "previewImage" accept = "image/*">
-        <div v-if = "imageData!=null">
-             <img class="preview" height="268" width="356" :src="profilePic"><br>
-        </div>   
-        
-        <br>
-        <button @click="updateProfile()" id="update">Update Profile</button>
+        <div>
+          <h5> Tele handle </h5>
+        </div>
+        <div>
+          <input v-model.trim="tele" type="text" :placeholder="userProfile.tele" id="tele" />
+        </div>
+        <br/>
+
+        <div>
+          <b-button class = "normal" @click ="click1">Upload Profile Picture</b-button>
+          <input type = "file" ref = "input1" style = "display:none" @change = "previewImage" accept = "image/*">
+          <div v-if = "imageData!=null">
+              <img class="preview" height="268" width="356" :src="profilePic"><br>
+          </div>   
+        </div>
+          <br/>
+          <button @click="updateProfile()" id="update">Update Profile</button>
         
       </form>
     </div>
@@ -102,27 +117,65 @@ export default {
   display: inline-block;
   padding: 5px 10px;
   font-size: 14px;
+  width: 250px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
+  justify-content:center;
   outline: black;
   color: #fff;
-  background-color: #660066;
+  background-color: #F9154A;
+  font-size: 18px;
+  border: none;
+  border-radius: 20px;
+  margin: 4px 2px;
+  height: 40px;
+}
+#update:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px #2f4f4f;
+}
+input {
+  border-radius: 20px;
+  width: 250px;
+  border-color:#DBD6D6;
+  background-color:#DBD6D6;
+  height: 40px;
+}
+.normal {
+  font-size: 14px;
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  color: #696969;
+  background-color: transparent;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 2px #602040;
-  margin-left: 10px;
+  margin: 4px 2px;
 }
-#labels {
-  margin: 10px 5px;
+.normal:hover {
+  color: #00e6ac;
 }
-#col1 {
-  display: flex;
+.col2 {
+  display: flexbox;
+  width: 100%;
+  height: 600px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
-h3 {
+/* h3 {
   margin: 6%;
-}
+} */
 form {
   margin-bottom: 10%;
+}
+.col1 {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 </style>

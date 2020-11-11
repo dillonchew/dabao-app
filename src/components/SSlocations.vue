@@ -1,41 +1,36 @@
 <template>
-    <div class="places">
-    <ul>
-      <li class="odd">
+    <div>
+    <br/><br/>
+      <div class="places">
         <h3>Al Amann Restaurant</h3>
         <b-container>
-              <b-img src="@/assets/amaans.jpg" rounded style = "width : 50%"></b-img>
+              <b-img src="@/assets/amaans.jpg" rounded width="400px"></b-img>
         </b-container>
         <br />
-        <!-- <SSRequestForm></SSRequestForm> -->
          <b-button tag = "router-link"
                   to = "/AlAmaan"
                   variant="outline-secondary"> View Menu </b-button>
-      </li>
-      <hr />
-      <li class="even">
+      </div>
+      <div class="places" id="middle">
         <h3>Formosa Delights</h3>
        <b-container>
-              <b-img src="@/assets/formosa.jpg" rounded style = "width : 50%"></b-img>
+              <b-img src="@/assets/formosa.jpg" rounded width="400px"></b-img>
         </b-container>
         <br />
          <b-button tag = "router-link"
                   to = "/Formosa"
                   variant="outline-secondary"> View Menu </b-button>
-      </li>
-      <hr />
-      <li class="odd">
+      </div>
+      <div id="right">
         <h3>Fong Seng Nasi Lemak</h3>
         <b-container>
-              <b-img src="@/assets/fongseng.jpg" rounded style = "width : 50%"></b-img>
+              <b-img src="@/assets/fongseng.jpg" rounded width="400px"></b-img>
         </b-container>
         <br />
-        <!-- <ClemRequestForm></ClemRequestForm> -->
         <b-button tag = "router-link"
                   to = "/FongSeng"
                   variant="outline-secondary"> View Menu </b-button>
-    </li>
-    </ul>
+      </div>
   </div>
 </template>
 
@@ -46,33 +41,22 @@ export default {
 </script>
 
 <style scoped>
-ul {
+.places {
   display: flexbox;
-  align-content: center;
-  justify-content: center;
-  padding: 0;
+  float: left;
+  width: 30%;
+  margin-left: 2%;
 }
-
-hr {
-  align-self: center;
-  align-content: center;
-  justify-content: center;
-  max-width: 400px;
-  background-color: #cc0066;
-  border: 0.2px solid #cc0066;
+#middle {
+  margin-left: 3%;
 }
-li {
-  text-align: center;
-  padding: 10px;
-  margin: 10px;
-  /* border-top: 1px solid #222; */
-  font-family: Slack-Circular-Pro, "Helvetica Neue", Helvetica, "Segoe UI",
-    Tahoma, Arial, sans-serif;
+#right {
+  display:flexbox;
+  float: right;
+  width: 30%;
+  margin-right: 2%;
 }
-/* .odd {
-  background-color: #e485d4;
+b-img {
+  max-width: 60%;
 }
-.even {
-  background-color: #7171c4;
-} */
 </style>

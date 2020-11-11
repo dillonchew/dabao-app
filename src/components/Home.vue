@@ -5,7 +5,6 @@
         <h3>Supper Stretch</h3>
         <SSimages></SSimages>
         <br />
-        <!-- <SSRequestForm></SSRequestForm> -->
          <b-button tag = "router-link"
                   to = "/SSlocations"
                   variant="outline-secondary"> View Shops </b-button>
@@ -22,21 +21,10 @@
         <h3>Clementi Mall</h3>
         <Clemimages></Clemimages>
         <br />
-        <!-- <ClemRequestForm></ClemRequestForm> -->
         <b-button tag = "router-link"
                   to = "/Clemlocations"
                   variant="outline-secondary"> View Shops </b-button>
     </div>
-        <!-- <div>
-          <SSRequestForm></SSRequestForm>
-        </div>
-      </li>
-      <li class="two">
-        <h3>Clementi Mall</h3>
-        <Clemimages></Clemimages>
-        <br />
-        <ClemRequestForm></ClemRequestForm>
-      </li> -->
   </div>
 </template>
 
@@ -82,7 +70,6 @@ export default {
   width: 30%;
   margin-left: 2%;
 }
-
 #middle {
   margin-left: 3%;
 }

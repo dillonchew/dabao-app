@@ -350,6 +350,7 @@ export default {
   width: 100%;
 }
 
+
 input {
   border-radius: 20px;
   width: 250px;
