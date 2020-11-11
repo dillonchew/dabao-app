@@ -9,7 +9,7 @@
                 <h3 class="widget-user-username text-left">{{userProfile.name}}</h3>
                 <h5 class="widget-user-desc text-left">Telegram: {{userProfile.tele}}</h5>
                 <div class="widget-user-image">
-                    <img class="img-circle" src="https://adminlte.io/themes/dev/AdminLTE/dist/img/user3-128x128.jpg" alt="User Avatar">
+                    <img class="img-circle" :src="userProfile.profilePic" alt="User Avatar">
                 </div>
               </div>
               <div class="card-footer">
@@ -41,6 +41,9 @@
                 </div>
                 <!-- /.row -->
               </div>
+              <b-button tag = "router-link"
+                  to = "/Settings"
+                  variant="outline-secondary"> Edit Profile </b-button>
             </div>
             </div>
         </div>
@@ -56,6 +59,7 @@ export default {
       name: "",
       tele: "",
       zone: "",
+      profilePic: "",
       showSuccess: false,
     };
   },
@@ -63,26 +67,26 @@ export default {
     ...mapState(["userProfile"]),
   },
   methods: {
-  },
+  }
 };
 </script>
 
 <style scoped>
     .widget-user-header {
-        background-position: center center;
-        background-size: cover;
-        height: 150px;
+      background-position: center center;
+      background-size: cover;
+      height: 150px;
     }
     .widget-user-image {
-        position: absolute;
-        top: 30px;
-        left: 50%;
-        margin-left: -45px;
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      margin-left: -45px;
     }
     .widget-user-image>img {
-    width: 90px;
-    height: auto;
-    border-radius: 100%;
-    border: 3px solid #fff;
-}
+      width: 90px;
+      height: 90px;
+      border-radius: 100%;
+      border: 3px solid #fff;
+    }
 </style>
