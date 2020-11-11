@@ -11,36 +11,24 @@
         <br/>
         <br/>
       </div>
-      <div class = "info">
-        <h3>How does this app work?</h3 >
-        <ul>
-          <li> Residents can place orders for food for a small delivery fee of 5% of the bill</li>
-          <li> Residents can also offer to take-away food for other residents </li>
-          <li> Residents can see which locations people are planning to go </li>
-          <li> This app will follow NUS guidelines regarding zoning and safe-distancing strictly </li>
-        </ul>
-      </div>
-      <div class = "charts">
-        <Doughnut></Doughnut>
-      </div>
       <div :class="{ 'signup-form': !showLoginForm }" class="col2">
         <form id="signup" v-if="showLoginForm" @submit.prevent>
           <br />
-          <h1>Welcome Back!</h1>
-          <br />
-          <br />
+          <b-icon icon="chevron-contract" font-scale="4" style="color: white;"></b-icon>
+          <br /><br/>
           <div>
-            <label for="email1" id="labels">Email:</label>
-            <input v-model.trim="loginForm.email" type="text" id="email1" />
+            <input v-model.trim="loginForm.email" class="fontAwesome" type="text" id="email1" placeholder = ' Email'/>
           </div>
+          <br/>
           <div>
-            <label for="password1" id="labels">Password:</label>
             <input
               v-model.trim="loginForm.password"
               type="password"
               id="password1"
+              placeholder = " Password"
             />
           </div>
+          <br/>
           <div v-if="clickedFlag">
             <p v-if="errorMsg !== ''" class="error">{{ errorMsg }}</p>
             <p v-else>
@@ -54,76 +42,91 @@
           <br />
           <br />
           <div class="extras">
-            <button v-b-modal.modal-pass id="cool">Forgot Password</button>
+            <button v-b-modal.modal-pass class="normal">Forgot Password</button>
             <button @click="toggleForm()" class="normal">
               Create an Account
             </button>
           </div>
         </form>
         <form v-else @submit.prevent>
-          <h1>Get Started</h1>
+          <br />
+          <b-icon icon="chevron-contract" font-scale="4" style="color: white;"></b-icon>
+          <br /><br/>
           <div>
-            <label for="name" id="labels">Name:</label>
             <input
               v-model.trim="signupForm.name"
               type="text"
-              placeholder="<Your Name>"
+              placeholder=" Name: <Your Name>"
               id="name"
               required
             />
           </div>
+          <br/>
           <div>
-            <label for="zone" id="labels">Zone:</label>
             <input
               v-model.trim="signupForm.zone"
               type="text"
-              placeholder="<A,B,C,D>"
+              placeholder=" Zone: <A,B,C,D>"
               id="zone"
               required
             />
           </div>
+          <br/>
           <div>
-            <label for="tele" id="labels">Tele Handle:</label>
             <input
               v-model.trim="signupForm.tele"
               type="text"
-              placeholder="<@telegramUser>"
+              placeholder=" Tele Handle: <@telegramUser>"
               id="tele"
               required
             />
           </div>
+          <br/>
           <div>
-            <label for="email2" id="labels">Email:</label>
             <input
               v-model.trim="signupForm.email"
               type="text"
-              placeholder="<you@email.com>"
+              placeholder=" Email: <you@email.com>"
               id="email2"
               required
             />
           </div>
+          <br/>
           <div>
-            <label for="password2" id="labels">Password:</label>
             <input
               v-model.trim="signupForm.password"
               type="password"
-              placeholder="min 6 characters"
+              placeholder=" Password: min 6 characters"
               id="password2"
               required
             />
           </div>
+          <br/>
           <b-button pill variant="outline-secondary" @click="signup()" id="cool"
             >Sign Up</b-button
           >
           <br />
           <br />
           <div class="extras">
-            <button @click="toggleForm()" id="cool">Back to Log In</button>
+            <button @click="toggleForm()" class = "normal">Back to Log In</button>
           </div>
         </form>
       </div>
    
-    
+    <div class = "info">
+      <h3>How does this app work?</h3 >
+      <ul>
+        <li> Residents can place orders for food for a small delivery fee of 10% of the bill</li>
+        <li> Residents can also offer to take-away food for other residents </li>
+        <li> Residents can see which locations people are planning to go </li>
+        <li> This app will follow NUS guidelines regarding zoning and safe-distancing strictly </li>
+      </ul>
+    </div>
+
+    <div class = "charts">
+        <Doughnut></Doughnut>
+      </div>
+
     <b-modal
       id="modal-pass"
       ref="modal"
@@ -139,10 +142,10 @@
           label-for="email-input"
           invalid-feedback="Email is required"
         >
-          <label>Email:</label>
           <b-form-input
             id="shop-input"
             type="email"
+            placeholder = " Email"
             v-model.trim="resetEmail"
             :state="showSuccess"
             required
@@ -249,43 +252,45 @@ export default {
 
 <style scoped>
 .info {
-  float: left;
-  width: 20%;
+  float: right;
+  width: 35%;
+  margin-right: 15%;
   text-align: left;
   display: flexbox;
   align-items: center;
-  margin-left: 8%;
-  margin-top: 5%;  
+  height: 400px; 
   
 }
 .charts {
-  float: right; 
+  float: left; 
   display: flexbox;
-  margin-right: 3%;
+  margin-left: 20%;
   flex-wrap: wrap;
-  margin-top: 2%;
   width: 25%;
   box-sizing: border-box;
+  height: 600px; 
 
 }
 #cool {
   display: inline-block;
   padding: 5px 10px;
   font-size: 14px;
+  width: 250px;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   outline: black;
   color: #fff;
-  background-color: #660066;
+  background-color: #F9154A;
+  font-size: 18px;
   border: none;
-  border-radius: 5px;
-  box-shadow: 0 2px #602040;
+  border-radius: 20px;
   margin: 4px 2px;
+  height: 40px;
 }
 
 #cool:hover {
-  background-color: #696969;
+  transform: scale(1.1);
   box-shadow: 0 2px #2f4f4f;
 }
 
@@ -301,17 +306,14 @@ export default {
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  outline: black;
-  color: #fff;
-  background-color: #660066;
+  color: #696969;
+  background-color: transparent;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 2px #602040;
   margin: 4px 2px;
 }
 .normal:hover {
-  background-color: #696969;
-  box-shadow: 0 2px #2f4f4f;
+  color: #00e6ac;
 }
 
 .normal:active {
@@ -325,18 +327,20 @@ export default {
 }
 
 .col2 {
-  background-color: rgba(153, 51, 102, 0.1);
-  box-shadow: 50px 50px rgba(153, 51, 102, 0.4);
   display: flexbox;
-  max-width: 600px;
-  height: 400px;
+  width: 100%;
+  height: 600px;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-left: 36%;
-  margin-right: 36%;
+  /* margin-left: 36%;
+  margin-right: 36%; */
   margin-top: 30px;
   margin-bottom: 80px;
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/45c2456a-a9ad-44f4-8bec-a7a11c829ed1/d4iq8qc-f1284962-3dc4-43cf-a9e2-0a599127bafa.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
 }
 
 .col1 {
@@ -346,9 +350,12 @@ export default {
   width: 100%;
 }
 
-label {
-  display: inline-block;
-  width: 100px;
-  text-align: right;
+input {
+  border-radius: 20px;
+  width: 250px;
+  border-color:#DBD6D6;
+  background-color:#DBD6D6;
+  height: 40px;
 }
+
 </style>

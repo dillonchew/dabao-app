@@ -13,17 +13,17 @@
         </li>
         </ul>
         <div class = 'card-body'> 
-        <WCRF v-bind:cart="cart"></WCRF>
+        <RF v-bind:cart="cart"></RF>
         </div>
     </div>
 </template>
 
 <script>
-import WCRF from './WCRequestForm.vue'
+import RF from './RequestForm.vue'
 
 export default {
     name: 'ShoppingCart',
-    components: {WCRF},
+    components: {RF},
     props: ['cart'],
    
     computed: {

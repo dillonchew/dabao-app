@@ -1,12 +1,11 @@
 <template>
   <div class="chart">
-    <h1>Frequency of visit</h1>
     <chart></chart>
   </div>
 </template>
 
 <script>
-import Chart from "../BarChart.js";
+import Chart from "../DashboardDonut.js";
 export default {
   components: {
     Chart,

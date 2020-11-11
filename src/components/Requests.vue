@@ -63,6 +63,9 @@
         <b-button pill variant="outline-secondary" @click="acceptOrder(index)">Accept</b-button>
         <b-button v-if="!order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Show details</b-button>
         <b-button v-if="order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Hide details</b-button>
+        <b-alert v-model="showOrderAlert" variant="danger" dismissible>
+          You already have an accepted order!
+        </b-alert>
       </li>
     </ul>
     </div>
@@ -110,6 +113,7 @@ export default {
       commission: 0,
       context: null,
       selectedPlaces: [],
+      showOrderAlert: false,
       commisionData: [
         {text: '$0.00', value:'0'},
         {text: '$1.00', value:'1'}, 
@@ -131,7 +135,11 @@ export default {
       let id = this.orderList[index].id;
       var user =  firebase.auth().currentUser
       const admin = require('firebase-admin');
-      database.collection("users")
+      var field = database.collection("users").doc(user.uid).get().activeOrderAccepted;
+      if (field != null) {
+        this.showOrderAlert = true;
+      } else {
+        database.collection("users")
         .doc(user.uid)
         .set(
           {activeOrderAccepted: [{
@@ -150,6 +158,7 @@ export default {
         });
         database.collection("orders").doc(id).delete();
         this.orderList.splice(index, 1);
+      }
     },
     fetchOrders() {
       database

@@ -23,7 +23,7 @@ export default {
       order: {
         name: "",
         zone: "",       
-        place: "West Coast",
+        place: "",
         shop : "",
         items: [],
         total : "",

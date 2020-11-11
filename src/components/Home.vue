@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class = "home">
     <br/><br/>
     <div class="places">
         <h3>Supper Stretch</h3>
@@ -82,6 +82,7 @@ export default {
   width: 30%;
   margin-left: 2%;
 }
+
 #middle {
   margin-left: 3%;
 }
