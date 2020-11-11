@@ -7,7 +7,7 @@
         <router-link to="/offers" exact>Offers</router-link>
         <router-link to="/dashboard" exact>Dashboard</router-link>
         <router-link to="/profile" exact>Profile</router-link>
-        <router-link to="/settings" exact>Settings</router-link>
+        <!--<router-link to="/settings" exact>Settings</router-link> removed and added to Profile-->
         <b-button pill variant="outline-secondary" @click="logout()">
           Logout
           <b-icon icon="door-open"></b-icon>
