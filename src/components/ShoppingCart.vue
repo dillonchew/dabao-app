@@ -14,7 +14,7 @@
         <br/>
         <b-form-timepicker v-model="time" minutes-step="30" locale="en" style="width:50%; margin-left:25%;"></b-form-timepicker>
         <div class = 'card-body'> 
-        <RF v-bind:cart="cart"></RF>
+        <RF v-bind:cart="cart" v-bind:time='time'></RF>
         </div>
     </div>
 </template>
@@ -24,6 +24,9 @@ import RF from './RequestForm.vue'
 
 export default {
     name: 'ShoppingCart',
+    data() {
+    return {time: {type: String}};
+    },
     components: {RF},
     props: ['cart'],
    

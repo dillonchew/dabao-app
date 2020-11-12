@@ -13,6 +13,7 @@ import * as fb from "../firebase";
 
 export default {
   props: {
+    time: {type : String},
     cart: { type : Array}
   },
 
@@ -57,6 +58,8 @@ methods: {
         // name of items 
           this.cart.map(x => this.order.items.push(x.name.concat(" ",x.size)))
           this.order.shop = this.cart[0].shop
+
+          this.order.time = this.time
           
           database.collection('orders').add(this.order);
           alert('saved! should there be any changes, contact your dabao-er')

@@ -58,6 +58,7 @@
         <hr/>
         <h6>Shop: {{order.shop}}</h6>
         <h6>Commission: {{order.comms}}</h6>
+        <h6>Time :{{order.time}}</h6>
         <div v-if="order.show">
           <h6>Name: {{order.name}}</h6>
           <h6>Zone: {{order.zone}}</h6>
