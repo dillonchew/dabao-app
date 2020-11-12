@@ -133,7 +133,7 @@ export default {
 }
 #update:hover {
   transform: scale(1.1);
-  box-shadow: 0 2px #2f4f4f;
+  box-shadow: 0 2px;
 }
 
 input {

@@ -333,8 +333,6 @@ export default {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  /* margin-left: 36%;
-  margin-right: 36%; */
   margin-top: 30px;
   margin-bottom: 80px;
   background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/45c2456a-a9ad-44f4-8bec-a7a11c829ed1/d4iq8qc-f1284962-3dc4-43cf-a9e2-0a599127bafa.jpg");

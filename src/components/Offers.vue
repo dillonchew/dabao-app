@@ -10,7 +10,7 @@
     </div>
     <div class = "filters">
        <div id = "filter2">
-         <h5> Filter by place: </h5>
+         <h5> Filter by <b>Place:</b> </h5>
          <br/>
           <b-form-group id="optionsPlace">
             <b-form-checkbox-group 
@@ -24,7 +24,7 @@
       </div>
       <br/><br/>
       <div id = "filter3">
-        <h5> Filter by time: </h5>
+        <h5> Filter by <b>Time:</b> </h5>
         <br />
          <b-row>
           <b-col md="auto">
@@ -32,7 +32,7 @@
           </b-col>
         </b-row>
       </div>
-      <br/><br/>
+      <br/><br/><br/>
       <div id="filter4">
         <h5> Filter by <b>Zone</b>: </h5>
         <br/>

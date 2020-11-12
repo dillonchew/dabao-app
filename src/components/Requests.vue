@@ -8,14 +8,14 @@
     </b-alert>
     <div class = "filters">
        <div id = "filter1">
-         <h5> Filter by commission: </h5>
+         <h5> Filter by <b>Commission:</b> </h5>
          <br/>
         <vue-slider v-model="commission" :data="commisionData" :data-value="'value'" :data-label="'text'" :marks="true">
         </vue-slider>
        </div>
        <br/><br/><br/>
        <div id = "filter2">
-         <h5> Filter by place: </h5>
+         <h5> Filter by <b>Place:</b> </h5>
          <br/>
           <b-form-group id="optionsPlace">
             <b-form-checkbox-group 
@@ -27,9 +27,9 @@
             ></b-form-checkbox-group>
           </b-form-group>
       </div>
-      <br/><br/>
+      <br/>
       <div id = "filter3">
-        <h5> Filter by time: </h5>
+        <h5> Filter by <b>Time:</b> </h5>
         <br />
          <b-row>
           <b-col md="auto">
@@ -135,34 +135,32 @@ export default {
   methods: {
     acceptOrder(index) {
       let id = this.orderList[index].id;
-      var user =  firebase.auth().currentUser
+      var user =  firebase.auth().currentUser;
       const admin = require('firebase-admin');
-      var field = database.collection("users").doc(user.uid).get().then(function(doc){
-        return doc.data().activeOrderAccepted;
+      database.collection("acceptedOrders")
+      .doc()
+      .set({
+          name: this.orderList[index].name,
+          place: this.orderList[index].place,
+          shop: this.orderList[index].shop,
+          items: this.orderList[index].items,
+          zone: this.orderList[index].zone,
+          comms: this.orderList[index].comms,
+          total: this.orderList[index].total,
+          customertele: this.orderList[index].tele,
+          // dabaoertele: user.tele,
+          customerid: this.orderList[index].userid,
+          dabaoerid: user.uid})
+      .then(() => {
+        console.log("Document successfully updated!");
+      })
+      .catch((error) => {
+        console.error("Error updating document: ", error);
       });
-      if (field != null) {
-        this.showOrderAlert=true;
-      } else {
-        database.collection("users")
-        .doc(user.uid)
-        .set(
-          {activeOrderAccepted: [{
-            name: this.orderList[index].name,
-            place: this.orderList[index].place,
-            shop: this.orderList[index].shop,
-            items: this.orderList[index].items,
-            zone: this.orderList[index].zone}]},
-            {merge:true}
-        )
-        .then(() => {
-          console.log("Document successfully updated!");
-        })
-        .catch((error) => {
-          console.error("Error updating document: ", error);
-        });
-        database.collection("orders").doc(id).delete();
-        this.orderList.splice(index, 1);
-      }
+
+      database.collection("orders").doc(id).delete();
+      this.orderList.splice(index, 1);
+      alert('Saved! You can view the order in your profile and find the telegram handle of the requester');
     },
     fetchOrders() {
       database

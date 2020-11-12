@@ -22,6 +22,7 @@ export default {
       msg: "Add Order",
       order: {
         name: "",
+        userid: "",
         zone: "",       
         place: "",
         shop : "",
@@ -47,6 +48,8 @@ methods: {
           order1 = doc.data();
           this.order.name = order1.name;
           this.order.zone = order1.zone;
+          this.order.userid = uid;
+          this.order.tele = order1.tele;
         }
 
         // comms and total 

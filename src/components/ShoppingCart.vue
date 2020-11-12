@@ -26,7 +26,6 @@ export default {
     name: 'ShoppingCart',
     components: {RF},
     props: ['cart'],
-   
     computed: {
         totalQuantity() {
             var result =0
