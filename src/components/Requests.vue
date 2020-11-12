@@ -64,7 +64,8 @@
           <h6>Items: {{order.items.toString()}}</h6>
           <h6>Total : {{order.total}}</h6>
         </div>
-        <b-button id="button" pill variant="outline-secondary" @click="acceptOrder(index)">Accept</b-button>
+        <b-button id="button" v-if="userProfile.name != order.name" pill variant="outline-secondary" @click="acceptOrder(index)">Accept</b-button>
+        <b-button id="button" v-if="userProfile.name == order.name" pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
         <b-button id="button" v-if="!order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Show details</b-button>
         <b-button id="button" v-if="order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Hide details</b-button>
       </li>
@@ -272,5 +273,7 @@ ul {
   background-color: white;
   color:  #660066;
   border-color: #660066;
+  margin-left: 2%;
+  margin-bottom: 1%;
 }
 </style>

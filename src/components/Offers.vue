@@ -9,13 +9,6 @@
     </b-button>
     </div>
     <div class = "filters">
-       <div id = "filter1">
-         <h5> Filter by commission: </h5>
-         <br/>
-        <vue-slider v-model="commission" :data="commisionData" :data-value="'value'" :data-label="'text'" :marks="true">
-        </vue-slider>
-       </div>
-       <br/><br/><br/>
        <div id = "filter2">
          <h5> Filter by place: </h5>
          <br/>
@@ -63,6 +56,7 @@
           <h6>Name: {{offer.name}}</h6>
           <h6>Zone: {{offer.zone}}</h6>
         </div>
+        <b-button id="button" v-if="userProfile.name == offer.name" pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
         <b-button id="button" v-if="!offer.show" v-on:click="show(offer.id)" pill variant="outline-secondary">Show details</b-button>
         <b-button id="button" v-if="offer.show" v-on:click="show(offer.id)" pill variant="outline-secondary">Hide details</b-button>
         </li>
@@ -79,14 +73,14 @@
         <form id="add-offer-form" ref="form" @submit.stop.prevent="handleSubmit">
           <b-form-group
             :state="offerstate"
-            label="Input your details"
             label-for="info-input"
             invalid-feedback="Place and Time are required"
           >
             <label>Where are you going:</label>
-            <b-form-input id="place-input" v-model="offer.place" :state="offerstate" required></b-form-input>
+            <b-form-select v-model="offer.place" :options="places" :state="offerstate" class="mt-3" required></b-form-select>
+            <br/>
             <label>What Time:</label>
-            <b-form-input id="time-input" v-model="offer.time" :state="offerstate" required></b-form-input>
+            <b-form-timepicker v-model="offer.time" minutes-step="30" :state="offerstate" locale="en" required></b-form-timepicker>
           </b-form-group>
         </form>
       </b-modal>
@@ -98,14 +92,10 @@ import database from "../firebase.js";
 import * as fb from "../firebase";
 import { auth } from "../firebase";
 import { mapState } from "vuex";
-import VueSlider from 'vue-slider-component';
-import 'vue-slider-component/theme/antd.css';
+
 
 
 export default {
-  components: {
-    VueSlider
-  },
   data() {
     return {
       offerstate: true,
@@ -128,7 +118,6 @@ export default {
           {text: '$4.00', value: '4'},
           {text: '$5.00', value: '5'}
         ],
-      // commisionData: [1,2,3,4,5],
       places: [
           { text: 'Supper Stretch', value: 'Supper Stretch' },
           { text: 'Clementi', value: 'Clementi' },
@@ -139,20 +128,25 @@ export default {
   computed: {
     ...mapState(["userProfile"]),
     filteredProducts() {
+      var temp1;
+      var temp2;
+      var temp3;
       if (this.selectedZone === 'ALL'){
-        if (!this.selectedPlaces.length){
-          return this.offerList;
-        } else {
-          return this.offerList.filter(j => this.selectedPlaces.includes(j.place));
-        }
+        temp1 = this.offerList;
       } else {
-        if (!this.selectedPlaces.length){
-          return this.offerList.filter(p => p.zone === this.selectedZone);
-        } else {
-          var temp = this.offerList.filter(p => p.zone === this.selectedZone);
-          return temp.filter(j => this.selectedPlaces.includes(j.place));
-        }
+        temp1 = this.offerList.filter(p => p.zone === this.selectedZone);
       }  
+      if (!this.selectedPlaces.length){
+        temp2 = temp1;
+      } else {
+        temp2 =  temp1.filter(j => this.selectedPlaces.includes(j.place));
+      }
+      if (this.time != ''){
+        temp3 = temp2.filter(i => i.time === this.time);
+        return temp3; 
+      } else {
+        return temp2;
+      }
     }
   },
   methods: {
