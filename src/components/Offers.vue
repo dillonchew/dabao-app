@@ -1,6 +1,7 @@
 <template>
   <div class="offers">
     <div id = "head">
+      <br/>
     <h1>Offers</h1>
     <b-button id="offerbutton" v-b-modal.modal-offer pill variant="outline-secondary">
       {{ msg }}
@@ -62,8 +63,8 @@
           <h6>Name: {{offer.name}}</h6>
           <h6>Zone: {{offer.zone}}</h6>
         </div>
-        <b-button v-if="!offer.show" v-on:click="show(offer.id)" pill variant="outline-secondary">Show details</b-button>
-        <b-button v-if="offer.show" v-on:click="show(offer.id)" pill variant="outline-secondary">Hide details</b-button>
+        <b-button id="button" v-if="!offer.show" v-on:click="show(offer.id)" pill variant="outline-secondary">Show details</b-button>
+        <b-button id="button" v-if="offer.show" v-on:click="show(offer.id)" pill variant="outline-secondary">Hide details</b-button>
         </li>
       </ul>
     </div>
@@ -271,9 +272,19 @@ h1 {
   margin-left: 13%;
   display: inline;
 }
-#offerbutton {
+#offerbutton, #button {
   margin-left: 2%;
   margin-bottom: 1%;
+  background-color: white;
+  color:  #660066;
+  border-color: #660066;
+}
+
+#offerbutton:hover {
+  background-color:white;
+  color:  #660066;
+  border-width: 2px;
+  border-color: #660066;
 }
 #head {
   display: block;

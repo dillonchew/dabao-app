@@ -76,4 +76,15 @@ p {
     border-radius: 5px;
     background: #494949;
 }
+#filter {
+  background-color: white;
+  color:  #660066;
+  border-color: #660066;
+}
+#filter:hover {
+  background-color:white;
+  color:  #660066;
+  border-width: 2px;
+  border-color: #660066;
+}
 </style>

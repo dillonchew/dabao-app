@@ -1,5 +1,6 @@
 <template>
   <div>
+    <br/>
     <h1>Analysis of your usage! </h1>
     <DashboardBarChart></DashboardBarChart>
     <DashboardDonut></DashboardDonut>

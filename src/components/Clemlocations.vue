@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="home">
       <br/><br/>
       <div class="places">
         <h3>Ya Kun Kaya Toast</h3>
@@ -8,7 +8,7 @@
         </b-container>
         <br />
         <!-- <SSRequestForm></SSRequestForm> -->
-         <b-button tag = "router-link"
+         <b-button id="view" tag = "router-link"
                   to = "/YaKun"
                   variant="outline-secondary"> View Menu </b-button>
       </div>
@@ -18,7 +18,7 @@
               <b-img src="@/assets/macs_cm1.jpg" rounded width="400px" height="400px"></b-img>
         </b-container>
         <br />
-         <b-button tag = "router-link"
+         <b-button id="view" tag = "router-link"
                   to = "/Macs"
                   variant="outline-secondary"> View Menu </b-button>
       </div>
@@ -28,7 +28,7 @@
               <b-img src="@/assets/crave-the-clementi-mall.jpg" rounded width="400px" ></b-img>
         </b-container>
         <br />
-        <b-button tag = "router-link"
+        <b-button id="view" tag = "router-link"
                   to = "/Crave"
                   variant="outline-secondary"> View Menu </b-button>
     </div>
@@ -57,4 +57,16 @@ export default {
   width: 30%;
   margin-right: 2%;
 }
+#view {
+  background-color: white;
+  color:  #660066;
+  border-color: #660066;
+}
+#view:hover {
+  background-color:white;
+  color:  #660066;
+  border-width: 2px;
+  border-color: #660066;
+}
+
 </style>

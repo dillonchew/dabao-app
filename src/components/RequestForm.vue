@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button pill variant="outline-secondary" v-on:click.prevent.once='addItem'>
+    <b-button variant="outline-secondary" v-on:click.prevent.once='addItem'>
       {{ msg }}
       <b-icon icon="cart-plus"></b-icon>
     </b-button>
@@ -68,7 +68,14 @@ methods: {
 
 <style scoped>
 button {
-  background-color: #4682b4;
-  color: white;
+  background-color: white;
+  color:  #660066;
+  border-color: #660066;
+}
+button:hover {
+  background-color:white;
+  color:  #660066;
+  border-width: 2px;
+  border-color: #660066;
 }
 </style>

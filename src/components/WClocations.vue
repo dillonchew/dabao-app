@@ -8,7 +8,7 @@
         </b-container>
         <br />
         <!-- <SSRequestForm></SSRequestForm> -->
-         <b-button tag = "router-link"
+         <b-button id="view" tag = "router-link"
                   to = "/BurgerKing"
                   variant="outline-secondary"> View Menu </b-button>
       </div>
@@ -18,7 +18,7 @@
               <b-img src="@/assets/macs_wcp1.jpg" rounded></b-img>
         </b-container>
         <br />
-         <b-button tag = "router-link"
+         <b-button id="view" tag = "router-link"
                   to = "/WCPMacs"
                   variant="outline-secondary"> View Menu </b-button>
       </div>
@@ -30,7 +30,7 @@
         <Clemimages></Clemimages>
         <br />
         <!-- <ClemRequestForm></ClemRequestForm> -->
-        <b-button tag = "router-link"
+        <b-button id="view" tag = "router-link"
                   to = "/RongLiang"
                   variant="outline-secondary"> View Menu </b-button>
       </div>
@@ -58,5 +58,16 @@ export default {
   float: right;
   width: 30%;
   margin-right: 2%;
+}
+#view {
+  background-color: white;
+  color:  #660066;
+  border-color: #660066;
+}
+#view:hover {
+  background-color:white;
+  color:  #660066;
+  border-width: 2px;
+  border-color: #660066;
 }
 </style>

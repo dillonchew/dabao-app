@@ -1,5 +1,6 @@
 <template>
   <section id="settings">
+    <br/>
     <div class="col1">
       <h3>Update your profile</h3>
       <br/>
@@ -122,11 +123,10 @@ export default {
   text-align: center;
   text-decoration: none;
   justify-content:center;
-  outline: black;
-  color: #fff;
-  background-color: #F9154A;
+  background-color: white;
+  color:  #660066;
+  border-color: #660066;
   font-size: 18px;
-  border: none;
   border-radius: 20px;
   margin: 4px 2px;
   height: 40px;
@@ -135,6 +135,7 @@ export default {
   transform: scale(1.1);
   box-shadow: 0 2px #2f4f4f;
 }
+
 input {
   border-radius: 20px;
   width: 250px;
@@ -149,7 +150,7 @@ input {
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  color: #696969;
+  color: grey;
   background-color: transparent;
   border: none;
   border-radius: 5px;
@@ -166,9 +167,7 @@ input {
   flex-direction: column;
   align-items: center;
 }
-/* h3 {
-  margin: 6%;
-} */
+
 form {
   margin-bottom: 10%;
 }

@@ -1,7 +1,7 @@
 <template>
 <div style="margin-bottom:50px;">
   <!-- banner -->
-    <b-container fluid class="p-4 bg-warning">
+    <b-container fluid class="p-4" style="background-color: #e6ebff;">
       <b-img rounded ='circle' src="@/assets/YaKun-Logo.jpg" alt="Image 1"></b-img>
       <br /><br />
       <h5 style = "color : #660066">{{description}}</h5>
@@ -12,16 +12,16 @@
     <!--filters-->
     <div class="col-sm-2">
 
-      <b-button pill variant="outline-secondary" v-on:click="isHidden = !isHidden" style="float: left;margin-left:25px;">Filter
+      <b-button id="filter" variant="outline-secondary" v-on:click="isHidden = !isHidden" style="float: left;margin-left:25px;">Filter
         <b-icon icon="filter-square-fill"></b-icon>
       </b-button>
-      <span v-if = "!isHidden">
+      <div id="filtercol" v-if = "!isHidden">
         <br /><br />
         <label><input type="radio" v-model="selectedCategory" value="All" /> All</label><br>
         <label><input type="radio" v-model="selectedCategory" value="Meals" /> Meals</label><br>
         <label><input type="radio" v-model="selectedCategory" value="Beverages" /> Beverages</label><br>
         <label><input type="radio" v-model="selectedCategory" value="Sides" /> Sides</label><br>
-      </span>
+      </div>
     </div>
 
     <!--ProductList-->  
@@ -215,5 +215,18 @@ button {
   color: white;
 }
 
+button:hover {
+  background-color: #3c0252;
+}
+
+#filtercol {
+  margin-left: 10%;
+  text-align: left;
+}
+
+h5 {
+  max-width: 50%;
+  margin-left: 25%;
+}
 
 </style>

@@ -39,12 +39,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 button {
-  background-color: #660066;
-  color: white;
+  background-color: transparent;
+  color:   #F9154A;
+  border-color:  #F9154A;
   float: right;
 }
+button:hover {
+  background-color:transparent;
+  color:  #00e6ac;
+  border-color: #00e6ac;
+}
 header {
-  color: #696969;
   font-family: Slack-Circular-Pro, "Helvetica Neue", Helvetica, "Segoe UI",
     Tahoma, Arial, sans-serif;
   padding: 10px;
@@ -53,11 +58,16 @@ header {
   justify-content: flex-start;
   align-items: flex-start;
   text-align: left;
-  /* flex: 1; */
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/45c2456a-a9ad-44f4-8bec-a7a11c829ed1/d4iq8qc-f1284962-3dc4-43cf-a9e2-0a599127bafa.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  height:60px;
+
 }
 a {
   padding: 10px;
-  color: #696969;
+  color:  #e6ebff;
   text-decoration: none;
 }
 a:hover {

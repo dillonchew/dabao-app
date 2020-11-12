@@ -7,7 +7,7 @@
               <b-img src="@/assets/amaans.jpg" rounded width="400px"></b-img>
         </b-container>
         <br />
-         <b-button tag = "router-link"
+         <b-button id="view" tag = "router-link"
                   to = "/AlAmaan"
                   variant="outline-secondary"> View Menu </b-button>
       </div>
@@ -17,7 +17,7 @@
               <b-img src="@/assets/formosa.jpg" rounded width="400px"></b-img>
         </b-container>
         <br />
-         <b-button tag = "router-link"
+         <b-button id="view" tag = "router-link"
                   to = "/Formosa"
                   variant="outline-secondary"> View Menu </b-button>
       </div>
@@ -27,7 +27,7 @@
               <b-img src="@/assets/fongseng.jpg" rounded width="400px"></b-img>
         </b-container>
         <br />
-        <b-button tag = "router-link"
+        <b-button id="view" tag = "router-link"
                   to = "/FongSeng"
                   variant="outline-secondary"> View Menu </b-button>
       </div>
@@ -58,5 +58,16 @@ export default {
 }
 b-img {
   max-width: 60%;
+}
+#view {
+  background-color: white;
+  color:  #660066;
+  border-color: #660066;
+}
+#view:hover {
+  background-color:white;
+  color:  #660066;
+  border-width: 2px;
+  border-color: #660066;
 }
 </style>

@@ -1,7 +1,11 @@
 <template>
   <div class="requests">
+    <br/>
     <h1>Requests</h1>
     <br />
+    <b-alert v-model="showOrderAlert" variant="danger" dismissible>
+          You already have an accepted order!
+    </b-alert>
     <div class = "filters">
        <div id = "filter1">
          <h5> Filter by commission: </h5>
@@ -60,12 +64,9 @@
           <h6>Items: {{order.items.toString()}}</h6>
           <h6>Total : {{order.total}}</h6>
         </div>
-        <b-button pill variant="outline-secondary" @click="acceptOrder(index)">Accept</b-button>
-        <b-button v-if="!order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Show details</b-button>
-        <b-button v-if="order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Hide details</b-button>
-        <b-alert v-model="showOrderAlert" variant="danger" dismissible>
-          You already have an accepted order!
-        </b-alert>
+        <b-button id="button" pill variant="outline-secondary" @click="acceptOrder(index)">Accept</b-button>
+        <b-button id="button" v-if="!order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Show details</b-button>
+        <b-button id="button" v-if="order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Hide details</b-button>
       </li>
     </ul>
     </div>
@@ -135,9 +136,11 @@ export default {
       let id = this.orderList[index].id;
       var user =  firebase.auth().currentUser
       const admin = require('firebase-admin');
-      var field = database.collection("users").doc(user.uid).get().activeOrderAccepted;
+      var field = database.collection("users").doc(user.uid).get().then(function(doc){
+        return doc.data().activeOrderAccepted;
+      });
       if (field != null) {
-        this.showOrderAlert = true;
+        this.showOrderAlert=true;
       } else {
         database.collection("users")
         .doc(user.uid)
@@ -264,5 +267,10 @@ ul {
   width: 300px;
   margin: 10px;
   box-shadow: 3px 5px  #e2e2e7;
+}
+#button {
+  background-color: white;
+  color:  #660066;
+  border-color: #660066;
 }
 </style>

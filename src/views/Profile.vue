@@ -41,7 +41,7 @@
                 </div>
                 <!-- /.row -->
               </div>
-              <b-button tag = "router-link"
+              <b-button id="edit" tag = "router-link"
                   to = "/Settings"
                   variant="outline-secondary"> Edit Profile </b-button>
             </div>
@@ -89,4 +89,15 @@ export default {
       border-radius: 100%;
       border: 3px solid #fff;
     }
+#edit {
+  background-color: white;
+  color:  #660066;
+  border-color: #660066;
+}
+#edit:hover {
+  background-color:white;
+  color:  #660066;
+  border-width: 2px;
+  border-color: #660066;
+}
 </style>
