@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button pill variant="outline-secondary" v-on:click.prevent.once='addItem'>
+    <b-button variant="outline-secondary" v-on:click.prevent.once='addItem'>
       {{ msg }}
       <b-icon icon="cart-plus"></b-icon>
     </b-button>
@@ -13,6 +13,7 @@ import * as fb from "../firebase";
 
 export default {
   props: {
+    time: {type : String},
     cart: { type : Array}
   },
 
@@ -22,12 +23,14 @@ export default {
       msg: "Add Order",
       order: {
         name: "",
+        userid: "",
         zone: "",       
-        place: "West Coast",
+        place: "",
         shop : "",
         items: [],
         total : "",
-        comms : ""
+        comms : "",
+        time: ""
       },
     }
   },
@@ -46,6 +49,8 @@ methods: {
           order1 = doc.data();
           this.order.name = order1.name;
           this.order.zone = order1.zone;
+          this.order.userid = uid;
+          this.order.tele = order1.tele;
         }
 
         // comms and total 
@@ -56,6 +61,8 @@ methods: {
         // name of items 
           this.cart.map(x => this.order.items.push(x.name.concat(" ",x.size)))
           this.order.shop = this.cart[0].shop
+
+          this.order.time = this.time
           
           database.collection('orders').add(this.order);
           alert('saved! should there be any changes, contact your dabao-er')
@@ -67,7 +74,14 @@ methods: {
 
 <style scoped>
 button {
-  background-color: #4682b4;
-  color: white;
+  background-color: white;
+  color:  #660066;
+  border-color: #660066;
+}
+button:hover {
+  background-color:white;
+  color:  #660066;
+  border-width: 2px;
+  border-color: #660066;
 }
 </style>
