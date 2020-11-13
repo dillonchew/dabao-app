@@ -37,7 +37,6 @@ const store = new Vuex.Store({
       // sign user up
       const { user } = await fb.auth.createUserWithEmailAndPassword(
         form.email,
-        form.tele,
         form.password
       );
 
