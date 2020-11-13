@@ -1,5 +1,5 @@
 <template>
-     <div class = "card bg-warning mb-3" style= "width : 80%;color:#660066;">
+    <div class = "card mb-3" style= "width : 80%;">
     <h5 class="card-title">What you have </h5>
     
     <p class = 'card-text'>
@@ -9,23 +9,26 @@
         <li class = "lifit" v-for="i in cart" :key="i.id">
             {{ i.name }} ({{ i.size }}) - ${{ i.price }}
             <b-icon icon='trash-fill' @click="remove(i.id)"></b-icon>
-
         </li>
         </ul>
+        <br/>
+        <b-form-timepicker v-model="time" minutes-step="30" locale="en" style="width:50%; margin-left:25%;"></b-form-timepicker>
         <div class = 'card-body'> 
-        <WCRF v-bind:cart="cart"></WCRF>
+        <RF v-bind:cart="cart" v-bind:time='time'></RF>
         </div>
     </div>
 </template>
 
 <script>
-import WCRF from './WCRequestForm.vue'
+import RF from './RequestForm.vue'
 
 export default {
     name: 'ShoppingCart',
-    components: {WCRF},
+    data() {
+    return {time: {type: String}};
+    },
+    components: {RF},
     props: ['cart'],
-   
     computed: {
         totalQuantity() {
             var result =0
@@ -74,5 +77,16 @@ p {
     padding: 10px;
     border-radius: 5px;
     background: #494949;
+}
+#filter {
+  background-color: white;
+  color:  #660066;
+  border-color: #660066;
+}
+#filter:hover {
+  background-color:white;
+  color:  #660066;
+  border-width: 2px;
+  border-color: #660066;
 }
 </style>

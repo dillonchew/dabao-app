@@ -70,7 +70,7 @@ export default {
           sizes: ['Ala-carte', '+ Coke + M Fries', '+ Coke + L Fries', '+ Ice Milo + M Fries', '+ Ice Milo + L Fries'],
           price: {'Ala-carte': 2.00, '+ Coke + M Fries' : 5.00, '+ Coke + L Fries' : 5.50, '+ Ice Milo + M Fries' : 5.80,'+ Ice Milo + L Fries': 6.50 },
           shop : "McDonalds",
-          place: "West Coast",
+          place: "Clementi",
         },
         {
           id: "#002",
@@ -80,7 +80,7 @@ export default {
           sizes: ['Ala-carte', '+ Coke + M Fries', '+ Coke + L Fries', '+ Ice Milo + M Fries', '+ Ice Milo + L Fries'],
           price: {'Ala-carte': 2.50, '+ Coke + M Fries' : 5.00, '+ Coke + L Fries' : 5.50, '+ Ice Milo + M Fries' : 5.80,'+ Ice Milo + L Fries': 6.50 },
           shop : "McDonalds",
-          place: "West Coast",
+          place: "Clementi",
         },
         {
             id: "#003",
@@ -90,7 +90,7 @@ export default {
             sizes: ['Ala-carte', '+ Coke + M Fries', '+ Coke + L Fries', '+ Ice Milo + M Fries', '+ Ice Milo + L Fries'],
             price: {'Ala-carte': 4.50, '+ Coke + M Fries' : 7.90, '+ Coke + L Fries' : 8.50, '+ Ice Milo + M Fries' : 8.70,'+ Ice Milo + L Fries': 9.00 },
             shop : "McDonalds",
-            place: "West Coast",
+            place: "Clementi",
 
         },
         {
@@ -101,7 +101,7 @@ export default {
             sizes: ['S', 'M', 'L'],
             price: {'S': 2.45, 'M': 2.95, 'L': 3.45},
             shop : "McDonalds",
-            place: "West Coast",
+            place: "Clementi",
         },
         {
             id: "#099",
@@ -111,7 +111,7 @@ export default {
             sizes: ['S', 'M', 'L'],
             price: {'S': 3.00, 'M': 3.40, 'L': 4.00},
             shop : "McDonalds",
-            place: "West Coast",
+            place: "Clementi",
         },
         {
             id: "#005",
@@ -121,7 +121,7 @@ export default {
             sizes: ['S', 'M', 'L'],
             price: {'S': 1.50, 'M': 2.75, 'L': 3.35},
             shop : "McDonalds",
-            place: "West Coast",
+            place: "Clementi",
         },
         {
             id: "#006",
@@ -131,7 +131,7 @@ export default {
             sizes: ['2pc', '4pc'],
             price: {'2pc': 2.75, '4pc': 5.50},
             shop : "McDonalds",
-            place: "West Coast",
+            place: "Clementi",
         }
     ]}
 },
@@ -229,11 +229,7 @@ h5 {
   max-width: 50%;
   margin-left: 25%;
 }
-br{
-  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/45c2456a-a9ad-44f4-8bec-a7a11c829ed1/d4iq8qc-f1284962-3dc4-43cf-a9e2-0a599127bafa.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  height:10px;
-}
+
+
+
 </style>

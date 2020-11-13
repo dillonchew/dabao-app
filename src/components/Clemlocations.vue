@@ -1,42 +1,37 @@
 <template>
-    <div class="places">
-    <ul>
-      <li class="odd">
+    <div id="home">
+      <br/><br/>
+      <div class="places">
         <h3>Ya Kun Kaya Toast</h3>
         <b-container>
-              <b-img src="@/assets/yakun.jpg" rounded style = "width : 50%"></b-img>
+              <b-img src="@/assets/yakun.jpg" rounded width="400px"></b-img>
         </b-container>
         <br />
         <!-- <SSRequestForm></SSRequestForm> -->
-         <b-button tag = "router-link"
-                  to = "/SSlocations"
+         <b-button id="view" tag = "router-link"
+                  to = "/YaKun"
                   variant="outline-secondary"> View Menu </b-button>
-      </li>
-      <hr />
-      <li class="even">
+      </div>
+      <div class="places" id="middle">
         <h3>McDonald's</h3>
        <b-container>
-              <b-img src="@/assets/formosa.jpg" rounded style = "width : 50%"></b-img>
+              <b-img src="@/assets/macs_cm1.jpg" rounded width="400px" height="400px"></b-img>
         </b-container>
         <br />
-         <b-button tag = "router-link"
-                  to = "/SSlocations"
+         <b-button id="view" tag = "router-link"
+                  to = "/Macs"
                   variant="outline-secondary"> View Menu </b-button>
-      </li>
-      <hr />
-      <li class="odd">
+      </div>
+      <div id="right">
         <h3>Crave</h3>
         <b-container>
-              <b-img src="@/assets/crave-the-clementi-mall.jpg" rounded style = "width : 50%"></b-img>
+              <b-img src="@/assets/crave-the-clementi-mall.jpg" rounded width="400px" ></b-img>
         </b-container>
-        <Clemimages></Clemimages>
         <br />
-        <!-- <ClemRequestForm></ClemRequestForm> -->
-        <b-button tag = "router-link"
-                  to = "/SSlocations"
+        <b-button id="view" tag = "router-link"
+                  to = "/Crave"
                   variant="outline-secondary"> View Menu </b-button>
-    </li>
-    </ul>
+    </div>
   </div>
 </template>
 
@@ -47,33 +42,31 @@ export default {
 </script>
 
 <style scoped>
-ul {
+.places {
   display: flexbox;
-  align-content: center;
-  justify-content: center;
-  padding: 0;
+  float: left;
+  width: 30%;
+  margin-left: 2%;
+}
+#middle {
+  margin-left: 3%;
+}
+#right {
+  display:flexbox;
+  float: right;
+  width: 30%;
+  margin-right: 2%;
+}
+#view {
+  background-color: white;
+  color:  #660066;
+  border-color: #660066;
+}
+#view:hover {
+  background-color:white;
+  color:  #660066;
+  border-width: 2px;
+  border-color: #660066;
 }
 
-hr {
-  align-self: center;
-  align-content: center;
-  justify-content: center;
-  max-width: 400px;
-  background-color: #cc0066;
-  border: 0.2px solid #cc0066;
-}
-li {
-  text-align: center;
-  padding: 10px;
-  margin: 10px;
-  /* border-top: 1px solid #222; */
-  font-family: Slack-Circular-Pro, "Helvetica Neue", Helvetica, "Segoe UI",
-    Tahoma, Arial, sans-serif;
-}
-/* .odd {
-  background-color: #e485d4;
-}
-.even {
-  background-color: #7171c4;
-} */
 </style>
