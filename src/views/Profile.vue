@@ -64,7 +64,7 @@
                 <h6>Items: {{order.items.toString()}}</h6>
                 <h6>Total : {{order.total}}</h6>
               </div>
-              <b-button id="button" pill variant="outline-secondary" @click="removeOrder(index)">Delete</b-button>
+              <b-button id="button" pill variant="outline-secondary" @click="removeOrder(index)">Delivered</b-button>
               <b-button id="button" v-if="!order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Show details</b-button>
               <b-button id="button" v-if="order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Hide details</b-button>
             </li>
@@ -79,13 +79,13 @@
               <h6>Shop: {{order.shop}}</h6>
               <h6>Commission: {{order.comms}}</h6>
               <div v-if="order.show">
-                <h6>Name: {{order.name}}</h6>
-                <h6>Tele: {{order.customertele}}</h6>
-                <h6>Zone: {{order.zone}}</h6>
+                <h6>DaboerName: {{order.dabaoername}}</h6>
+                <h6>DabaoerTele: {{order.dabaoertele}}</h6>
+                <h6>DabaoerZone: {{order.dabaoerzone}}</h6>
                 <h6>Items: {{order.items.toString()}}</h6>
                 <h6>Total : {{order.total}}</h6>
               </div>
-              <b-button id="button"  pill variant="outline-secondary" @click="removeMyOrder(index)">Delete</b-button>
+              <b-button id="button"  pill variant="outline-secondary" @click="removeMyOrder(index)">Delivered</b-button>
               <b-button id="button" v-if="!order.show" v-on:click="showMyOrder(order.id)" pill variant="outline-secondary">Show details</b-button>
               <b-button id="button" v-if="order.show" v-on:click="showMyOrder(order.id)" pill variant="outline-secondary">Hide details</b-button>
             </li>
@@ -106,10 +106,12 @@ export default {
       name: "",
       tele: "",
       zone: "",
+      showAlert: false,
       profilePic: "",
       showSuccess: false,
       orderList:[],
-      myOrderList: []
+      myOrderList: [],
+      myOrderListLen: 0
     };
   },
   computed: {
@@ -158,11 +160,28 @@ export default {
     },
     removeOrder(index) {
       let id = this.orderList[index].id;
-      this.orderList.splice(index, 1);
+      database.collection("acceptedOrders").doc(id).get().then(function(doc){
+        if(doc.data().customerDelete == 'true'){
+          database.collection("acceptedOrders").doc(id).delete();
+          alert('Deleted!');
+        } else {
+          database.collection("acceptedOrders").doc(id).set({dabaoerDelete:'true'}, { merge: true });
+          alert('This order will be deleted once the requester has verified the delivery!');
+        }
+      });
     },
     removeMyOrder(index) {
       let id = this.myOrderList[index].id;
-      this.myOrderList.splice(index, 1);
+      database.collection("acceptedOrders").doc(id).get().then(function(doc){
+        if(doc.data().dabaoerDelete == 'true'){
+          database.collection("acceptedOrders").doc(id).delete();
+          alert('Deleted!');
+        } else{
+          database.collection("acceptedOrders").doc(id).set({customerDelete:'true'}, { merge: true });
+          alert('This order will be deleted once the dabaoer has verified the delivery!');
+        }
+      });
+      
     },
   },
   created() {

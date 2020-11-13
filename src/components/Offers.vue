@@ -55,6 +55,7 @@
         <div v-if="offer.show">
           <h6>Name: {{offer.name}}</h6>
           <h6>Zone: {{offer.zone}}</h6>
+          <h6>Tele: {{offer.tele}}</h6>
         </div>
         <b-button id="button" v-if="userProfile.name == offer.name" pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
         <b-button id="button" v-if="!offer.show" v-on:click="show(offer.id)" pill variant="outline-secondary">Show details</b-button>
@@ -188,11 +189,13 @@ export default {
           offer1 = doc.data();
           this.offer.name = offer1.name;
           this.offer.zone = offer1.zone;
+          this.offer.tele = offer1.tele;
           console.log(this.offer);
         }
         database.collection("offers").add(this.offer);
         alert("saved");
         this.offer.place = "";
+        this.offer.tele = "";
         this.offer.time = "";
         this.offer.id = "";
         this.offer.name = "";

@@ -14,13 +14,23 @@
         </b-button>
       </nav>
     </header>
+    <b-alert dismissible :show="this.showAlert" @dismissed="dismiss()">Someone accepted your order!</b-alert>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import database from "../firebase.js";
+import * as firebase from 'firebase';
+
 export default {
   data() {
-    return {};
+    return {
+      showAlert: false,
+    };
+  },
+  computed: {
+    ...mapState(["userProfile"]),
   },
   props: {
     msg: {
@@ -32,6 +42,51 @@ export default {
       this.$store.dispatch("logout");
       alert("Logging out of your account now.");
     },
+    fetch() {
+      var user = firebase.auth().currentUser;
+      const self = this;
+      database
+        .collection("users")
+        .doc(user.uid)
+        .get()
+        .then(function(doc) {
+          if (doc.data().newOrderAccepted == 'true'){
+            self.showAlert = true;
+          }
+        });
+    },
+    dismiss() {
+      this.showAlert = false;
+      var user = firebase.auth().currentUser;
+      database.collection('users').doc(user.uid).set({newOrderAccepted:'false'}, {merge:true})
+    },
+    onContext(ctx) {
+      this.context = ctx
+    },
+  },
+  created() {
+    this.fetch();
+  },
+  beforeCreate: function () {
+    console.log("beforeCreate()");
+  },
+
+  beforeMount: function () {
+    console.log("beforeMount()");
+  },
+  mounted: function () {
+    setTimeout(function () {
+      console.log("mounted()");
+    }, 3000);
+  },
+  beforeUpdate: function () {
+    console.log("beforeUpdate()");
+  },
+  updated: function () {
+    console.log("updated()");
+  },
+  beforeDestroy: function () {
+    console.log("beforeDestroy()");
   },
 };
 </script>

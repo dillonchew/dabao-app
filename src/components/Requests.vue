@@ -58,13 +58,14 @@
         <hr/>
         <h6>Shop: {{order.shop}}</h6>
         <h6>Commission: {{order.comms}}</h6>
+        <h6>Time :{{order.time}}</h6>
         <div v-if="order.show">
           <h6>Name: {{order.name}}</h6>
           <h6>Zone: {{order.zone}}</h6>
           <h6>Items: {{order.items.toString()}}</h6>
           <h6>Total : {{order.total}}</h6>
         </div>
-        <b-button id="button" v-if="userProfile.name != order.name" pill variant="outline-secondary" @click="acceptOrder(index)">Accept</b-button>
+        <b-button id="button" v-if="userProfile.name != order.name" pill variant="outline-secondary" @click="acceptOrder(index, userProfile.tele, userProfile.name, userProfile.zone)">Accept</b-button>
         <b-button id="button" v-if="userProfile.name == order.name" pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
         <b-button id="button" v-if="!order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Show details</b-button>
         <b-button id="button" v-if="order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Hide details</b-button>
@@ -93,6 +94,7 @@ export default {
       var temp1;
       var temp2;
       var temp3;
+      var temp4;
       if (this.selectedZone === 'ALL'){
         temp1 = this.orderList;
       } else {
@@ -104,7 +106,12 @@ export default {
         temp2 =  temp1.filter(j => this.selectedPlaces.includes(j.place));
       }
       temp3 = temp2.filter(i => i.comms >= this.commission);
-      return temp3;
+      if (this.time != ''){
+        temp4 = temp3.filter(i => i.time === this.time);
+        return temp4; 
+      } else {
+        return temp3;
+      }
     }
   },
   data() {
@@ -133,7 +140,7 @@ export default {
     };
   },
   methods: {
-    acceptOrder(index) {
+    acceptOrder(index, tele, n, z) {
       let id = this.orderList[index].id;
       var user =  firebase.auth().currentUser;
       const admin = require('firebase-admin');
@@ -141,14 +148,16 @@ export default {
       .doc()
       .set({
           name: this.orderList[index].name,
+          dabaoername: n,
           place: this.orderList[index].place,
           shop: this.orderList[index].shop,
           items: this.orderList[index].items,
           zone: this.orderList[index].zone,
+          dabaoerzone: z,
           comms: this.orderList[index].comms,
           total: this.orderList[index].total,
           customertele: this.orderList[index].tele,
-          // dabaoertele: user.tele,
+          dabaoertele: tele,
           customerid: this.orderList[index].userid,
           dabaoerid: user.uid})
       .then(() => {
@@ -157,6 +166,10 @@ export default {
       .catch((error) => {
         console.error("Error updating document: ", error);
       });
+
+      database.collection("users")
+      .doc(this.orderList[index].userid)
+      .set({newOrderAccepted:'true'}, {merge:true});
 
       database.collection("orders").doc(id).delete();
       this.orderList.splice(index, 1);
