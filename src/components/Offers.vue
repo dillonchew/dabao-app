@@ -53,7 +53,7 @@
         <hr/>
         <h6>Time: {{offer.time}}</h6>
         <div v-if="offer.show">
-          <h6>Name: {{offer.name}}</h6>
+          <h6>Name: <router-link :to="`/user/${offer.uid}`" exact>{{offer.name}}</router-link></h6>
           <h6>Zone: {{offer.zone}}</h6>
           <h6>Tele: {{offer.tele}}</h6>
         </div>
@@ -190,6 +190,7 @@ export default {
           this.offer.name = offer1.name;
           this.offer.zone = offer1.zone;
           this.offer.tele = offer1.tele;
+          this.offer.uid = uid;
           console.log(this.offer);
         }
         database.collection("offers").add(this.offer);
@@ -200,6 +201,7 @@ export default {
         this.offer.id = "";
         this.offer.name = "";
         this.offer.zone = "";
+        this.offer.uid = "";
       });
     },
     checkFormValidity() {

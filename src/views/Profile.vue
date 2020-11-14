@@ -306,6 +306,7 @@ export default {
     .widget-user-image>img {
       width: 90px;
       height: 90px;
+      object-fit: cover;
       border-radius: 100%;
       border: 3px solid #fff;
     }

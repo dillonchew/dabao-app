@@ -60,7 +60,7 @@
         <h6>Commission: {{order.comms}}</h6>
         <h6>Time :{{order.time}}</h6>
         <div v-if="order.show">
-          <h6>Name: {{order.name}}</h6>
+          <h6>Name: <router-link :to="`/user/${order.userid}`" exact>{{order.name}}</router-link></h6>
           <h6>Zone: {{order.zone}}</h6>
           <h6>Items: {{order.items.toString()}}</h6>
           <h6>Total : {{order.total}}</h6>
