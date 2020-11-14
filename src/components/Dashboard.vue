@@ -3,20 +3,20 @@
     <br/>
     <h1>Analysis of your usage! </h1>
     <DashboardBarChart></DashboardBarChart>
-    <DashboardDonut></DashboardDonut>
+    <DashboardBar></DashboardBar>
   </div>
 </template>
 
 <script>
 import DashboardBarChart from "./DashboardBarChart.vue";
-import DashboardDonut from "./DashboardDonut.vue"
+import DashboardBar from "./DashboardBar.vue"
 
 
 export default {
   name: "Dashboard",
   components: {
     DashboardBarChart,
-    DashboardDonut,
+    DashboardBar,
   },
 };
 </script>
