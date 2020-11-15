@@ -45,7 +45,16 @@ const store = new Vuex.Store({
         name: form.name,
         zone: form.zone,
         tele: form.tele,
-        profilePic: ''
+        profilePic: '',
+        clemVisit: 0,
+        clemSpent: 0,
+        ssVisit: 0,
+        ssSpent: 0,
+        wcVisit: 0,
+        wcSpent: 0,
+        deliveries: 0,
+        commission: 0,
+        commissionPaid: 0
       });
 
       // fetch user profile and set in state
@@ -81,7 +90,7 @@ const store = new Vuex.Store({
         name: user.name,
         zone: user.zone,
         tele: user.tele,
-        profilePic: user.profilePic
+        profilePic: user.profilePic,
       });
 
       dispatch("fetchUserProfile", { uid: userId });
