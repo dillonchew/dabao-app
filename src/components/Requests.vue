@@ -117,7 +117,7 @@ export default {
   data() {
     return {
       orderList: [],
-      selectedZone: [],
+      selectedZone: "",
       time: "",
       place:"",
       commission: 0,

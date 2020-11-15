@@ -17,7 +17,7 @@
               id="filterPlace"
               v-model="selectedPlaces"
               :options="places"
-              v-bind:value="place"
+              v-bind:value="offer.place"
               stacked
             ></b-form-checkbox-group>
           </b-form-group>
@@ -28,7 +28,7 @@
         <br />
          <b-row>
           <b-col md="auto">
-            <b-time v-model="time" locale="en" @context="onContext" minutes-step=30></b-time>
+            <b-time v-model="time" locale="en" minutes-step=30></b-time>
           </b-col>
         </b-row>
       </div>
@@ -166,7 +166,6 @@ export default {
             offer = doc.data();
             offer.id = doc.id;
             offer.show = false;
-            console.log(offer.id);
             this.offerList.push(offer);
             this.selectedZone = this.userProfile.zone;
           });
@@ -190,7 +189,6 @@ export default {
           this.offer.name = offer1.name;
           this.offer.zone = offer1.zone;
           this.offer.tele = offer1.tele;
-          console.log(this.offer);
         }
         database.collection("offers").add(this.offer);
         alert("saved");
