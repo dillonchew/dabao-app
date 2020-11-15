@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import * as fb from "../firebase";
 import router from "../router/index";
+import defaultPic from "@/assets/egg.jpg";
 
 Vue.use(Vuex);
 

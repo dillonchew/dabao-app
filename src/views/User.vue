@@ -33,7 +33,7 @@
                   <div class="col-sm-4">
                     <div class="description-block">
                       <span class="description-text">COMMISION EARNED</span>
-                      <h5 class="description-header">{{this.commission}}</h5>  
+                      <h5 class="description-header">${{this.commission}}</h5>  
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -80,6 +80,8 @@ export default {
           this.tele = snapshot.data().tele;
           this.zone = snapshot.data().zone;
           this.profilePic = snapshot.data().profilePic;
+          this.deliveries = snapshot.data().deliveries;
+          this.commission = snapshot.data().commission;
         }
         );
     },
