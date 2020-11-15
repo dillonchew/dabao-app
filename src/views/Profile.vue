@@ -163,10 +163,10 @@ export default {
       var user = firebase.auth().currentUser;
       var self = this;
       database.collection("acceptedOrders").doc(id).get().then(function(doc){
-        var comms = self.orderList[index].comms;
+        var comms = self.orderList[index].comms.toFixed(2);
         var custid = self.orderList[index].customerid;
         var total = self.orderList[index].total;
-        var place = self.myOrderList[index].place;
+        var place = self.orderList[index].place;
         if(doc.data().customerDelete == 'true'){
 
           // update dabaoer data
@@ -182,24 +182,24 @@ export default {
             commissionPaid: firebase.firestore.FieldValue.increment(comms)
           });
 
-          // if (place == 'Supper Stretch'){
-          //   database.collection("users").doc(custid).update({
-          //   ssVisit: firebase.firestore.FieldValue.increment(1),
-          //   ssSpent: firebase.firestore.FieldValue.increment(total)
-          //   });
-          // }
-          // if (place == 'Clementi'){
-          //   database.collection("users").doc(custid).update({
-          //   clemVisit: firebase.firestore.FieldValue.increment(1),
-          //   clemSpent: firebase.firestore.FieldValue.increment(total)
-          //   });
-          // }
-          // if (place == 'West Coast'){
-          //   database.collection("users").doc(custid).update({
-          //   wcVisit: firebase.firestore.FieldValue.increment(1),
-          //   wcSpent: firebase.firestore.FieldValue.increment(total)
-          //   });
-          // }
+          if (place == 'Supper Stretch'){
+            database.collection("users").doc(custid).update({
+            ssVisit: firebase.firestore.FieldValue.increment(1),
+            ssSpent: firebase.firestore.FieldValue.increment(total)
+            });
+          }
+          if (place == 'Clementi'){
+            database.collection("users").doc(custid).update({
+            clemVisit: firebase.firestore.FieldValue.increment(1),
+            clemSpent: firebase.firestore.FieldValue.increment(total)
+            });
+          }
+          if (place == 'West Coast'){
+            database.collection("users").doc(custid).update({
+            wcVisit: firebase.firestore.FieldValue.increment(1),
+            wcSpent: firebase.firestore.FieldValue.increment(total)
+            });
+          }
 
           database.collection("acceptedOrders").doc(id).delete();
           alert('Deleted!');
@@ -214,7 +214,7 @@ export default {
       // const admin = require('firebase-admin');
       var self = this;
       database.collection("acceptedOrders").doc(id).get().then(function(doc){
-        var comms = self.myOrderList[index].comms;
+        var comms = self.myOrderList[index].comms.toFixed(2);
         var custid = self.myOrderList[index].customerid;
         var dabaoerid = self.myOrderList[index].dabaoerid;
         var total = self.myOrderList[index].total;
@@ -234,28 +234,28 @@ export default {
             commissionPaid: firebase.firestore.FieldValue.increment(comms)
           });
 
-          // if (place == 'Supper Stretch'){
-          //   database.collection("users").doc(custid).update({
-          //   ssVisit: firebase.firestore.FieldValue.increment(1),
-          //   ssSpent: firebase.firestore.FieldValue.increment(total)
-          //   });
-          // }
-          // if (place == 'Clementi'){
-          //   database.collection("users").doc(custid).update({
-          //   clemVisit: firebase.firestore.FieldValue.increment(1),
-          //   clemSpent: firebase.firestore.FieldValue.increment(total)
-          //   });
-          // }
-          // if (place == 'West Coast'){
-          //   database.collection("users").doc(custid).update({
-          //   wcVisit: firebase.firestore.FieldValue.increment(1),
-          //   wcSpent: firebase.firestore.FieldValue.increment(total)
-          //   });
-          // }
+          if (place == 'Supper Stretch'){
+            database.collection("users").doc(custid).update({
+            ssVisit: firebase.firestore.FieldValue.increment(1),
+            ssSpent: firebase.firestore.FieldValue.increment(total)
+            });
+          }
+          if (place == 'Clementi'){
+            database.collection("users").doc(custid).update({
+            clemVisit: firebase.firestore.FieldValue.increment(1),
+            clemSpent: firebase.firestore.FieldValue.increment(total)
+            });
+          }
+          if (place == 'West Coast'){
+            database.collection("users").doc(custid).update({
+            wcVisit: firebase.firestore.FieldValue.increment(1),
+            wcSpent: firebase.firestore.FieldValue.increment(total)
+            });
+          }
 
           database.collection("acceptedOrders").doc(id).delete();
           alert('Deleted!');
-        } else{
+        } else {
           database.collection("acceptedOrders").doc(id).set({customerDelete:'true'}, { merge: true });
           alert('This order will be deleted once the dabaoer has verified the delivery!');
         }

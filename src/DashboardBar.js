@@ -1,22 +1,23 @@
-import { Doughnut } from "vue-chartjs";
+import { Bar } from "vue-chartjs";
 import database from "./firebase.js";
 import { mapState } from "vuex";
 
 export default {
-  extends: Doughnut,
+  extends: Bar,
   computed: {
     ...mapState(["userProfile"]),
   },
   data: function() {
     return {
       name: "",
-      food: 0,
+      delivery: 0,
+      total: 0,
       comms: 0,
       options: {
         legend: { display: false },
         title: {
           display: true,
-          text: "Total amount spent on food vs delivery in SGD",
+          text: "Commission earned compared to Amount Spent in SGD",
         },
         responsive: true,
         maintainAspectRatio: false,
@@ -24,24 +25,24 @@ export default {
     };
   },
   async mounted() {
-    console.log(this.userProfile.name)
-    const snapshot = await database.collection('orders').get();
+    const snapshot = await database.collection('users').get();
       snapshot.forEach(doc => {
           let order = {};
           order = doc.data();
           if (order.name == this.userProfile.name) {
-            this.food = order.total - order.comms;
-            this.comms = order.comms;
+            this.comms += order.commission;
+            this.delivery += order.commissionPaid
+            this.total += order.wcSpent + order.ssSpent + order.clemSpent
           }
           
         })
     this.renderChart({
-      labels: ["Food", "Delivery"],
+      labels: ["Commission Earned", "Delivery Paid", "Total Spent"],
       datasets: [
         {
-          label: "Spending",
-          backgroundColor: ["#8e5ea2", "#3cba9f"],
-          data: [this.food, this.comms],
+          label: "Amount",
+          backgroundColor: ["#bfff00", "#a65a3a", "#0ca6ed"],
+          data: [this.comms.toFixed(2), this.delivery.toFixed(2), this.total.toFixed(2)],
         },
       ],
     }, this.options);

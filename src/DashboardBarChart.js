@@ -11,13 +11,13 @@ export default {
     return {
       name: "",
       wc: 0,
-      clem: 0,
       ss: 0,
+      clem: 0,
       options: {
         legend: { display: false },
         title: {
           display: true,
-          text: "Total amount spent by location in SGD",
+          text: "Total amount spent by place in SGD",
         },
         responsive: true,
         maintainAspectRatio: false,
@@ -26,20 +26,14 @@ export default {
   },
   async mounted() {
     console.log(this.userProfile.name)
-    const snapshot = await database.collection('orders').get();
+    const snapshot = await database.collection('users').get();
       snapshot.forEach(doc => {
           let order = {};
           order = doc.data();
           if (order.name == this.userProfile.name) {
-            if (order.place == "West Coast") {
-              this.wc += order.total
-            }
-            if (order.place == "Supper Stretch") {
-              this.ss += order.total
-            }
-            if (order.place == "Clementi Mall") {
-              this.clem += order.total
-            }
+            this.wc += order.wcSpent
+            this.ss += order.ssSpent
+            this.clem += order.clemSpent
           }
           
         })
@@ -47,9 +41,9 @@ export default {
       labels: ["West Coast", "Supper Stretch", "Clementi Mall"],
       datasets: [
         {
-          label: "Location",
-          backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
-          data: [this.wc, this.ss, this.clem],
+          label: "Amount Spent",
+          backgroundColor: ["#29d6ce", "#1e2d66", "#35ab72"],
+          data: [this.wc.toFixed(2), this.ss.toFixed(2), this.clem.toFixed(2)],
         },
       ],
     }, this.options);

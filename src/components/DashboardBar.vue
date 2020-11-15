@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Chart from "../DashboardDonut.js";
+import Chart from "../DashboardBar.js";
 export default {
   components: {
     Chart,

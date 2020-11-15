@@ -65,8 +65,8 @@
           <h6>Items: {{order.items.toString()}}</h6>
           <h6>Total : {{order.total}}</h6>
         </div>
-        <b-button id="button" v-if="userProfile.name != order.name" pill variant="outline-secondary" @click="acceptOrder(index, userProfile.tele, userProfile.name, userProfile.zone)">Accept</b-button>
-        <b-button id="button" v-if="userProfile.name == order.name" pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
+        <b-button id="button" v-if="userProfile.name !== order.name" pill variant="outline-secondary" @click="acceptOrder(index, userProfile.tele, userProfile.name, userProfile.zone)">Accept</b-button>
+        <b-button id="button" v-if="userProfile.name === order.name" pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
         <b-button id="button" v-if="!order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Show details</b-button>
         <b-button id="button" v-if="order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Hide details</b-button>
       </li>
