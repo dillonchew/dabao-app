@@ -218,6 +218,7 @@ export default {
         name: this.signupForm.name,
         zone: this.signupForm.zone,
       });
+      alert('Thank you for signing up! You can now login with your email')
     },
     checkFormValidity() {
       const valid = this.$refs.form.checkValidity();

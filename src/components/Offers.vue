@@ -2,11 +2,14 @@
   <div class="offers">
     <div id = "head">
       <br/>
-    <h1>Offers</h1>
-    <b-button id="offerbutton" v-b-modal.modal-offer pill variant="outline-secondary">
-      {{ msg }}
-      <b-icon icon="gift" aria-hidden="true"></b-icon>
-    </b-button>
+      <h1>Offers</h1>
+      <b-button id="info" v-b-tooltip.hover title="Tell people where you're going!">
+        <b-icon icon="info-circle-fill" style="color:#660066"></b-icon>
+      </b-button>
+      <b-button id="offerbutton" v-b-modal.modal-offer pill variant="outline-secondary">
+        {{ msg }}
+        <b-icon icon="gift" aria-hidden="true"></b-icon>
+      </b-button>
     </div>
     <div class = "filters">
        <div id = "filter2">
@@ -324,5 +327,9 @@ ul {
   width: 300px;
   margin: 10px;
   box-shadow: 3px 5px  #f2f2f3;
+}
+#info {
+  background: transparent;
+  border: none;
 }
 </style>
