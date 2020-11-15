@@ -57,7 +57,7 @@
           <h6>Zone: {{offer.zone}}</h6>
           <h6>Tele: {{offer.tele}}</h6>
         </div>
-        <b-button id="button" v-if="userProfile.name == offer.name" pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
+        <b-button id="button" v-if="currentUserID === offer.uid" pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
         <b-button id="button" v-if="!offer.show" v-on:click="show(offer.id)" pill variant="outline-secondary">Show details</b-button>
         <b-button id="button" v-if="offer.show" v-on:click="show(offer.id)" pill variant="outline-secondary">Hide details</b-button>
         </li>
@@ -90,6 +90,7 @@
 
 <script>
 import database from "../firebase.js";
+import * as firebase from 'firebase';
 import * as fb from "../firebase";
 import { auth } from "../firebase";
 import { mapState } from "vuex";
@@ -111,6 +112,7 @@ export default {
       time: "",
       commission: '$1.00',
       context: null,
+      currentUserID: "",
       selectedPlaces: [],
       commisionData: [
           {text: '$1.00', value:'1'}, 
@@ -156,6 +158,8 @@ export default {
       offer.show = !offer.show;
     },
     fetchOffers() {
+      var user =  firebase.auth().currentUser;
+      this.currentUserID = user.uid;
       database
         .collection("offers")
         .orderBy("place")

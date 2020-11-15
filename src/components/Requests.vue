@@ -65,8 +65,8 @@
           <h6>Items: {{order.items.toString()}}</h6>
           <h6>Total : {{order.total}}</h6>
         </div>
-        <b-button id="button" v-if="userProfile.name !== order.name" pill variant="outline-secondary" @click="acceptOrder(index, userProfile.tele, userProfile.name, userProfile.zone)">Accept</b-button>
-        <b-button id="button" v-if="userProfile.name === order.name" pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
+        <b-button id="button" v-if="currentUserID !== order.userid" pill variant="outline-secondary" @click="acceptOrder(index, userProfile.tele, userProfile.name, userProfile.zone)">Accept</b-button>
+        <b-button id="button" v-if="currentUserID === order.userid" pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
         <b-button id="button" v-if="!order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Show details</b-button>
         <b-button id="button" v-if="order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Hide details</b-button>
       </li>
@@ -118,6 +118,7 @@ export default {
     return {
       orderList: [],
       selectedZone: [],
+      currentUserID: "",
       time: "",
       commission: 0,
       context: null,
@@ -176,6 +177,8 @@ export default {
       alert('Saved! You can view the order in your profile and find the telegram handle of the requester');
     },
     fetchOrders() {
+      var user =  firebase.auth().currentUser;
+      this.currentUserID = user.uid;
       database
         .collection("orders")
         .orderBy("place")
