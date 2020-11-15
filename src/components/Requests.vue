@@ -120,6 +120,7 @@ export default {
       selectedZone: [],
       currentUserID: "",
       time: "",
+      place:"",
       commission: 0,
       context: null,
       selectedPlaces: [],
