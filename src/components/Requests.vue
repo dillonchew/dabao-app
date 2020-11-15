@@ -27,7 +27,6 @@
               id="filterPlace"
               v-model="selectedPlaces"
               :options="places"
-              v-bind:value="place"
               stacked
             ></b-form-checkbox-group>
           </b-form-group>
@@ -122,7 +121,7 @@ export default {
   data() {
     return {
       orderList: [],
-      selectedZone: [],
+      selectedZone: "",
       currentUserID: "",
       time: "",
       commission: 0,

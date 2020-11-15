@@ -25,7 +25,7 @@ import RF from './RequestForm.vue'
 export default {
     name: 'ShoppingCart',
     data() {
-    return {time: {type: String}};
+    return {time: ""};
     },
     components: {RF},
     props: ['cart'],

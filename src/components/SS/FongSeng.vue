@@ -68,7 +68,7 @@ export default {
           picture: 'https://www.kuali.com/wp-content/uploads/2016/06/Nasi-Lemak.jpg',
           category: "BtB",
           sizes: ['Ala-carte'],
-          prices: {'Ala-carte':2.00},
+          price: {'Ala-carte':2.00},
           shop : "Fong Seng",
           place: "Supper Stretch",
         },
@@ -78,7 +78,7 @@ export default {
           picture: 'https://farm6.static.flickr.com/5283/5284868318_267233ba49.jpg',
           category: "BtB",
           sizes: ['1pc','2pc','3pc'],
-          prices: {'1pc':1.30,'2pc':2.60,'3pc':3.90},
+          price: {'1pc':1.30,'2pc':2.60,'3pc':3.90},
           shop : "Fong Seng",
           place: "Supper Stretch",
         },
@@ -88,7 +88,7 @@ export default {
           picture: 'https://c2.staticflickr.com/1/537/31760182865_026181c360_b.jpg',
           category: "BtB",
           sizes: ['1pc','2pc','3pc'],
-          prices: {'1pc':1.20,'2pc':2.40,'3pc':3.60},
+          price: {'1pc':1.20,'2pc':2.40,'3pc':3.60},
           shop : "Fong Seng",
           place: "Supper Stretch",
         },
@@ -98,7 +98,7 @@ export default {
           picture: 'https://lh3.googleusercontent.com/proxy/Lk6yTSxzVHgD2Gn9Gfj3GFNoCHJ3FYp5Re2KAIiHu5cCX-Q5QQK44B5CqJ6OXcgZbPZLdQRNLShu5VcUwJ42yrDMvnDQD5C373upJfuzrrS2zYcb95YDOZK6',
           category: "BtB",
           sizes: ['1pc','2pc','3pc'],
-          prices: {'1pc':0.70,'2pc':1.40,'3pc':2.10},
+          price: {'1pc':0.70,'2pc':1.40,'3pc':2.10},
           shop : "Fong Seng",
           place: "Supper Stretch",
         },
@@ -108,7 +108,7 @@ export default {
           picture: 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F4530047.jpg&q=85',
           category: "Premium",
           sizes: ['1pc','2pc','3pc'],
-          prices: {'1pc':2.50,'2pc':5.00,'3pc':7.50},
+          price: {'1pc':2.50,'2pc':5.00,'3pc':7.50},
           shop : "Fong Seng",
           place: "Supper Stretch",
         },
@@ -118,7 +118,7 @@ export default {
           picture: 'https://cdn.shopify.com/s/files/1/0207/5980/6016/products/FrozenCrispyChickenwithSeaweed_1024x.jpg?v=1587991562',
           category: "Add",
           sizes: ['1pc','2pc','3pc'],
-          prices: {'1pc':0.60,'2pc':1.20,'3pc':1.80},
+          price: {'1pc':0.60,'2pc':1.20,'3pc':1.80},
           shop : "Fong Seng",
           place: "Supper Stretch",
         },
@@ -128,7 +128,7 @@ export default {
           picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR46uX0IO-wqHOUYVSulI7_B81E-D1UdyRS8w&usqp=CAU",
           category: "Add",
           sizes: ['1pc','2pc','3pc'],
-          prices: {'1pc':0.60,'2pc':1.20,'3pc':1.80},
+          price: {'1pc':0.60,'2pc':1.20,'3pc':1.80},
           shop : "Fong Seng",
           place: "Supper Stretch",
         }
@@ -169,7 +169,7 @@ methods: {
             size: this.size,
             price: item.price[this.size],
             shop: item.shop,
-            place: "West Coast"
+            place: "Supper Stretch"
         })
         console.log(this.cart)
       }

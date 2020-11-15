@@ -19,8 +19,7 @@
             <b-form-checkbox-group 
               id="filterPlace"
               v-model="selectedPlaces"
-              :options="places"
-              v-bind:value="place"
+              :options="places"             
               stacked
             ></b-form-checkbox-group>
           </b-form-group>

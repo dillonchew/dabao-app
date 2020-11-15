@@ -209,6 +209,7 @@ export default {
         email: this.loginForm.email,
         password: this.loginForm.password,
       });
+      alert('succesfully logged in!')
     },
     signup() {
       this.$store.dispatch("signup", {
