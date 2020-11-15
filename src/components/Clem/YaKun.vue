@@ -169,7 +169,7 @@ methods: {
             size: this.size,
             price: item.price[this.size],
             shop: item.shop,
-            place: "West Coast"
+            place: "Clementi"
         })
         console.log(this.cart)
       }

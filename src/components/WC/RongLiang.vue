@@ -2,7 +2,7 @@
 <div style="margin-bottom:50px;">
   <!-- banner -->
     <b-container fluid class="p-4" style="background-color: #e6ebff;">
-      <b-img rounded ='circle' src="@/assets/Macs-Logo.png" alt="Image 1"></b-img>
+      <b-img rounded ='circle' src="@/assets/RongLiang-Logo.jpg" alt="Image 1"></b-img>
       <br /><br />
       <h5 style = "color : #660066">{{description}}</h5>
     </b-container>
@@ -162,7 +162,7 @@ methods: {
             size: this.size,
             price: item.price[this.size],
             shop: item.shop,
-            place: "West Coast"
+            place: 'West Coast'
         })
         console.log(this.cart)
       }
