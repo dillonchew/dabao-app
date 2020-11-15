@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import * as fb from "../firebase";
 import router from "../router/index";
+import defaultPic from "@/assets/egg.jpg";
 
 Vue.use(Vuex);
 
@@ -45,7 +46,7 @@ const store = new Vuex.Store({
         name: form.name,
         zone: form.zone,
         tele: form.tele,
-        profilePic: ''
+        profilePic: defaultPic
       });
 
       // fetch user profile and set in state
