@@ -61,6 +61,7 @@ methods: {
         // name of items 
           this.cart.map(x => this.order.items.push(x.name.concat(" ",x.size)))
           this.order.shop = this.cart[0].shop
+          this.order.place = this.cart[0].place
 
           this.order.time = this.time
           

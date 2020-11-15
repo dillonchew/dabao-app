@@ -2,6 +2,7 @@
 <div style="margin-bottom:50px;">
   <!-- banner -->
     <b-container fluid class="p-4" style="background-color: #e6ebff;">
+      <b-img rounded ='circle' src="@/assets/Macs-Logo.png" alt="Image 1"></b-img>
       <br /><br />
       <h5 style = "color : #660066">{{description}}</h5>
     </b-container>

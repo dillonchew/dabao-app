@@ -119,6 +119,7 @@ export default {
       orderList: [],
       selectedZone: [],
       time: "",
+      place:"",
       commission: 0,
       context: null,
       selectedPlaces: [],

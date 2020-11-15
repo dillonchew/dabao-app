@@ -22,12 +22,11 @@
                   to = "/WCPMacs"
                   variant="outline-secondary"> View Menu </b-button>
       </div>
-      <div id = "right">
+      <div class = "places" id= "right">
         <h3>Rong Liang Restaurant</h3>
         <b-container>
               <b-img src="@/assets/rongliang1.jpg" rounded ></b-img>
         </b-container>
-        <Clemimages></Clemimages>
         <br />
         <!-- <ClemRequestForm></ClemRequestForm> -->
         <b-button id="view" tag = "router-link"
@@ -53,12 +52,14 @@ export default {
 #middle {
   margin-left: 3%;
 }
+
 #right {
   display:flexbox;
   float: right;
   width: 30%;
   margin-right: 2%;
 }
+
 #view {
   background-color: white;
   color:  #660066;
