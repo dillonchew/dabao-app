@@ -33,7 +33,7 @@
                   <div class="col-sm-4">
                     <div class="description-block">
                       <span class="description-text">COMMISION EARNED</span>
-                      <h5 class="description-header">{{userProfile.commission}}</h5>  
+                      <h5 class="description-header">${{userProfile.commission}}</h5>  
                     </div>
                     <!-- /.description-block -->
                   </div>
