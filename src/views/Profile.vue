@@ -48,7 +48,7 @@
           </div>
         </div>
         <br/>
-        <h3>Accepted orders </h3>
+        <h3>To be delivered by you </h3>
         <br/>
         <div class = "list">
           <ul>
@@ -70,7 +70,7 @@
             </li>
           </ul>
         </div>
-        <h3> Your orders </h3>
+        <h3> On the way to you </h3>
         <div class = "list">
           <ul>
             <li id="items" v-for="(order,index) in myOrderList" v-bind:key="index">
@@ -325,7 +325,7 @@ export default {
   border-color: #660066;
 }
 .list {
-  width: 80%;
+  width: 100%;
   display: flex;
 }
 ul {
@@ -341,7 +341,7 @@ ul {
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   padding: 10px;
-  width: 300px;
+  width: 350px;
   margin: 10px;
   box-shadow: 3px 5px  #e2e2e7;
 }

@@ -209,6 +209,7 @@ export default {
         email: this.loginForm.email,
         password: this.loginForm.password,
       });
+      alert('succesfully logged in!')
     },
     signup() {
       this.$store.dispatch("signup", {
@@ -218,6 +219,7 @@ export default {
         name: this.signupForm.name,
         zone: this.signupForm.zone,
       });
+      alert('Thank you for signing up! You can now login with your email')
     },
     checkFormValidity() {
       const valid = this.$refs.form.checkValidity();

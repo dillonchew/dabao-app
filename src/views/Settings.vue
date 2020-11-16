@@ -2,11 +2,11 @@
   <section id="settings">
     <br/>
     <div class="col1">
+      <transition name="fade">
+        <b v-if="showSuccess" style = "color:red" class="success">Profile updated!</b>
+      </transition>
       <h3>Update your profile</h3>
       <br/>
-      <transition name="fade">
-        <p v-if="showSuccess" class="success">profile updated</p>
-      </transition>
 
       <form class="col2" @submit.prevent>
 
@@ -177,4 +177,5 @@ form {
   align-items: center;
   width: 100%;
 }
+
 </style>

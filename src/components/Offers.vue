@@ -2,11 +2,14 @@
   <div class="offers">
     <div id = "head">
       <br/>
-    <h1>Offers</h1>
-    <b-button id="offerbutton" v-b-modal.modal-offer pill variant="outline-secondary">
-      {{ msg }}
-      <b-icon icon="gift" aria-hidden="true"></b-icon>
-    </b-button>
+      <h1>Offers</h1>
+      <b-button id="info" v-b-tooltip.hover title="Tell people where you're going!">
+        <b-icon icon="info-circle-fill" style="color:#660066"></b-icon>
+      </b-button>
+      <b-button id="offerbutton" v-b-modal.modal-offer pill variant="outline-secondary">
+        {{ msg }}
+        <b-icon icon="gift" aria-hidden="true"></b-icon>
+      </b-button>
     </div>
     <div class = "filters">
        <div id = "filter2">
@@ -16,8 +19,7 @@
             <b-form-checkbox-group 
               id="filterPlace"
               v-model="selectedPlaces"
-              :options="places"
-              v-bind:value="place"
+              :options="places"             
               stacked
             ></b-form-checkbox-group>
           </b-form-group>
@@ -28,7 +30,7 @@
         <br />
          <b-row>
           <b-col md="auto">
-            <b-time v-model="time" locale="en" @context="onContext" minutes-step=30></b-time>
+            <b-time v-model="time" locale="en" minutes-step=30></b-time>
           </b-col>
         </b-row>
       </div>
@@ -170,7 +172,6 @@ export default {
             offer = doc.data();
             offer.id = doc.id;
             offer.show = false;
-            console.log(offer.id);
             this.offerList.push(offer);
             this.selectedZone = this.userProfile.zone;
           });
@@ -324,5 +325,9 @@ ul {
   width: 300px;
   margin: 10px;
   box-shadow: 3px 5px  #f2f2f3;
+}
+#info {
+  background: transparent;
+  border: none;
 }
 </style>
