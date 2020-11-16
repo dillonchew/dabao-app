@@ -2,11 +2,14 @@
   <div class="offers">
     <div id = "head">
       <br/>
-    <h1>Offers</h1>
-    <b-button id="offerbutton" v-b-modal.modal-offer pill variant="outline-secondary">
-      {{ msg }}
-      <b-icon icon="gift" aria-hidden="true"></b-icon>
-    </b-button>
+      <h1>Offers</h1>
+      <b-button id="info" v-b-tooltip.hover title="Tell people where you're going!">
+        <b-icon icon="info-circle-fill" style="color:#660066"></b-icon>
+      </b-button>
+      <b-button id="offerbutton" v-b-modal.modal-offer pill variant="outline-secondary">
+        {{ msg }}
+        <b-icon icon="gift" aria-hidden="true"></b-icon>
+      </b-button>
     </div>
     <div class = "filters">
        <div id = "filter2">
@@ -16,8 +19,7 @@
             <b-form-checkbox-group 
               id="filterPlace"
               v-model="selectedPlaces"
-              :options="places"
-              v-bind:value="offer.place"
+              :options="places"             
               stacked
             ></b-form-checkbox-group>
           </b-form-group>
@@ -53,11 +55,11 @@
         <hr/>
         <h6>Time: {{offer.time}}</h6>
         <div v-if="offer.show">
-          <h6>Name: {{offer.name}}</h6>
+          <h6>Name: <router-link :to="`/user/${offer.uid}`" exact>{{offer.name}}</router-link></h6>
           <h6>Zone: {{offer.zone}}</h6>
           <h6>Tele: {{offer.tele}}</h6>
         </div>
-        <b-button id="button" v-if="userProfile.name == offer.name" pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
+        <b-button id="button" v-if="currentUserID === offer.uid" pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
         <b-button id="button" v-if="!offer.show" v-on:click="show(offer.id)" pill variant="outline-secondary">Show details</b-button>
         <b-button id="button" v-if="offer.show" v-on:click="show(offer.id)" pill variant="outline-secondary">Hide details</b-button>
         </li>
@@ -90,6 +92,7 @@
 
 <script>
 import database from "../firebase.js";
+import * as firebase from 'firebase';
 import * as fb from "../firebase";
 import { auth } from "../firebase";
 import { mapState } from "vuex";
@@ -111,6 +114,7 @@ export default {
       time: "",
       commission: '$1.00',
       context: null,
+      currentUserID: "",
       selectedPlaces: [],
       commisionData: [
           {text: '$1.00', value:'1'}, 
@@ -156,6 +160,8 @@ export default {
       offer.show = !offer.show;
     },
     fetchOffers() {
+      var user =  firebase.auth().currentUser;
+      this.currentUserID = user.uid;
       database
         .collection("offers")
         .orderBy("place")
@@ -189,6 +195,8 @@ export default {
           this.offer.name = offer1.name;
           this.offer.zone = offer1.zone;
           this.offer.tele = offer1.tele;
+          this.offer.uid = uid;
+          console.log(this.offer);
         }
         database.collection("offers").add(this.offer);
         alert("saved");
@@ -198,6 +206,7 @@ export default {
         this.offer.id = "";
         this.offer.name = "";
         this.offer.zone = "";
+        this.offer.uid = "";
       });
     },
     checkFormValidity() {
@@ -316,5 +325,9 @@ ul {
   width: 300px;
   margin: 10px;
   box-shadow: 3px 5px  #f2f2f3;
+}
+#info {
+  background: transparent;
+  border: none;
 }
 </style>

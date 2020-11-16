@@ -49,14 +49,15 @@ methods: {
           order1 = doc.data();
           this.order.name = order1.name;
           this.order.zone = order1.zone;
+          this.order.place = order1.place;
           this.order.userid = uid;
           this.order.tele = order1.tele;
         }
 
         // comms and total 
           var t = this.cart.map(item => item.price).reduce((result, amount) => result + amount);
-          this.order.total = t * 110/100
-          this.order.comms = t * 10/100
+          this.order.total = (t * 110/100).toFixed(2)
+          this.order.comms = (t * 10/100).toFixed(2)
 
         // name of items 
           this.cart.map(x => this.order.items.push(x.name.concat(" ",x.size)))
@@ -68,6 +69,7 @@ methods: {
           database.collection('orders').add(this.order);
           alert('saved! should there be any changes, contact your dabao-er')
       });
+      this.$router.go();
   }
 }
 }

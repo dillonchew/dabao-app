@@ -39,6 +39,15 @@ const routes = [
     },
   },
   {
+    path: "/user/:uid",
+    name: "user",
+    component: () =>
+      import(/* webpackChunkName: "user" */ "../views/User.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },  
+  {
     path: "/requests",
     name: "Requests",
     component: () =>
@@ -71,57 +80,62 @@ const routes = [
     path: "/WClocations",
     name: 'WClocations',
     component: () => import('../components/WClocations.vue')
-},
-{
-  path: "/Clemlocations",
-  name: 'Clemlocations',
-  component: () => import('../components/Clemlocations.vue')
-},
-{
-  path: "/WCPMacs",
-  name: 'WCPMacs',
-  component: () => import('../components/WC/WCPMacs.vue')
-},
-{
-  path: "/BurgerKing",
-  name: 'BurgerKing',
-  component: () => import('../components/WC/BurgerKing.vue')
-},
-{
-  path: "/RongLiang",
-  name: 'RongLiang',
-  component: () => import('../components/WC/RongLiang.vue')
-},
-{
-  path: "/Macs",
-  name: 'Macs',
-  component: () => import('../components/Clem/Macs.vue')
-},
-{
-  path: "/Crave",
-  name: 'Crave',
-  component: () => import('../components/Clem/Crave.vue')
-},
-{
-  path: "/YaKun",
-  name: 'YaKun',
-  component: () => import('../components/Clem/YaKun.vue')
-},
-{
-  path: "/AlAmaan",
-  name: 'AlAmaan',
-  component: () => import('../components/SS/AlAmaan.vue')
-},
-{
-  path: "/FongSeng",
-  name: 'FongSeng',
-  component: () => import('../components/SS/FongSeng.vue')
-},
-{
-  path: "/Formosa",
-  name: 'Formosa',
-  component: () => import('../components/SS/Formosa.vue')
-}
+  },
+  {
+    path: "/Clemlocations",
+    name: 'Clemlocations',
+    component: () => import('../components/Clemlocations.vue')
+  },
+  {
+    path: "/WCPMacs",
+    name: 'WCPMacs',
+    component: () => import('../components/WC/WCPMacs.vue')
+  },
+  {
+    path: "/BurgerKing",
+    name: 'BurgerKing',
+    component: () => import('../components/WC/BurgerKing.vue')
+  },
+  {
+    path: "/RongLiang",
+    name: 'RongLiang',
+    component: () => import('../components/WC/RongLiang.vue')
+  },
+  {
+    path: "/Macs",
+    name: 'Macs',
+    component: () => import('../components/Clem/Macs.vue')
+  },
+  {
+    path: "/Crave",
+    name: 'Crave',
+    component: () => import('../components/Clem/Crave.vue')
+  },
+  {
+    path: "/YaKun",
+    name: 'YaKun',
+    component: () => import('../components/Clem/YaKun.vue')
+  },
+  {
+    path: "/AlAmaan",
+    name: 'AlAmaan',
+    component: () => import('../components/SS/AlAmaan.vue')
+  },
+  {
+    path: "/FongSeng",
+    name: 'FongSeng',
+    component: () => import('../components/SS/FongSeng.vue')
+  },
+  {
+    path: "/Formosa",
+    name: 'Formosa',
+    component: () => import('../components/SS/Formosa.vue')
+  },
+  {
+    path: '*',
+    name: '404',
+    component: () => import('../components/404.vue')
+  }
 ];
 
 const router = new VueRouter({
