@@ -30,7 +30,7 @@
         <br />
          <b-row>
           <b-col md="auto">
-            <b-time v-model="time" locale="en" @context="onContext" minutes-step=30></b-time>
+            <b-time v-model="time" locale="en" minutes-step=30></b-time>
           </b-col>
         </b-row>
       </div>
@@ -172,7 +172,6 @@ export default {
             offer = doc.data();
             offer.id = doc.id;
             offer.show = false;
-            console.log(offer.id);
             this.offerList.push(offer);
             this.selectedZone = this.userProfile.zone;
           });
