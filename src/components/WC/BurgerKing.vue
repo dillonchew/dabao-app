@@ -128,7 +128,7 @@ export default {
         {
             id: "#006",
             name: "Cheesy Fries",
-            picture: "hhttps://www.burgerking.com.sg/upload/image/Product/54/sides-cheesy-fries-details.png",
+            picture: "https://www.burgerking.com.sg/upload/image/Product/54/sides-cheesy-fries-details.png",
             category: "Sides",
             sizes: ['R', 'L'],
             price: {'R': 3.30, 'L': 3.70},

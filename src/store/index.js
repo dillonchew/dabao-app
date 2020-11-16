@@ -46,7 +46,7 @@ const store = new Vuex.Store({
         name: form.name,
         zone: form.zone,
         tele: form.tele,
-        profilePic: '',
+        profilePic: defaultPic,
         clemVisit: 0,
         clemSpent: 0,
         ssVisit: 0,
