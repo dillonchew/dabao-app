@@ -95,7 +95,7 @@ export default {
         {
           id: "#004",
           name: "Tandoori Chicken",
-          picture: "https://lh3.googleusercontent.com/proxy/VyUPHPx4345JWXqHYNiZSFmOwLRTA5cWWwGriW1k-HjGaGRFZ0dAOg7EiPfpjNC63YTJvRSfCmB4haeRh5f0g_DaKrDx1ZHOxpUeZUCc8P5AQTfOZv776TLmNkmHT9oq06XGUm6maQ",
+          picture: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/chicken-tandori-1526595014.jpg?resize=768:*",
           category: "Tandoori",
           sizes: ['S','M','L'],
           price: {'S':6.50, 'M':10.50,'L':18.50},

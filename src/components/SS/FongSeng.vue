@@ -95,7 +95,7 @@ export default {
         {
           id: "#004",
           name: "Kuning Fish",
-          picture: 'https://lh3.googleusercontent.com/proxy/Lk6yTSxzVHgD2Gn9Gfj3GFNoCHJ3FYp5Re2KAIiHu5cCX-Q5QQK44B5CqJ6OXcgZbPZLdQRNLShu5VcUwJ42yrDMvnDQD5C373upJfuzrrS2zYcb95YDOZK6',
+          picture: 'https://www.ponggolnasilemak.com.sg/wp-content/uploads/2018/03/PNL-1429.jpg',
           category: "BtB",
           sizes: ['1pc','2pc','3pc'],
           price: {'1pc':0.70,'2pc':1.40,'3pc':2.10},
