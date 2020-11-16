@@ -1,7 +1,12 @@
 <template>
   <div class="requests">
     <br/>
-    <h1>Requests</h1>
+    <div id="top">
+      <h1>Requests</h1>
+      <b-button id="info" v-b-tooltip.hover title="Place your order via Shops found in the 'Home' page!">
+        <b-icon icon="info-circle-fill" style="color:#660066"></b-icon>
+      </b-button>
+    </div>
     <br />
     <b-alert v-model="showOrderAlert" variant="danger" dismissible>
           You already have an accepted order!
@@ -22,7 +27,6 @@
               id="filterPlace"
               v-model="selectedPlaces"
               :options="places"
-              v-bind:value="place"
               stacked
             ></b-form-checkbox-group>
           </b-form-group>
@@ -65,8 +69,8 @@
           <h6>Items: {{order.items.toString()}}</h6>
           <h6>Total : {{order.total}}</h6>
         </div>
-        <b-button id="button" v-if="userProfile.name !== order.name" pill variant="outline-secondary" @click="acceptOrder(index, userProfile.tele, userProfile.name, userProfile.zone)">Accept</b-button>
-        <b-button id="button" v-if="userProfile.name === order.name" pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
+        <b-button id="button" v-if="currentUserID !== order.userid" pill variant="outline-secondary" @click="acceptOrder(index, userProfile.tele, userProfile.name, userProfile.zone)">Accept</b-button>
+        <b-button id="button" v-if="currentUserID === order.userid" pill variant="outline-secondary" @click="remove(index)">Delete</b-button>
         <b-button id="button" v-if="!order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Show details</b-button>
         <b-button id="button" v-if="order.show" v-on:click="show(order.id)" pill variant="outline-secondary">Hide details</b-button>
       </li>
@@ -117,7 +121,8 @@ export default {
   data() {
     return {
       orderList: [],
-      selectedZone: [],
+      selectedZone: "",
+      currentUserID: "",
       time: "",
       commission: 0,
       context: null,
@@ -176,6 +181,8 @@ export default {
       alert('Saved! You can view the order in your profile and find the telegram handle of the requester');
     },
     fetchOrders() {
+      var user =  firebase.auth().currentUser;
+      this.currentUserID = user.uid;
       database
         .collection("orders")
         .orderBy("place")
@@ -286,5 +293,12 @@ ul {
   border-color: #660066;
   margin-left: 2%;
   margin-bottom: 1%;
+}
+#top {
+  display: inline-flex;
+}
+#info {
+  background: transparent;
+  border: none;
 }
 </style>

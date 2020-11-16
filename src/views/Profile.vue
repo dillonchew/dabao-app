@@ -163,41 +163,41 @@ export default {
       var user = firebase.auth().currentUser;
       var self = this;
       database.collection("acceptedOrders").doc(id).get().then(function(doc){
-        var comms = self.orderList[index].comms.toFixed(2);
+        var comms = parseFloat(self.orderList[index].comms);
         var custid = self.orderList[index].customerid;
-        var total = self.orderList[index].total;
+        var total = parseFloat(self.orderList[index].total);
         var place = self.orderList[index].place;
         if(doc.data().customerDelete == 'true'){
 
           // update dabaoer data
           database.collection("users").doc(user.uid).update({
             deliveries: firebase.firestore.FieldValue.increment(1),
-            commission: firebase.firestore.FieldValue.increment(comms)
+            commission: firebase.firestore.FieldValue.increment(parseFloat(comms))
           });
 
           //update customer data
           database.collection("users").doc(custid).update({
             orders: firebase.firestore.FieldValue.increment(1),
             spent: firebase.firestore.FieldValue.increment(total),
-            commissionPaid: firebase.firestore.FieldValue.increment(comms)
+            commissionPaid: firebase.firestore.FieldValue.increment(parseFloat(comms))
           });
 
           if (place == 'Supper Stretch'){
             database.collection("users").doc(custid).update({
             ssVisit: firebase.firestore.FieldValue.increment(1),
-            ssSpent: firebase.firestore.FieldValue.increment(total)
+            ssSpent: firebase.firestore.FieldValue.increment(parseFloat(total))
             });
           }
           if (place == 'Clementi'){
             database.collection("users").doc(custid).update({
             clemVisit: firebase.firestore.FieldValue.increment(1),
-            clemSpent: firebase.firestore.FieldValue.increment(total)
+            clemSpent: firebase.firestore.FieldValue.increment(parseFloat(total))
             });
           }
           if (place == 'West Coast'){
             database.collection("users").doc(custid).update({
             wcVisit: firebase.firestore.FieldValue.increment(1),
-            wcSpent: firebase.firestore.FieldValue.increment(total)
+            wcSpent: firebase.firestore.FieldValue.increment(parseFloat(total))
             });
           }
 
@@ -214,42 +214,42 @@ export default {
       // const admin = require('firebase-admin');
       var self = this;
       database.collection("acceptedOrders").doc(id).get().then(function(doc){
-        var comms = self.myOrderList[index].comms.toFixed(2);
+        var comms = parseFloat(self.myOrderList[index].comms);
         var custid = self.myOrderList[index].customerid;
         var dabaoerid = self.myOrderList[index].dabaoerid;
-        var total = self.myOrderList[index].total;
+        var total = parseFloat(self.myOrderList[index].total);
         var place = self.myOrderList[index].place;
         if(doc.data().dabaoerDelete == 'true'){
 
           //update dabaoer data
           database.collection("users").doc(dabaoerid).update({
             deliveries: firebase.firestore.FieldValue.increment(1),
-            commission: firebase.firestore.FieldValue.increment(comms)
+            commission: firebase.firestore.FieldValue.increment(parseFloat(comms))
           });
 
           //update customer data
           database.collection("users").doc(custid).update({
             orders: firebase.firestore.FieldValue.increment(1),
-            spent: firebase.firestore.FieldValue.increment(total),
-            commissionPaid: firebase.firestore.FieldValue.increment(comms)
+            spent: firebase.firestore.FieldValue.increment(parseFloat(total)),
+            commissionPaid: firebase.firestore.FieldValue.increment(parseFloat(comms))
           });
 
           if (place == 'Supper Stretch'){
             database.collection("users").doc(custid).update({
             ssVisit: firebase.firestore.FieldValue.increment(1),
-            ssSpent: firebase.firestore.FieldValue.increment(total)
+            ssSpent: firebase.firestore.FieldValue.increment(parseFloat(total))
             });
           }
           if (place == 'Clementi'){
             database.collection("users").doc(custid).update({
             clemVisit: firebase.firestore.FieldValue.increment(1),
-            clemSpent: firebase.firestore.FieldValue.increment(total)
+            clemSpent: firebase.firestore.FieldValue.increment(parseFloat(total))
             });
           }
           if (place == 'West Coast'){
             database.collection("users").doc(custid).update({
             wcVisit: firebase.firestore.FieldValue.increment(1),
-            wcSpent: firebase.firestore.FieldValue.increment(total)
+            wcSpent: firebase.firestore.FieldValue.increment(parseFloat(total))
             });
           }
 
@@ -325,7 +325,7 @@ export default {
   border-color: #660066;
 }
 .list {
-  width: 80%;
+  width: 100%;
   display: flex;
 }
 ul {
@@ -341,7 +341,7 @@ ul {
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   padding: 10px;
-  width: 300px;
+  width: 350px;
   margin: 10px;
   box-shadow: 3px 5px  #e2e2e7;
 }
