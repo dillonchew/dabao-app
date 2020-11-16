@@ -69,7 +69,7 @@ methods: {
           database.collection('orders').add(this.order);
           alert('saved! should there be any changes, contact your dabao-er')
       });
-      this.$router.go();
+      setTimeout(() => this.$router.go(), 500);
   }
 }
 }
